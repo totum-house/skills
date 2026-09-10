@@ -1,0 +1,70 @@
+# Fonte de verdade do projeto. Vale para todas as telas e blocos.
+project:
+  name: ""
+  scope: page              # hero | section | page | flow
+  mode: full               # lite | full
+  targets: []              # kimi | lovable | v0 | claude-code | figma
+  version: 1.0
+
+sources:                   # ordem de autoridade, o que existe de fato
+  design_system: null
+  repository: null
+  brand_manual: null
+  live_url: null
+  reference_image: ""
+
+scope_discarded: []        # chrome, moldura, sombra de mockup, fundo de estudio
+
+art_direction:
+  personality: []
+  hierarchy:
+    primary: ""
+    secondary: ""
+    tertiary: ""
+  rules: []
+
+grid:
+  columns: 12
+  container_width_px: 1240
+  container_confidence: estimated
+  anchor: proportional
+  gutter: 24
+  horizontal_padding: 48
+
+components:                # componentes compartilhados entre blocos
+  primary_cta:
+    label: ""
+    icon: ""
+    height_ratio: 0.042
+    radius_token: radius.button
+    bg_token: color.brand-primary
+    states: [default, hover, focus, disabled, loading]
+    confidence: estimated
+
+interaction_spec:
+  defaults:
+    transition_duration: 200ms
+    easing: cubic-bezier(0.4, 0, 0.2, 1)
+    focus_ring: 2px solid color.brand-primary, offset 2px
+    reduced_motion: respeitar prefers-reduced-motion
+
+responsive:
+  desktop: { breakpoint: 1280 }
+  tablet:  { breakpoint: 768 }
+  mobile:  { breakpoint: 390 }
+
+variation_axes:
+  locked: []
+  flexible: {}
+  free: []
+
+blocks:                    # indice dos blocos, cada um tem seu arquivo em /screens
+  - id: "01-hero"
+    file: screens/01-hero.yaml
+  - id: "02-prova-social"
+    file: screens/02-prova-social.yaml
+
+confidence_summary:
+  confirmed: []
+  estimated: []
+  inferred: []
