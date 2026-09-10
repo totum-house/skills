@@ -1,7 +1,7 @@
 ---
 name: uiux-auditor
 description: >
-  Auditor de UI/UX de Elite — análise cirúrgica de interfaces, wireframes, telas e fluxos de usuário. Use esta skill SEMPRE que o usuário enviar uma imagem de interface, screenshot de app ou site, wireframe, protótipo, descrição de fluxo de UX, ou pedir para "auditar", "revisar", "criticar", "analisar" um design, tela ou layout. Também acione quando o usuário mencionar "gestalt", "hierarquia visual", "grid", "proporção áurea", "usabilidade", "UX", "UI review", "o que está errado com esse design", "o que melhorar nessa tela", ou qualquer variação de avaliação de design digital. Não usar para criação de designs do zero — apenas análise crítica do que for enviado.
+  Auditor de UI/UX de Elite — análise cirúrgica de interfaces, wireframes, telas e fluxos de usuário. Use esta skill SEMPRE que o usuário enviar uma imagem de interface, screenshot de app ou site, wireframe, protótipo, descrição de fluxo de UX, ou pedir para "auditar", "revisar", "criticar", "analisar" um design, tela ou layout. Também acione quando o usuário mencionar "gestalt", "hierarquia visual", "grid", "proporção áurea", "usabilidade", "UX", "UI review", "o que está errado com esse design", "o que melhorar nessa tela", ou qualquer variação de avaliação de design digital. Acione também para "heurísticas de Nielsen", "lei de Fitts", "lei de Hick", "atomic design", "arquitetura da informação", "auditoria de acessibilidade", "WCAG", "revisar fluxo", "auditoria completa". É chamada pela skill totum-blueprint no passo de auditoria de UX. Não usar para criação de designs do zero, apenas análise crítica do que for enviado.
 ---
 
 # UI/UX Auditor — Classe A
@@ -22,7 +22,28 @@ Ao receber uma interface, wireframe ou descrição de fluxo:
 
 ---
 
-## Os 4 Pilares de Análise
+## Profundidade da Análise
+
+Duas profundidades. Escolha pelo pedido, e diga qual está rodando na primeira linha.
+
+**RÁPIDA (padrão)** — Pilares 1 a 4. Use quando o usuário joga uma tela no chat e quer crítica.
+É o comportamento histórico desta skill e resolve a maioria dos casos.
+
+**COMPLETA** — Pilares 1 a 8. Use quando:
+- o usuário pedir "auditoria completa", "análise profunda", ou citar Nielsen, Fitts, Hick, Atomic, WCAG
+- a chamada vier da skill `totum-blueprint` (passo de auditoria de UX)
+- for um fluxo de várias telas, não uma tela solta
+- for produto que vai para produção, não peça de prospecção
+
+Rodar as 10 heurísticas de Nielsen em todo print que aparece no chat é overkill e faz o usuário
+parar de usar a skill. Na dúvida, rode RÁPIDA e ofereça a COMPLETA no final:
+"quer que eu rode a auditoria completa, com heurísticas, leis de UX e acessibilidade?"
+
+---
+
+## Os 8 Pilares de Análise
+
+Pilares 1 a 4: sempre. Pilares 5 a 8: só em modo COMPLETA.
 
 ### PILAR 1 — Princípios de Gestalt
 
@@ -57,6 +78,53 @@ Avalie:
 
 ---
 
+### PILAR 5 — Heurísticas de Nielsen (modo COMPLETA)
+
+As 10, nominalmente. Marque cada uma como OK, atenção ou violação. Não escreva parágrafo
+para as que estão OK, uma linha basta.
+
+1. **Visibilidade do status:** a interface avisa o que está acontecendo? Loading, progresso, confirmação
+2. **Compatibilidade com o mundo real:** a linguagem é do usuário ou do sistema? Ícone significa o que parece?
+3. **Controle e liberdade:** existe saída de emergência? Desfazer, cancelar, voltar
+4. **Consistência e padrões:** o mesmo elemento se comporta igual em todo lugar? Segue convenção de mercado?
+5. **Prevenção de erros:** a interface bloqueia o erro antes dele acontecer? Validação, confirmação, campo travado
+6. **Reconhecimento em vez de memorização:** o usuário vê as opções ou precisa lembrar? Trilha, breadcrumb, estado visível
+7. **Flexibilidade e eficiência:** existe atalho para o usuário experiente sem atrapalhar o novato?
+8. **Estética e design minimalista:** o que está na tela e não precisa estar? Cada elemento a mais rouba atenção dos outros
+9. **Diagnóstico de erro:** a mensagem diz o que aconteceu, por quê, e como resolver? Sem código técnico
+10. **Ajuda e documentação:** existe socorro no momento em que a dúvida aparece?
+
+### PILAR 6 — Leis de UX (modo COMPLETA)
+
+- **Hick:** quantas opções competem na mesma decisão? Mais opção é mais tempo até decidir. Conte os CTAs da primeira dobra
+- **Fitts:** alvo importante é grande e perto de onde a mão está? Toque mínimo de 44x44px, e o CTA principal no polegar em mobile
+- **Jakob:** o usuário passa a maior parte do tempo em outros sites. Onde esta interface quebra a expectativa do mercado, e essa quebra vale a pena?
+- **Miller:** grupos de informação acima de 7 itens precisam ser fatiados
+- **Proximidade serial e pico e fim:** o que o usuário vai lembrar é o pico emocional e o final. Qual é cada um aqui?
+
+### PILAR 7 — Estrutura e Arquitetura da Informação (modo COMPLETA)
+
+- **Categorização:** os agrupamentos fazem sentido para o usuário ou para o organograma da empresa?
+- **Navegação:** dá para saber onde está, de onde veio, e para onde pode ir?
+- **Nomenclatura:** os rótulos usam o vocabulário do usuário? Nome interno de produto em menu público é erro
+- **Profundidade:** quantos cliques até a informação principal? Acima de 3 já pede justificativa
+- **Mobile first estrutural:** a estrutura nasceu no celular ou foi espremida do desktop? Dá para notar pela ordem dos blocos
+- **Atomic Design:** os componentes são átomos reutilizáveis ou peças únicas? Botão que só existe naquela tela é dívida técnica visual
+- **Consistência de sistema:** quantas variações do mesmo componente existem sem motivo? Conte os estilos de botão
+
+### PILAR 8 — Acessibilidade completa (modo COMPLETA)
+
+- **Contraste:** AA (4.5:1 texto normal, 3:1 texto grande). Liste os pares que reprovam, com o valor medido
+- **Cor como único sinal:** informação transmitida só por cor reprova para daltônicos. Erro em vermelho sem ícone nem texto é o caso clássico
+- **Alvo de toque:** mínimo 44x44px, com espaçamento entre alvos adjacentes
+- **Foco visível:** todo elemento interativo tem estado de foco perceptível? Remover outline sem substituir é falha grave
+- **Ordem de foco e leitura:** a ordem do teclado acompanha a ordem visual?
+- **Texto alternativo:** imagem informativa tem alt descritivo, imagem decorativa tem alt vazio
+- **Escala de texto:** o layout aguenta 200% de zoom sem quebrar?
+- **Movimento:** existe respeito a prefers-reduced-motion? Animação com parallax forte pode causar enjoo vestibular
+
+---
+
 ## Formato Obrigatório de Resposta
 
 Para cada pilar, use exatamente esta estrutura:
@@ -84,6 +152,7 @@ Um parágrafo direto com:
 - O maior problema que está custando conversão ou usabilidade agora
 - O impacto estimado se as correções forem implementadas
 - A prioridade de execução (o que fazer primeiro)
+- Em modo COMPLETA: a contagem de achados por severidade (estrutural, grave, ajuste)
 
 ---
 
@@ -111,6 +180,12 @@ Um parágrafo direto com:
 → Execute os 4 pilares mas com bullet points em vez de parágrafos
 → Mantenha o Veredicto do Especialista sempre
 
+**Modo Blueprint** (chamada pela skill `totum-blueprint`)
+→ Sempre COMPLETA, os 8 pilares
+→ A entrada não é só a imagem: você recebe a árvore de composição e os tokens. Audite a estrutura, não só o pixel
+→ Classifique cada achado em **estrutural** (exige voltar e corrigir a spec) ou **cosmético** (corrige na implementação)
+→ Se houver qualquer achado estrutural, diga com todas as letras: "voltar ao passo 3 antes de implementar"
+
 **Modo Comparativo** (usuário envia duas versões A/B)
 → Execute os 4 pilares para cada versão
 → Adicione seção "🏆 Veredito Comparativo" ao final indicando qual versão é superior e por quê
@@ -120,51 +195,3 @@ Um parágrafo direto com:
 ## Referência Rápida de Princípios
 
 Carregue `references/principios.md` se precisar de definições detalhadas ou exemplos dos princípios de Gestalt, tipografia, grid ou WCAG durante a análise.
-
----
-
-## ⚠️ Vícios Automáticos de IA — Checar Sempre em Landing Pages
-
-Quando a página foi gerada com IA, verifique obrigatoriamente estes 4 anti-padrões antes de qualquer outra análise. São sinais imediatos de entrega sem revisão.
-
-### Vício 1 — Traço no Eyebrow
-
-O eyebrow é o texto pequeno que aparece acima do título principal (ex: "— Sobre nós", "— Serviços"). IAs inserem automaticamente um traço (`—` ou `-`) antes desse texto.
-
-- **Problema:** Parece template não customizado. Grita "feito por IA, ninguém revisou".
-- **Diagnóstico:** Procure elementos de texto pequeno acima de títulos. Há traço/dash antes do texto?
-- **Solução:** Remova o traço. O eyebrow funciona sozinho, sem decoração lateral.
-
----
-
-### Vício 2 — Cards com Linha Lateral (Coach Cards)
-
-Cards de depoimento, benefício ou feature com uma barra vertical colorida na borda esquerda.
-
-- **Problema:** Padrão saturado de páginas de coaching barato. Associação negativa imediata.
-- **Exceção aceitável:** Depoimento real com citação direta de uma pessoa real — nesse caso a linha lateral pode funcionar como aspas visuais.
-- **Diagnóstico:** Há cards com `border-left` colorido como único elemento de destaque?
-- **Solução:** Substitua por cards com fundo diferenciado, ícone ou tipografia com peso/cor. Sem barra lateral.
-
----
-
-### Vício 3 — Faixa de Estatísticas Genéricas
-
-Grid de 4 células com números grandes: "500+ clientes", "98% satisfação", "10 anos de experiência".
-
-- **Problema:** Só funciona com dados reais e relevantes. IAs inventam números ou colocam dados sem impacto. A animação padrão de counter aumenta o vício.
-- **Diagnóstico:** Existe seção com 4 números grandes enfileirados? Os dados são verificáveis e relevantes para conversão?
-- **Solução A:** Se os dados são reais e impactantes → mantenha, mas melhore a animação e integre com outras informações (não deixe flutuando isolado).
-- **Solução B:** Se os dados são genéricos → remova a seção inteira. Substitua por prova social concreta (depoimentos reais, logos de clientes, casos de uso).
-
----
-
-### Vício 4 — Numeração 01/02/03 sem Sequência Lógica
-
-IAs numeram automaticamente cards, perguntas, etapas e features com "01", "02", "03" — mesmo quando os itens não têm ordem ou relação sequencial.
-
-- **Problema:** Numeração implica sequência, etapa ou hierarquia. Se os itens são independentes, a numeração é ruído visual e desonesta com o leitor.
-- **Diagnóstico:** Há numeração "0X" nos cards? Essa numeração representa uma sequência real (passo 1 → passo 2 → resultado) ou é decoração?
-- **Solução A:** Se é sequência real (processo, etapas) → mantenha, mas garanta que a ordem faz sentido.
-- **Solução B:** Se não é sequência → remova os números. Substitua por ícone relevante ao conteúdo do card, ou simplesmente remova qualquer marcador.
-- **Regra prática:** Se você pode embaralhar a ordem dos cards sem perder sentido, não deveriam ter numeração.
