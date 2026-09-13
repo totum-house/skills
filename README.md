@@ -51,6 +51,17 @@ Central única de skills do ecossistema Totum — compartilhada entre Claude Cod
 | [totum-ui-minimalista](frontend/estilo/totum-ui-minimalista/SKILL.md) | `frontend` | Direção de estilo editorial minimalista — paleta monocromática quente, grids bento planos, sem gradiente/sombra pesada | Interface limpa em estilo editorial/workspace de alto contraste |
 | [totum-ui-brutalista](frontend/estilo/totum-ui-brutalista/SKILL.md) | `frontend` | Direção de estilo brutalista/industrial — tipografia suíça, grid rígido, paleta utilitária, degradação analógica simulada | Dashboard denso, portfólio ou site editorial com estética de "blueprint desclassificado" |
 | [totum-stitch-design](frontend/estilo/totum-stitch-design/SKILL.md) | `frontend` | Sistema de design semântico para o Google Stitch — gera `DESIGN.md` compatível com agentes, mesmo padrão anti-genérico | Preparar a direção de estilo Totum para geração de tela no Google Stitch |
+| [frontend-design](frontend/frontend-design/SKILL.md) | `frontend` | Guia de design visual distintivo e intencional — paleta, tipografia, escolhas não-genéricas para novas UIs | Construir ou reformular UI com identidade visual forte; evitar "cara de template" |
+| [webapp-testing](dev-tools/webapp-testing/SKILL.md) | `dev-tools` | Testa apps web locais com Playwright Python — screenshots, logs de browser, debugging de UI | Verificar funcionalidade de frontend, capturar screenshots, debugar comportamento de UI |
+| [mcp-builder](dev-tools/mcp-builder/SKILL.md) | `dev-tools` | Guia completo para criar MCP servers de qualidade (Python FastMCP ou Node TypeScript SDK) | Construir MCP para integrar APIs externas com LLMs |
+| [dispatching-parallel-agents](decisao/dispatching-parallel-agents/SKILL.md) | `decisao` | Delega 2+ tarefas independentes a agentes paralelos com contexto isolado | 2+ tarefas sem dependência que podem rodar ao mesmo tempo |
+| [systematic-debugging](decisao/systematic-debugging/SKILL.md) | `decisao` | Protocolo de debug que encontra causa-raiz antes de propor qualquer fix | Qualquer bug, falha de teste ou comportamento inesperado — antes de tentar corrigir |
+| [verification-before-completion](decisao/verification-before-completion/SKILL.md) | `decisao` | Exige evidência real (rodar e observar) antes de declarar trabalho concluído | Antes de fechar qualquer tarefa, fazer commit ou criar PR |
+| [subagent-driven-development](decisao/subagent-driven-development/SKILL.md) | `decisao` | Desenvolvimento conduzido por subagentes: um pesquisa, outro implementa, outro revisa | Features complexas onde isolamento de contexto por função reduz erro |
+| [writing-plans](decisao/writing-plans/SKILL.md) | `decisao` | Como estruturar planos de trabalho que agentes conseguem executar sem ambiguidade | Antes de delegar qualquer tarefa a agente ou subagente |
+| [executing-plans](decisao/executing-plans/SKILL.md) | `decisao` | Como executar um plano recebido — verificação de premissas, sequenciamento, checkpoints | Ao receber e executar um plano vindo de outro agente ou do Rael |
+| [marketing/\*](marketing/) | `marketing` | 50 skills de marketing e copywriting (coreyhaines31) — copy, SEO, ads, email, lead magnets, pricing, CRO e mais | Ver lista completa em `marketing/` — workspace da Tigrinha |
+| [social-media/\*](social-media/) | `social-media` | 17 skills de social media (charlie947) — post-writer, reels-scripting, voice-builder, hook-generator e mais | Ver lista completa em `social-media/` — workspace da Tigrinha |
 
 ## Categorias
 
@@ -65,6 +76,9 @@ documentos/     Processamento, edição e organização de documentos (PDF, base
 frontend/       Geração e auditoria de interface visual e frontend — UI, design system, imagem, publicação web
   frontend/imagem/   Geração/análise de peças visuais a partir de imagem ou referência
   frontend/estilo/   Direções de estilo visual (UI kits, redesign, variações de tom)
+dev-tools/      Ferramentas de desenvolvimento — testing, MCP servers
+marketing/      50 skills de marketing e copywriting (fonte: coreyhaines31/marketingskills) — uso primário: Tigrinha
+social-media/   17 skills de social media content (fonte: charlie947/social-media-skills) — uso primário: Tigrinha
 ```
 
 ## Como usar
@@ -103,9 +117,12 @@ Este repositório é a fonte única — não deve haver a mesma skill (ou uma sk
 
 ### Fora de escopo (não importadas de propósito)
 
-- Plugins oficiais do marketplace Anthropic (`legal:*`, `sales:*`, `marketing:*`, `data:*`, `design:*` genérico, `figma:*`, `canva:*`, `adobe-for-creativity:*`, `cowork-plugin-management:*`, `paper-desktop:*`, `productivity:*`) e skills públicas nativas do Claude Code/Claude.ai (`docx`, `pdf`, `pptx`, `xlsx`, `file-reading`, `pdf-reading`, `product-self-knowledge`, `canvas-design`, `import-memory`, `mcp-builder`, `morning`, `skill-creator`) — já vêm nativas em qualquer ambiente Claude, duplicar o texto aqui não resolve nada.
-- `frontend-design` — o nome existe na conta como a skill pública genérica da Anthropic (não uma versão autoral do Rael). Se uma versão própria existir em outro lugar/nome, precisa ser localizada e importada à parte.
+- Plugins oficiais do marketplace Anthropic (`legal:*`, `sales:*`, `marketing:*`, `data:*`, `design:*` genérico, `figma:*`, `canva:*`, `adobe-for-creativity:*`, `cowork-plugin-management:*`, `paper-desktop:*`, `productivity:*`) e skills públicas nativas do Claude Code/Claude.ai (`docx`, `pdf`, `pptx`, `xlsx`, `file-reading`, `pdf-reading`, `product-self-knowledge`, `canvas-design`, `import-memory`, `morning`) — já vêm nativas em qualquer ambiente Claude, duplicar o texto aqui não resolve nada.
+- `mcp-builder` e `frontend-design` — importadas em 2026-09-13 de `github.com/anthropics/skills` (repo de skills open-source da Anthropic, diferente dos plugins nativos). Esses SKILL.md têm conteúdo real não-trivial, por isso foram incluídos.
 - `spec-feature` — mencionada como parte do Totum Kit Dev v2.2.0, mas não encontrada em nenhuma fonte disponível (nem `~/.claude/skills`, nem plugin, nem conta Cowork). Pendente de localização — deve estar no OpenClaw.
+- **Context7** (`github.com/upstash/context7`) — é um MCP server para documentação em tempo real de libs (Next.js, Supabase, etc.), não um SKILL.md. Requer configuração como MCP no OpenClaw/Claude Code. Não foi importado aqui — ação pendente: Rael configura via `openclaw config` ou `claude mcp add`. Ver: https://github.com/upstash/context7#installation
+- **Brand Guidelines** (`github.com/anthropics/skills`) — aplica cores/tipografia da marca Anthropic. Sem relevância para Totum. Não instalado.
+- **Superpowers restantes** (`github.com/obra/superpowers`) — brainstorming, code-review, git-worktrees, receiving-code-review, requesting-code-review, test-driven-development, using-superpowers, voiceprint, etc. Avaliados mas não instalados: overlap com skills já existentes (revisao-totum, karpathy-guidelines) ou fora de escopo Totum. Disponíveis para instalação manual se necessário.
 
 ---
 
