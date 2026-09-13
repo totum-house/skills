@@ -60,6 +60,7 @@ Central única de skills do ecossistema Totum — compartilhada entre Claude Cod
 | [subagent-driven-development](decisao/subagent-driven-development/SKILL.md) | `decisao` | Desenvolvimento conduzido por subagentes: um pesquisa, outro implementa, outro revisa | Features complexas onde isolamento de contexto por função reduz erro |
 | [writing-plans](decisao/writing-plans/SKILL.md) | `decisao` | Como estruturar planos de trabalho que agentes conseguem executar sem ambiguidade | Antes de delegar qualquer tarefa a agente ou subagente |
 | [executing-plans](decisao/executing-plans/SKILL.md) | `decisao` | Como executar um plano recebido — verificação de premissas, sequenciamento, checkpoints | Ao receber e executar um plano vindo de outro agente ou do Rael |
+| [brand-totum](brand/BRAND_SKILL.md) | `brand` | Identidade visual completa da Totum — tokens, glassmorphism, gradientes, glows, motion, anti-patterns e checklist | Carregar antes de gerar qualquer UI, anúncio ou peça visual; padrão: REFERENCE → BRAND_SKILL → Agent → Output |
 | [marketing/\*](marketing/) | `marketing` | 50 skills de marketing e copywriting (coreyhaines31) — copy, SEO, ads, email, lead magnets, pricing, CRO e mais | Ver lista completa em `marketing/` — workspace da Tigrinha |
 | [social-media/\*](social-media/) | `social-media` | 17 skills de social media (charlie947) — post-writer, reels-scripting, voice-builder, hook-generator e mais | Ver lista completa em `social-media/` — workspace da Tigrinha |
 
@@ -77,6 +78,7 @@ frontend/       Geração e auditoria de interface visual e frontend — UI, des
   frontend/imagem/   Geração/análise de peças visuais a partir de imagem ou referência
   frontend/estilo/   Direções de estilo visual (UI kits, redesign, variações de tom)
 dev-tools/      Ferramentas de desenvolvimento — testing, MCP servers
+brand/          Identidade visual canônica da Totum — tokens, glassmorphism, gradientes, anti-patterns
 marketing/      50 skills de marketing e copywriting (fonte: coreyhaines31/marketingskills) — uso primário: Tigrinha
 social-media/   17 skills de social media content (fonte: charlie947/social-media-skills) — uso primário: Tigrinha
 ```
