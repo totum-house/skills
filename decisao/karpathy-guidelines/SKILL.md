@@ -80,3 +80,22 @@ Strong success criteria let you loop independently. Weak criteria ("make it work
 ---
 
 *Derived from Andrej Karpathy's observations — original by forrestchang/andrej-karpathy-skills (MIT)*
+
+## Extra. Onde isso se conecta
+
+Estas diretrizes são a camada de comportamento. Elas não substituem processo:
+
+- Vai escrever código de verdade num repo Totum → rode `dev-totum`, que
+  dimensiona a cerimônia e trava nos dois portões.
+- Vai dizer que terminou → rode `verificar-totum` antes. "Define success
+  criteria" do item 4 só vale se alguém checar os critérios no fim.
+- Vai tocar em produção → `soul-totum` tem o protocolo de 5 passos.
+
+O item 2 (simplicidade) tem um irmão mecânico no `dev-totum`: o classificador
+de tamanho. Quando estiver em dúvida se está complicando, classifique o
+tamanho da mudança em voz alta. Cerimônia acima do nível declarado é
+complicação por definição.
+
+---
+
+*Derived from Andrej Karpathy's observations — original by forrestchang/andrej-karpathy-skills (MIT)*

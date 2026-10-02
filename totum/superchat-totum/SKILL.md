@@ -1,6 +1,7 @@
 ---
-name: "superchat-totum"
-description: "Gerenciador de ciclo de vida de contexto para chats Claude — monitor com medição real via /context no Claude Code"
+name: superchat-totum
+description: >
+  Gerenciador de ciclo de vida de contexto para chats Claude. Use esta skill SEMPRE que o usuário mencionar "superchat", "contexto ficou grande", "chat pesando", "precisamos migrar de chat", "renovar o chat", "contexto longo demais", "vamos para um novo chat", "chat tá caro demais", "alucinar por contexto", "checkpoint de contexto", "handoff de chat", ou qualquer variação de migração, renovação ou continuidade entre sessões Claude. Acione automaticamente quando o contexto trouxer uma linha [superchat-meter] com NIVEL atingido (hook do plugin totum-skills), e também em pontos de virada (fim de uma entrega, início de uma nova frente de trabalho) para sugerir uma checagem de contexto. Funciona em qualquer ambiente Claude: claude.ai (bate-papo), Cowork, Claude Code, ou API direta — o método de medição muda conforme o ambiente (ver Fase 1).
 ---
 
 # Superchat Totum
@@ -14,31 +15,30 @@ Você é o **guardião da continuidade** entre chats Claude. Seu trabalho é det
 
 ### FASE 1 — MONITOR (checagem em pontos de virada)
 
-**Importante sobre o mecanismo:** este monitor não roda em segundo plano contando turnos sozinho. Ele age em dois modos, dependendo do ambiente:
+**Mecanismo de medição (v3, automático):** o plugin `totum-skills` traz o hook `superchat-meter` (evento UserPromptSubmit). A cada mensagem do usuário ele lê o transcript da sessão e injeta no seu contexto uma linha assim:
 
-**No Claude Code (terminal/CLI):**
-Ao chegar num ponto de virada (fim de uma entrega, antes de iniciar uma nova frente de trabalho, ou quando o usuário perguntar), sugira rodar o comando nativo:
 ```
-Ponto de virada detectado. Quer que eu rode /context pra ver o uso real da janela antes de seguir?
+[superchat-meter] turno N | contexto X tok (~Y% de JANELA) | saida acumulada Z tok | base inicial B tok
 ```
-Se o usuário confirmar, oriente a rodar `/context` (ou `/doctor` se o objetivo for checar orçamento de descrições de skill). Use o percentual real retornado para decidir o nível de alerta:
-- 🟡 **Amarelo** — 50–74% de uso
-- 🟠 **Laranja** — 75–89% de uso
-- 🔴 **Vermelho** — 90%+ de uso, ou compactação automática já ocorreu
 
-**No Cowork e no chat claude.ai (claude.ai não expõe indicador nativo de contexto):**
-Não existe hoje um comando equivalente a `/context` nesses ambientes. Use a heurística de turnos como aproximação, deixando claro que é estimativa:
-- 🟡 **Amarelo (estimativa)** — mais de 30 turnos, ou respostas ficando repetitivas
-- 🟠 **Laranja (estimativa)** — mais de 45 turnos, ou usuário repetindo contexto já dado
-- 🔴 **Vermelho (estimativa)** — mais de 60 turnos, respostas inconsistentes, ou usuário apontando esquecimento
+Esses números são **medição real** (campo `usage` da API), não estimativa. Quando a linha vier acompanhada de `NIVEL ... atingido`, acione esta skill na hora, mostre o alerta abaixo com os números do hook e pergunte se executa o CHECKPOINT. Depois responda ao pedido normalmente.
+
+Níveis usados pelo hook (o primeiro que bater vale):
+- 🟡 **Amarelo** — 50% da janela ou 30 turnos
+- 🟠 **Laranja** — 75% da janela ou 45 turnos
+- 🔴 **Vermelho** — 90% da janela, 60 turnos, ou compactação automática já ocorreu
+
+O hook avisa uma vez por nível por sessão. Se o usuário pedir "superchat status", leia a última linha `[superchat-meter]` do contexto e mostre.
+
+**Onde o hook NÃO existe (chat comum do claude.ai, API direta, ambiente sem o plugin):** não há linha `[superchat-meter]` no contexto. Aí use a heurística de turnos como aproximação e deixe claro que é estimativa. No Claude Code sem o plugin, sugira `/context` para ver o uso real.
 
 **Ao detectar sinal amarelo ou acima, em qualquer ambiente, emita o alerta:**
 
 ```
 ⚠️ SUPERCHAT TOTUM — ALERTA DE CONTEXTO
 Nível: [🟡 AMARELO | 🟠 LARANJA | 🔴 VERMELHO]
-Fonte: [/context real — Claude Code | estimativa por turnos — Cowork/chat]
-Estimativa: ~[N]% de uso ou ~[N] turnos acumulados
+Fonte: [superchat-meter (medição real) | /context | estimativa por turnos]
+Uso: [X] tok (~[Y]% da janela) | [N] turnos | saída acumulada [Z] tok
 Risco: [custo elevado | possibilidade de alucinação | perda de contexto]
 
 Recomendo preparar migração para novo chat.
@@ -221,7 +221,7 @@ O usuário pode acionar a qualquer momento com:
 - `"superchat"` → executa MONITOR e pergunta se quer CHECKPOINT
 - `"superchat checkpoint"` → vai direto para CHECKPOINT sem perguntar
 - `"superchat retomar"` → vai direto para REHYDRATE
-- `"superchat status"` → no Claude Code, sugere rodar `/context`; no Cowork/chat, mostra a estimativa por turnos
+- `"superchat status"` → mostra a última medição do superchat-meter; sem hook, sugere `/context` (Code) ou estimativa por turnos (chat)
 
 ---
 

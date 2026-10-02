@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dirija + Fácil · Diagnóstico e Plano de Crescimento · Totum</title>
+<style>
+:root{
+  --surface:#0e0918; --card:#1b1728; --elevated:#1f192a; --hover:#272333;
+  --rust:#432d33; --graphite:#191422;
+  --primary:#da2128; --red-bright:#e3433e; --red-light:#ef9a9a; --gold:#f5b93f;
+  --text:#d1cece; --muted:#9ca3af; --white:#ffffff;
+  --hair:inset 0 0 0 1px hsla(0,0%,100%,0.1);
+  --hair2:inset 0 0 0 1px hsla(0,0%,100%,0.1), inset 0 1px 0 0 hsla(0,0%,100%,0.1);
+  --font:geomanist,"Geomanist",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{height:100%;background:#000;overflow:hidden;}
+body{font-family:var(--font);color:var(--text);font-weight:400;letter-spacing:0;
+  -webkit-font-smoothing:antialiased;display:flex;align-items:center;justify-content:center;}
+strong{font-weight:400;color:var(--white);}
+
+#stage{position:relative;width:1600px;height:900px;transform-origin:center center;}
+.slide{position:absolute;inset:0;padding:76px 96px;display:none;flex-direction:column;background:var(--surface);overflow:hidden;}
+.slide.on{display:flex;animation:in .5s cubic-bezier(.2,.7,.3,1);}
+@keyframes in{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
+
+.eyebrow{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);}
+.eyebrow.red{color:var(--primary);}
+h1{font-size:86px;font-weight:300;line-height:1;letter-spacing:-.02em;color:var(--white);}
+h2{font-size:48px;font-weight:300;line-height:1.05;letter-spacing:-.02em;color:var(--white);}
+.red{color:var(--primary);} .gold{color:var(--gold);}
+.head{margin-bottom:34px;}
+.head .eyebrow{margin-bottom:16px;}
+.head .kicker{font-size:17px;color:var(--muted);font-weight:300;margin-top:14px;max-width:900px;}
+.body-area{flex:1;display:flex;align-items:center;}
+
+.card{background:var(--card);border-radius:24px;padding:32px;box-shadow:var(--hair2);}
+.clk{cursor:pointer;position:relative;transition:background .22s, box-shadow .22s, transform .22s;}
+.clk:after{content:"";position:absolute;top:16px;right:16px;width:16px;height:16px;
+  opacity:.28;transition:opacity .22s;
+  background:linear-gradient(var(--muted),var(--muted)) center/1px 12px no-repeat,
+    linear-gradient(var(--muted),var(--muted)) center/12px 1px no-repeat;}
+.clk:hover{background:var(--hover);box-shadow:var(--hair2), 0 0 0 1px rgba(218,33,40,.28);transform:translateY(-2px);}
+.clk:hover:after{opacity:1;
+  background:linear-gradient(var(--primary),var(--primary)) center/1px 12px no-repeat,
+    linear-gradient(var(--primary),var(--primary)) center/12px 1px no-repeat;}
+.clk.bare:after{display:none;}
+.clk.bare:hover{background:none;box-shadow:none;}
+
+#bar{position:fixed;top:0;left:0;height:2px;background:var(--primary);
+  box-shadow:0 0 24px -4px var(--primary);transition:width .4s cubic-bezier(.2,.7,.3,1);z-index:60;}
+#count{position:fixed;bottom:28px;right:110px;font-size:12px;letter-spacing:.14em;color:#4b4458;z-index:60;}
+#mark{position:fixed;bottom:26px;left:34px;display:flex;align-items:center;gap:9px;z-index:60;}
+#mark .dot{width:7px;height:7px;border-radius:9999px;background:var(--primary);box-shadow:0 0 14px -1px var(--primary);}
+#mark span{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#4b4458;}
+#nav{position:fixed;bottom:20px;right:28px;display:flex;gap:8px;z-index:60;}
+#nav button{width:34px;height:34px;border:0;border-radius:9999px;background:rgba(255,255,255,.06);
+  box-shadow:inset 0 0 0 1px var(--elevated);color:var(--muted);cursor:pointer;font-size:14px;
+  font-family:var(--font);transition:background .2s,color .2s;}
+#nav button:hover{background:rgba(255,255,255,.12);color:var(--white);}
+#hint{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);font-size:11px;
+  letter-spacing:.13em;color:#3a3446;z-index:60;transition:opacity .6s;}
+
+#ov{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;
+  background:rgba(8,6,14,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);padding:40px;}
+#ov.on{display:flex;animation:fade .24s ease;}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+#mw{width:min(860px,100%);max-height:86vh;overflow-y:auto;background:var(--card);border-radius:24px;
+  padding:46px 52px;box-shadow:var(--hair2), 0 40px 120px -40px #000;animation:pop .3s cubic-bezier(.2,.7,.3,1);}
+@keyframes pop{from{opacity:0;transform:translateY(18px) scale(.985)}to{opacity:1;transform:none}}
+#mw::-webkit-scrollbar{width:8px}
+#mw::-webkit-scrollbar-track{background:var(--surface);border-radius:9999px}
+#mw::-webkit-scrollbar-thumb{background:var(--elevated);border-radius:9999px}
+#mhead{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;margin-bottom:8px;}
+#meye{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--primary);}
+#mtitle{font-size:36px;font-weight:300;letter-spacing:-.02em;line-height:1.12;color:var(--white);margin-top:12px;}
+#mx{flex:none;width:38px;height:38px;border:0;border-radius:9999px;background:rgba(255,255,255,.07);
+  box-shadow:inset 0 0 0 1px var(--elevated);color:var(--muted);font-size:17px;cursor:pointer;
+  font-family:var(--font);transition:background .2s,color .2s;}
+#mx:hover{background:var(--primary);color:#fff;box-shadow:0 0 32px -8px var(--primary);}
+#mbody{margin-top:24px;font-size:16.5px;line-height:1.62;color:var(--text);}
+#mbody p{margin:0 0 15px;} #mbody p:last-child{margin-bottom:0;}
+#mbody h4{font-size:12px;letter-spacing:.17em;text-transform:uppercase;color:var(--muted);margin:28px 0 13px;font-weight:400;}
+#mbody ul{list-style:none;margin:0 0 15px;}
+#mbody li{position:relative;padding-left:22px;margin-bottom:10px;}
+#mbody li:before{content:"";position:absolute;left:0;top:11px;width:6px;height:1px;background:var(--primary);}
+#mbody ol{list-style:none;counter-reset:o;margin:0 0 15px;}
+#mbody ol li{counter-increment:o;padding-left:32px;}
+#mbody ol li:before{content:counter(o,decimal-leading-zero);top:0;width:auto;height:auto;
+  background:none;color:var(--primary);font-size:13px;letter-spacing:.08em;}
+#mbody blockquote{margin:20px 0;padding:20px 24px;border-radius:14px;background:var(--graphite);
+  box-shadow:var(--hair);font-weight:300;color:var(--white);font-size:17px;line-height:1.5;}
+#mbody table{width:100%;border-collapse:collapse;margin:8px 0 16px;font-size:15px;}
+#mbody th{text-align:left;padding:11px 14px;font-size:11px;letter-spacing:.14em;font-weight:400;
+  text-transform:uppercase;color:var(--muted);box-shadow:inset 0 -1px 0 0 #2b2438;}
+#mbody td{padding:11px 14px;box-shadow:inset 0 -1px 0 0 hsla(0,0%,100%,.06);font-weight:300;}
+#mbody td.n{text-align:right;font-variant-numeric:tabular-nums;color:var(--white);}
+#mbody .kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:18px 0;}
+#mbody .kpi>div{background:var(--graphite);border-radius:14px;padding:18px 20px;box-shadow:var(--hair);}
+#mbody .kpi b{display:block;font-size:26px;font-weight:300;color:var(--primary);letter-spacing:-.02em;line-height:1;}
+#mbody .kpi i{font-style:normal;display:block;font-size:12px;color:var(--muted);margin-top:7px;line-height:1.3;}
+.src{margin-top:26px;padding-top:16px;box-shadow:inset 0 1px 0 0 hsla(0,0%,100%,.07);
+  font-size:12px;letter-spacing:.06em;color:#5c5568;}
+
+/* CAPA */
+.cover{padding:0;background:#000;}
+.cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.cover .meta{position:absolute;bottom:74px;left:96px;z-index:2;}
+.cover .meta .l{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#ffffff7a;}
+.cover .meta .c{font-size:34px;font-weight:300;color:#fff;letter-spacing:-.02em;margin-top:8px;}
+.cover .meta .d{font-size:14px;letter-spacing:.2em;color:#ffffffb0;}
+
+/* SLIDE 1 header */
+.hero{justify-content:center;}
+.hero .glow{position:absolute;width:900px;height:900px;left:-280px;top:-340px;
+  background:radial-gradient(circle,rgba(218,33,40,.18) 0%,rgba(218,33,40,0) 62%);pointer-events:none;}
+.hero h1{font-size:82px;position:relative;}
+.hero .rule{width:64px;height:1px;background:var(--primary);margin:38px 0 28px;position:relative;}
+.hero .sub{font-size:26px;font-weight:300;color:var(--muted);max-width:860px;position:relative;line-height:1.4;}
+.hmeta{display:flex;gap:52px;margin-top:52px;position:relative;}
+.hmeta .l{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5c5568;}
+.hmeta .v{font-size:19px;font-weight:300;color:var(--white);margin-top:5px;}
+
+/* SLIDE 2 sobre */
+.about{padding:0;}
+.about img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.about .pane{position:absolute;left:0;top:0;bottom:0;width:56%;
+  background:linear-gradient(90deg,rgba(140,16,20,.92) 0%,rgba(160,20,24,.72) 62%,rgba(160,20,24,0) 100%);}
+.about .inner{position:absolute;left:96px;top:50%;transform:translateY(-50%);width:640px;z-index:3;}
+.about h2{font-size:54px;font-weight:400;color:#fff;letter-spacing:-.02em;}
+.about p{font-size:17.5px;font-weight:300;color:#ffffffe0;line-height:1.55;margin-top:20px;}
+.about p .y{color:var(--gold);}
+.about .sol{font-size:38px;font-weight:400;color:#fff;margin-top:34px;letter-spacing:-.02em;}
+.about ul{list-style:none;margin-top:18px;display:flex;flex-direction:column;gap:13px;}
+.about li{font-size:18px;font-weight:400;color:#fff;display:flex;align-items:center;gap:12px;}
+.about li i{font-style:normal;color:var(--gold);font-size:17px;}
+
+/* GRIDS */
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;width:100%;}
+.g4>div{padding:24px 22px;border-radius:20px;background:var(--card);box-shadow:var(--hair2);
+  display:flex;flex-direction:column;gap:14px;}
+.g4 .ic{font-size:24px;line-height:1;}
+.g4 .t{font-size:25px;font-weight:300;letter-spacing:-.02em;color:var(--white);line-height:1.15;margin-top:12px;}
+.g4 .s{font-size:13px;color:var(--muted);margin-top:6px;line-height:1.35;}
+.g4 .sc{font-size:34px;font-weight:300;color:var(--primary);letter-spacing:-.03em;line-height:1;}
+.g4 .sc small{font-size:14px;color:#5c5568;}
+
+.g5{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;width:100%;}
+.g5>div{padding:20px 20px;border-radius:18px;background:var(--card);box-shadow:var(--hair);
+  display:flex;flex-direction:column;gap:12px;}
+.g5 .n{font-size:12px;letter-spacing:.14em;color:var(--primary);}
+.g5 .t{font-size:20px;font-weight:300;letter-spacing:-.02em;color:var(--white);line-height:1.2;}
+.g5 .s{font-size:12.5px;color:var(--muted);margin-top:5px;line-height:1.3;}
+
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;width:100%;}
+.g3>div{padding:26px 24px;border-radius:20px;background:var(--card);box-shadow:var(--hair2);
+  display:flex;flex-direction:column;gap:14px;}
+.g3 .n{font-size:12px;letter-spacing:.14em;color:var(--primary);}
+.g3 .t{font-size:27px;font-weight:300;letter-spacing:-.02em;color:var(--white);line-height:1.15;}
+.g3 .s{font-size:14px;color:var(--muted);margin-top:8px;line-height:1.4;}
+
+.g6{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr);gap:14px;width:100%;}
+.g6>div{padding:21px 22px;border-radius:18px;background:var(--card);box-shadow:var(--hair);
+  display:flex;flex-direction:column;gap:12px;}
+.g6 .t{font-size:21px;font-weight:300;letter-spacing:-.02em;color:var(--white);line-height:1.2;}
+.g6 .s{font-size:13px;color:var(--muted);margin-top:6px;line-height:1.38;}
+.g6 .n{font-size:12px;letter-spacing:.14em;color:var(--primary);}
+
+/* SCORE */
+.scorebar{display:flex;align-items:center;gap:48px;background:linear-gradient(180deg,var(--rust) 0%,var(--surface) 100%);
+  border-radius:24px;padding:26px 36px;margin-bottom:18px;width:100%;
+  box-shadow:inset 0 0 0 1px hsla(0,0%,100%,.1), inset 0 1px 0 0 rgba(218,33,40,.3);}
+.scorebox{flex:none;text-align:center;}
+.scorebar .v{font-size:68px;font-weight:300;color:var(--primary);letter-spacing:-.03em;line-height:1;
+  display:flex;align-items:baseline;justify-content:center;gap:14px;}
+.scorebar .v small{font-size:23px;color:#ffffff66;letter-spacing:0;}
+.stars{display:flex;gap:6px;justify-content:center;margin-top:12px;}
+.stars i{font-style:normal;font-size:21px;line-height:1;color:#5a4148;}
+.stars i.on{color:var(--primary);text-shadow:0 0 18px rgba(218,33,40,.55);}
+.scorebar p{font-size:18px;font-weight:300;color:#fff;line-height:1.45;max-width:1000px;}
+
+/* FUNIL */
+.funnel{display:flex;flex-direction:column;gap:10px;width:100%;align-items:center;}
+.fstep{display:flex;align-items:center;justify-content:space-between;padding:15px 34px;
+  border-radius:14px;background:var(--card);box-shadow:var(--hair);}
+.fstep .v{font-size:36px;font-weight:300;letter-spacing:-.03em;color:var(--white);line-height:1;}
+.fstep .l{font-size:15px;color:var(--muted);text-align:right;}
+.fstep.win{background:linear-gradient(135deg,var(--red-bright),var(--primary));
+  box-shadow:0 7px 80px -18px var(--primary), inset 0 1px 1px #ffffff33;}
+.fstep.win .v{color:#fff;} .fstep.win .l{color:#ffffffc4;}
+.fside{display:flex;flex-direction:column;gap:14px;}
+.fside .card{padding:21px 24px;}
+.fside .k{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);}
+.fside .b{font-size:42px;font-weight:300;color:var(--primary);letter-spacing:-.03em;line-height:1;margin-top:8px;}
+.fside .b.w{color:var(--white);}
+.fside .z{font-size:13px;color:var(--muted);margin-top:8px;line-height:1.4;}
+.fwrap{display:grid;grid-template-columns:1fr 330px;gap:30px;width:100%;align-items:center;}
+
+/* TABELA CENARIOS */
+.tbl{width:100%;border-collapse:collapse;font-size:16px;}
+.tbl th{text-align:right;padding:13px 16px;font-size:11px;letter-spacing:.14em;font-weight:400;
+  text-transform:uppercase;color:var(--muted);box-shadow:inset 0 -1px 0 0 #2b2438;}
+.tbl th:first-child{text-align:left;}
+.tbl td{padding:15px 16px;text-align:right;font-weight:300;font-variant-numeric:tabular-nums;
+  box-shadow:inset 0 -1px 0 0 hsla(0,0%,100%,.06);color:var(--white);font-size:19px;}
+.tbl td:first-child{text-align:left;font-size:20px;}
+.tbl td.mut{color:var(--muted);font-size:15px;}
+.tbl tr.hi td{color:var(--primary);}
+.tbl td.dez{color:var(--primary);}
+.tbl tr.clk:hover td{background:var(--hover);}
+
+.bars{display:flex;flex-direction:column;gap:22px;width:100%;}
+.brow{display:grid;grid-template-columns:210px 1fr 210px;gap:24px;align-items:center;}
+.brow .lb{font-size:23px;font-weight:300;color:var(--white);letter-spacing:-.02em;}
+.brow .lb i{font-style:normal;display:block;font-size:12.5px;color:var(--muted);margin-top:5px;letter-spacing:0;}
+.btrack{height:52px;background:var(--card);border-radius:12px;overflow:hidden;box-shadow:var(--hair);}
+.btrack i{display:block;height:100%;border-radius:12px;}
+.brow .bv{font-size:34px;font-weight:300;color:var(--white);letter-spacing:-.03em;text-align:right;font-variant-numeric:tabular-nums;}
+.brow .bv.hi{color:var(--primary);}
+
+/* PLANOS */
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;width:100%;align-items:stretch;}
+.plan{border-radius:22px;background:var(--card);box-shadow:var(--hair2);padding:27px 26px;
+  display:flex;flex-direction:column;}
+.plan.mid{background:linear-gradient(180deg,var(--rust) 0%,var(--card) 62%);
+  box-shadow:inset 0 0 0 1px rgba(218,33,40,.4), inset 0 1px 0 0 rgba(218,33,40,.5);}
+.plan .tag{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);}
+.plan.mid .tag{color:var(--red-light);}
+.plan .nm{font-size:32px;font-weight:300;color:var(--white);letter-spacing:-.02em;}
+.plan .pr{font-size:40px;font-weight:300;color:var(--primary);letter-spacing:-.03em;margin-top:12px;line-height:1;}
+.plan .pr small{font-size:15px;color:var(--muted);}
+.plan .pm{font-size:13.5px;color:var(--muted);margin-top:9px;line-height:1.38;min-height:36px;}
+.plan ul{list-style:none;margin-top:17px;display:flex;flex-direction:column;gap:8px;flex:1;}
+.plan li{font-size:14.5px;font-weight:300;color:var(--text);padding-left:20px;position:relative;line-height:1.35;}
+.plan li:before{content:"";position:absolute;left:0;top:9px;width:7px;height:1px;background:var(--primary);}
+.plan li.g{color:var(--gold);}
+.plan li.g:before{background:var(--gold);}
+.plan .ft{margin-top:17px;padding-top:13px;box-shadow:inset 0 1px 0 0 hsla(0,0%,100%,.08);
+  font-size:12.5px;color:var(--muted);line-height:1.4;}
+
+/* STATS ROW */
+.srow{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;width:100%;margin-bottom:26px;
+  padding-bottom:24px;box-shadow:inset 0 -1px 0 0 hsla(0,0%,100%,.09);}
+.srow>div{background:var(--card);border-radius:18px;padding:19px 22px;box-shadow:var(--hair);}
+.srow .v{font-size:38px;font-weight:300;color:var(--primary);letter-spacing:-.03em;line-height:1;}
+.srow .l{font-size:13px;color:var(--muted);margin-top:7px;line-height:1.32;}
+
+/* FECHAMENTO */
+.close{display:grid;grid-template-columns:1fr 430px;gap:30px;width:100%;align-items:stretch;}
+.recap{display:flex;flex-direction:column;gap:12px;}
+.rec{display:grid;grid-template-columns:52px 1fr;gap:20px;align-items:center;
+  background:var(--card);border-radius:18px;padding:20px 24px;box-shadow:var(--hair);}
+.rec .rn{font-size:12px;letter-spacing:.14em;color:var(--primary);}
+.rec .rt{font-size:21px;font-weight:300;color:var(--white);letter-spacing:-.02em;line-height:1.2;}
+.rec .rs{font-size:13.5px;color:var(--muted);margin-top:5px;line-height:1.4;}
+.cta{background:linear-gradient(160deg,var(--rust) 0%,var(--card) 58%);border-radius:22px;padding:32px 30px;
+  display:flex;flex-direction:column;
+  box-shadow:inset 0 0 0 1px rgba(218,33,40,.34), inset 0 1px 0 0 rgba(218,33,40,.5);}
+.cta .ce{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--red-light);}
+.cta .ct{font-size:31px;font-weight:300;color:#fff;letter-spacing:-.02em;line-height:1.15;margin-top:12px;}
+.cta ol{list-style:none;counter-reset:c;margin-top:22px;display:flex;flex-direction:column;gap:13px;flex:1;}
+.cta ol li{counter-increment:c;position:relative;padding-left:32px;font-size:15px;font-weight:300;
+  color:var(--text);line-height:1.35;}
+.cta ol li:before{content:counter(c,decimal-leading-zero);position:absolute;left:0;top:1px;
+  font-size:12px;letter-spacing:.08em;color:var(--primary);}
+.cta .btn{margin-top:24px;background:linear-gradient(135deg,var(--red-bright),var(--primary));
+  border-radius:14px;padding:19px 24px;text-align:center;
+  box-shadow:0 8px 60px -14px var(--primary), inset 0 1px 1px #ffffff3d;}
+.cta .btn b{display:block;font-size:20px;font-weight:400;color:#fff;letter-spacing:-.01em;}
+.cta .btn i{font-style:normal;display:block;font-size:12.5px;color:#ffffffb5;margin-top:5px;}
+</style>
+</head>
+<body>
+
+<div id="bar"></div>
+<div id="mark"><div class="dot"></div><span>Totum</span></div>
+<div id="count">01 / 12</div>
+<div id="hint">USE AS SETAS · CLIQUE NOS CARDS PARA DETALHAR</div>
+<div id="nav"><button id="prev">&#8592;</button><button id="next">&#8594;</button></div>
+
+<div id="stage">
+
+<!-- 01 CAPA -->
+<section class="slide cover on">
+  <img src="__IMG_CAPA__" alt="">
+  <div class="meta">
+    <div class="d">RIBEIRÃO PRETO · SP &nbsp;·&nbsp; AGOSTO DE 2026</div>
+  </div>
+</section>
+
+<!-- 02 CABECALHO -->
+<section class="slide hero">
+  <div class="glow"></div>
+  <h1>Dirija + Fácil</h1>
+  <div class="rule"></div>
+  <div class="sub">Diagnóstico e plano de crescimento</div>
+  <div class="hmeta">
+    <div><div class="l">Praça</div><div class="v">Ribeirão Preto e RMRP</div></div>
+    <div><div class="l">Frentes</div><div class="v">Habilitados e Frotas</div></div>
+    <div><div class="l">Verba de mídia</div><div class="v">R$ 1.500 / mês</div></div>
+    <div><div class="l">Horizonte</div><div class="v">Setembro a Dezembro</div></div>
+  </div>
+</section>
+
+<!-- 03 SOBRE A TOTUM -->
+<section class="slide about">
+  <img class="bg" src="__IMG_SOBRE_BG__" alt="">
+  <div class="pane"></div>
+  <div class="inner">
+    <h2>Soluções que Convertem</h2>
+    <p><span class="y">Desde 2003</span>, unimos experiência prática, personalização e tecnologia para gerar crescimento real.</p>
+    <p>Organizamos a jornada do cliente, reduzimos desperdícios e transformamos marketing em faturamento consistente. Nosso foco é gerar resultado real, com lógica, método e crescimento sustentável.</p>
+    <div class="sol">Nossas Soluções</div>
+    <ul>
+      <li><i>&#10003;</i>Gestão de Tráfego Pago</li>
+      <li><i>&#10003;</i>Gestão de Redes Sociais</li>
+      <li><i>&#10003;</i>Criação de Sites e SEO</li>
+      <li><i>&#10003;</i>CRM, Automação e IA</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 04 SITUACAO · MERCADO RP -->
+<section class="slide">
+  <div class="head">
+    <div class="eyebrow">Situação · O mercado que já existe</div>
+    <h2>O território é <span class="red">maior</span> do que parece.</h2>
+    <div class="kicker">Dez canais de aquisição que existem hoje em Ribeirão Preto e região, e ainda não estão sendo usados. Clique em cada um.</div>
+  </div>
+  <div class="body-area" style="flex-direction:column;justify-content:center">
+    <div class="srow">
+      <div><div class="v">1,7 mi</div><div class="l">habitantes na região metropolitana, 34 municípios</div></div>
+      <div><div class="v">1,34 mi</div><div class="l">veículos circulando na região</div></div>
+      <div><div class="v">45.426</div><div class="l">veículos zero km emplacados na região em 2025</div></div>
+      <div><div class="v">2,4x</div><div class="l">o tamanho do mercado ao sair só da cidade</div></div>
+    </div>
+    <div class="g5" style="margin-bottom:14px">
+      <div class="clk" data-m="o1"><div class="n">01</div><div><div class="t">Concessionárias</div><div class="s">Quem compra o primeiro carro</div></div></div>
+      <div class="clk" data-m="o2"><div class="n">02</div><div><div class="t">Setor de saúde</div><div class="s">O maior empregador da cidade</div></div></div>
+      <div class="clk" data-m="o3"><div class="n">03</div><div><div class="t">Usinas e agro</div><div class="s">Frotas em Sertãozinho</div></div></div>
+      <div class="clk" data-m="o4"><div class="n">04</div><div><div class="t">Agrishow e Fenasucro</div><div class="s">Decisores no mesmo lugar</div></div></div>
+      <div class="clk" data-m="o5"><div class="n">05</div><div><div class="t">Psicólogos</div><div class="s">Amaxofobia tem tratamento</div></div></div>
+    </div>
+    <div class="g5">
+      <div class="clk" data-m="o6"><div class="n">06</div><div><div class="t">Corretoras de seguro</div><div class="s">Menos sinistro, menos prêmio</div></div></div>
+      <div class="clk" data-m="o7"><div class="n">07</div><div><div class="t">Autoescolas parceiras</div><div class="s">Concorrente vira canal</div></div></div>
+      <div class="clk" data-m="o8"><div class="n">08</div><div><div class="t">Instrutor Independente</div><div class="s">O mercado que acabou de abrir</div></div></div>
+      <div class="clk" data-m="o9"><div class="n">09</div><div><div class="t">SIPAT e empresas</div><div class="s">Porta de entrada no B2B</div></div></div>
+      <div class="clk" data-m="o10"><div class="n">10</div><div><div class="t">Carro automático</div><div class="s">Dor específica, zero concorrência</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 PROBLEMA · DIAGNOSTICO -->
+<section class="slide">
+  <div class="head">
+    <div class="eyebrow">Problema · Onde o negócio trava hoje</div>
+    <h2>O produto funciona.<br>A <span class="red">estrutura</span> em volta não.</h2>
+  </div>
+  <div class="body-area" style="flex-direction:column;justify-content:center">
+    <div class="scorebar clk bare" data-m="score">
+      <div class="scorebox">
+        <div class="v">2,0<small>/5</small></div>
+        <div class="stars"><i class="on">&#9733;</i><i class="on">&#9733;</i><i>&#9733;</i><i>&#9733;</i><i>&#9733;</i></div>
+      </div>
+      <p>Score baixo por um motivo positivo: os pontos mais fracos são exatamente os que se resolvem
+      com implementação, não com investimento pesado. O que é caro e difícil de mudar, o produto, já funciona
+      e já vende por indicação.</p>
+    </div>
+    <div class="g4">
+      <div class="clk" data-m="d1"><div><div class="ic">&#127919;</div><div class="t">Posicionamento</div><div class="s">Dois públicos, uma marca</div></div><div class="sc">2<small>/5</small></div></div>
+      <div class="clk" data-m="d2"><div><div class="ic">&#128241;</div><div class="t">Conteúdo</div><div class="s">Prova social envelhecida</div></div><div class="sc">2<small>/5</small></div></div>
+      <div class="clk" data-m="d3"><div><div class="ic">&#128230;</div><div class="t">Produto</div><div class="s">Vendido por hora, não por pacote</div></div><div class="sc">3<small>/5</small></div></div>
+      <div class="clk" data-m="d4"><div><div class="ic">&#9881;</div><div class="t">Processo</div><div class="s">Sem CRM, sem Pixel, sem rastreio</div></div><div class="sc">1<small>/5</small></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 IMPLICACAO · FUNIL -->
+<section class="slide">
+  <div class="head">
+    <div class="eyebrow">Implicação · A matemática</div>
+    <h2>O que <span class="red">R$ 1.500</span> viram, na nossa operação.</h2>
+  </div>
+  <div class="body-area">
+    <div class="fwrap">
+      <div class="funnel">
+        <div class="fstep clk" data-m="f0" style="width:100%"><div class="v">R$ 1.500</div><div class="l">Investimento em mídia<br>Meta Ads</div></div>
+        <div class="fstep clk" data-m="f1" style="width:88%"><div class="v">300</div><div class="l">Leads no WhatsApp<br>CPL de R$ 5</div></div>
+        <div class="fstep clk" data-m="f2" style="width:76%"><div class="v">180</div><div class="l">Conversas qualificadas<br>60% respondem</div></div>
+        <div class="fstep clk" data-m="f3" style="width:64%"><div class="v">72</div><div class="l">Aulas experimentais<br>40% agendam</div></div>
+        <div class="fstep clk" data-m="f4" style="width:52%"><div class="v">50</div><div class="l">Comparecimentos<br>70% aparecem</div></div>
+        <div class="fstep win clk bare" data-m="f5" style="width:40%"><div class="v">23</div><div class="l">Alunos fechados<br>45% de fechamento</div></div>
+      </div>
+      <div class="fside">
+        <div class="card clk" data-m="cpa"><div class="k">Custo por aluno</div><div class="b">R$ 66</div><div class="z">Contra um ticket médio de R$ 1.000 por pacote</div></div>
+        <div class="card clk" data-m="roas"><div class="k">Retorno sobre a mídia</div><div class="b">15,3x</div><div class="z">R$ 23.000 gerados com R$ 1.500 investidos</div></div>
+        <div class="card clk" data-m="teto"><div class="k">Atenção</div><div class="b w" style="font-size:30px">O teto muda de lugar</div><div class="z">Com esse CPL, o limite deixa de ser lead e passa a ser hora de instrutor</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 CENARIOS -->
+<section class="slide">
+  <div class="head">
+    <div class="eyebrow">Necessidade · O ponto de chegada</div>
+    <h2>Dezembro, por cenário.</h2>
+    <div class="kicker">A diferença entre eles não é a mídia. É quantas horas de aula existem para vender. Clique em cada cenário para ver o mês a mês e as premissas.</div>
+  </div>
+  <div class="body-area">
+    <div class="bars">
+      <div class="brow clk bare" data-m="cA">
+        <div class="lb">Conservador<i>1 instrutor · R$ 1.500/mês</i></div>
+        <div class="btrack"><i style="width:22%;background:#3a3348"></i></div>
+        <div class="bv">R$ 24.000</div>
+      </div>
+      <div class="brow clk bare" data-m="cB">
+        <div class="lb">Moderado<i>2 instrutores · R$ 2.600/mês</i></div>
+        <div class="btrack"><i style="width:59%;background:linear-gradient(90deg,#7a2028,var(--red-bright))"></i></div>
+        <div class="bv">R$ 64.000</div>
+      </div>
+      <div class="brow clk bare" data-m="cC">
+        <div class="lb">Agressivo<i>3 instrutores · R$ 4.000/mês</i></div>
+        <div class="btrack"><i style="width:100%;background:linear-gradient(90deg,var(--red-bright),var(--primary));box-shadow:0 0 60px -10px var(--primary)"></i></div>
+        <div class="bv hi">R$ 108.000</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 GARGALOS -->
+<section class="slide">
+  <div class="head">
+    <div class="eyebrow">Problema · O que decide o resultado</div>
+    <h2>Três pontos seguram <span class="red">tudo</span>.</h2>
+    <div class="kicker">Nenhum deles é sobre anúncio. Todos são resolvíveis nos primeiros 60 dias.</div>
+  </div>
+  <div class="body-area">
+    <div class="g3">
+      <div class="clk" data-m="g1"><div class="n">Gargalo 01</div><div><div class="t">Cegueira de dados</div><div class="s">Sem Pixel instalado e sem CRM, o algoritmo otimiza para o lead errado e ninguém sabe qual anúncio trouxe qual aluno.</div></div><div class="s" style="color:var(--primary)">CPA de 40% a 70% mais alto</div></div>
+      <div class="clk" data-m="g2"><div class="n">Gargalo 02</div><div><div class="t">Tempo de resposta</div><div class="s">Quem tem medo de dirigir cria coragem e manda mensagem naquele instante. Se a resposta demora, a coragem passa.</div></div><div class="s" style="color:var(--primary)">Até metade dos leads perdidos</div></div>
+      <div class="clk" data-m="g3"><div class="n">Gargalo 03</div><div><div class="t">Horas de aula</div><div class="s">Com CPL de R$ 5, gerar demanda é a parte fácil. O limite passa a ser quantos instrutores e carros existem.</div></div><div class="s" style="color:var(--primary)">Define o teto de faturamento</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 09 PLANO 90 DIAS -->
+<section class="slide">
+  <div class="head">
+    <div class="eyebrow">Solução · Como sai do papel</div>
+    <h2>90 dias, três sprints.</h2>
+    <div class="kicker">Clique em cada sprint para ver as entregas e o que se espera de resultado.</div>
+  </div>
+  <div class="body-area" style="flex-direction:column;justify-content:center;gap:14px">
+    <div class="g3">
+      <div class="clk" data-m="s1"><div class="n">Sprint 01 · Setembro</div><div><div class="t">Fundação</div><div class="s">Instalar medição, reempacotar a oferta e subir a primeira campanha.</div></div><div class="s" style="color:var(--primary)">Meta: 17 alunos</div></div>
+      <div class="clk" data-m="s2"><div class="n">Sprint 02 · Outubro</div><div><div class="t">Conversão</div><div class="s">Agente de IA no WhatsApp, prova social sistemática e escala de verba.</div></div><div class="s" style="color:var(--primary)">Meta: 36 a 45 alunos</div></div>
+      <div class="clk" data-m="s3"><div class="n">Sprint 03 · Novembro</div><div><div class="t">Escala</div><div class="s">Região metropolitana, parcerias, B2B ativo e rede credenciada.</div></div><div class="s" style="color:var(--primary)">Meta: 48 a 70 alunos</div></div>
+    </div>
+    <div class="g6" style="grid-template-rows:1fr;grid-template-columns:repeat(3,1fr);margin-top:2px">
+      <div class="clk" data-m="franquia"><div class="n">Frente paralela</div><div><div class="t">Rede credenciada</div><div class="s">Terceirizar instrutores com padrão Dirija + Fácil, no modelo de mini franquia. Cresce sem folha e sem frota.</div></div></div>
+      <div class="clk" data-m="pacote"><div class="n">Decisão de produto</div><div><div class="t">Programa fechado</div><div class="s">Sair da hora-aula avulsa e vender pacote com número definido de encontros. Sobe ticket e dá previsibilidade.</div></div></div>
+      <div class="clk" data-m="regiao"><div class="n">Expansão</div><div><div class="t">Região metropolitana</div><div class="s">Sertãozinho, Cravinhos, Jardinópolis, Bonfim, Brodowski. Um mercado 2,4x maior a 30 minutos.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 PLANOS -->
+<section class="slide">
+  <div class="head">
+    <div class="eyebrow">Solução · A parceria</div>
+    <h2>Nosso compromisso é o <span class="red">resultado</span>.</h2>
+    <div class="kicker">Os três planos não mudam a qualidade do trabalho. Mudam o nível de resultado que conseguimos alcançar e em quanto tempo chegamos lá.</div>
+  </div>
+  <div class="body-area">
+    <div class="plans">
+      <div class="plan clk" data-m="pE">
+        <div class="nm">Essencial</div>
+        <div class="pr">R$ 1.197<small> /mês</small></div>
+        <div class="pm">O mínimo para validar o canal com segurança.</div>
+        <ul>
+          <li>Meta Ads, uma plataforma</li>
+          <li>1 landing page de conversão</li>
+          <li>Criativos</li>
+          <li>Pixel e API de Conversões</li>
+          <li>Públicos semelhantes da base</li>
+          <li>Relatório mensal</li>
+        </ul>
+        <div class="ft">Investimento em anúncios a partir de R$ 1.000<br>Horizonte de resultado: 90 a 120 dias</div>
+      </div>
+
+      <div class="plan mid clk" data-m="pB">
+        <div class="nm">Básico</div>
+        <div class="pr">R$ 1.797<small> /mês</small></div>
+        <div class="pm">Tráfego, página e conteúdo trabalhando juntos.</div>
+        <ul>
+          <li>Uma plataforma: Meta, Google ou TikTok</li>
+          <li>Gestão completa de mídia paga</li>
+          <li>1 landing page completa</li>
+          <li>Criativos</li>
+          <li>Pixel e API de Conversões</li>
+          <li>Google Meu Negócio otimizado</li>
+          <li>Dashboard exclusivo na nossa plataforma de clientes</li>
+          <li class="g">Agente de IA no WhatsApp, 14 dias por nossa conta</li>
+        </ul>
+        <div class="ft">Investimento em anúncios de R$ 1.000 a R$ 1.500<br>Horizonte de resultado: 60 a 90 dias</div>
+      </div>
+
+      <div class="plan clk" data-m="pA">
+        <div class="nm">Avançado</div>
+        <div class="pr">R$ 2.997<small> /mês</small></div>
+        <div class="pm">Para quando o volume passa a exigir organização.</div>
+        <ul>
+          <li>Tudo do plano Básico</li>
+          <li>CRM implantado e configurado</li>
+          <li>Agente de IA no WhatsApp, 24 horas</li>
+          <li>Qualificação e agendamento automáticos</li>
+          <li>Cadência automática de follow-up</li>
+          <li>Reativação mensal de leads frios</li>
+          <li>Retorno de conversão para o algoritmo</li>
+          <li>Reunião quinzenal de performance</li>
+          <li>Até duas plataformas de anúncio</li>
+        </ul>
+        <div class="ft">Investimento em anúncios a partir de R$ 2.500<br>Horizonte de resultado: 30 a 60 dias</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 11 O QUE VEM JUNTO -->
+<section class="slide">
+  <div class="head">
+    <div class="eyebrow">Resultado · O que vem junto</div>
+    <h2>Seis coisas que a maioria <span class="red">cobra à parte</span>.</h2>
+  </div>
+  <div class="body-area">
+    <div class="g6">
+      <div class="clk" data-m="b1"><div><div class="t">Agente de IA no WhatsApp</div><div class="s">Responde em menos de um minuto, qualifica e agenda a aula. Nenhum lead esfria esperando.</div></div><div class="n">Mais agendamentos</div></div>
+      <div class="clk" data-m="b2"><div><div class="t">Google Meu Negócio</div><div class="s">Quem busca aula de direção em Ribeirão encontra você antes do anúncio.</div></div><div class="n">Leads sem custo de mídia</div></div>
+      <div class="clk" data-m="b3"><div><div class="t">Dashboard exclusivo</div><div class="s">Investimento, leads e custo por aluno atualizados sozinhos na nossa plataforma de clientes.</div></div><div class="n">Você vê tudo, sempre</div></div>
+      <div class="clk" data-m="b4"><div><div class="t">Respostas às objeções</div><div class="s">As dúvidas mais comuns já respondidas, prontas para o vendedor usar no WhatsApp.</div></div><div class="n">Mais fechamentos</div></div>
+      <div class="clk" data-m="b5"><div><div class="t">Captação de depoimentos</div><div class="s">Um roteiro simples que transforma cada aluno atendido em prova social nova.</div></div><div class="n">Anúncio que convence sozinho</div></div>
+      <div class="clk" data-m="b6"><div><div class="t">Reativação da sua base</div><div class="s">Todos os contatos antigos parados viram campanha e viram público qualificado.</div></div><div class="n">Venda do que já existe</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 12 FECHAMENTO -->
+<section class="slide">
+  <div class="head">
+    <div class="eyebrow">Resumo · O próximo passo</div>
+    <h2>O que fica de tudo isso.</h2>
+  </div>
+  <div class="body-area">
+    <div class="close">
+      <div class="recap">
+        <div class="rec clk" data-m="r1"><div class="rn">01</div><div><div class="rt">O mercado é 2,4x maior que a cidade</div><div class="rs">1,7 milhão de pessoas na região metropolitana, a 30 minutos, e dez canais de aquisição ainda não usados.</div></div></div>
+        <div class="rec clk" data-m="r2"><div class="rn">02</div><div><div class="rt">O produto funciona, a estrutura em volta não</div><div class="rs">O site não tem Pixel do Meta instalado, não tem título principal e não existe CRM. Hoje é impossível saber qual anúncio trouxe qual aluno.</div></div></div>
+        <div class="rec clk" data-m="r3"><div class="rn">03</div><div><div class="rt">R$ 1.500 viram 23 alunos por mês</div><div class="rs">300 leads a R$ 5 cada, custo de R$ 66 por aluno e retorno de 15,3x sobre a mídia investida.</div></div></div>
+        <div class="rec clk" data-m="r4"><div class="rn">04</div><div><div class="rt">Cada instrutor destrava R$ 24 mil por mês</div><div class="rs">Com esse custo por lead, o limite deixa de ser demanda e passa a ser hora de aula disponível.</div></div></div>
+        <div class="rec clk" data-m="r5"><div class="rn">05</div><div><div class="rt">Dezembro entre R$ 24 mil e R$ 108 mil</div><div class="rs">A diferença entre os três cenários não está na verba de mídia. Está em quantas horas de aula existem para vender.</div></div></div>
+      </div>
+
+      <div class="cta">
+        <div class="ce">Começamos assim</div>
+        <div class="ct">Plano Básico,<br>com os 30 primeiros<br>dias de fundação.</div>
+        <ol>
+          <li>Pixel, medição e correções do site na primeira semana</li>
+          <li>Programa fechado no lugar da hora-aula avulsa</li>
+          <li>Landing page e primeira campanha no ar</li>
+          <li>Agente de IA no WhatsApp, 14 dias por nossa conta</li>
+        </ol>
+        <div class="btn clk bare" data-m="fechar">
+          <b>Vamos começar em setembro</b>
+          <i>Três definições e a campanha sobe</i>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<div id="ov">
+  <div id="mw">
+    <div id="mhead">
+      <div><div id="meye"></div><div id="mtitle"></div></div>
+      <button id="mx">&#10005;</button>
+    </div>
+    <div id="mbody"></div>
+  </div>
+</div>
+
+<script>
+var FT='<div class="src">Estimativas fundamentadas em dados do cliente, auditoria técnica do site e dados públicos de IBGE, Detran-SP e CONTRAN. Projeção, não garantia de resultado.</div>';
+
+var M={
+
+/* ---------- oportunidades ---------- */
+o1:{e:"Oportunidade 01",t:"Concessionárias e lojas de seminovos",b:'<p>Foram <strong>45.426 veículos zero quilômetro emplacados na região em 2025</strong>, sem contar o mercado de seminovos, que é maior. Uma parcela relevante de quem compra o primeiro carro tem insegurança para dirigir, e o medo aparece exatamente na hora da entrega da chave.</p><h4>Como ativar</h4><ul><li>Voucher de aula experimental entregue junto com a chave</li><li>Comissão apenas sobre venda fechada, sem custo de aquisição</li><li>Comece por três lojas de seminovos de bairro, que fecham parceria mais rápido que concessionária de marca</li></ul><h4>Por que funciona</h4><p>O vendedor de carro tem um problema real: cliente que compra e não usa o carro não indica ninguém. Oferecer a solução do medo é bom para ele também.</p>'},
+o2:{e:"Oportunidade 02",t:"Setor de saúde, o maior empregador da cidade",b:'<p>Atendimento hospitalar é a atividade que mais emprega em Ribeirão Preto, com <strong>mais de 14 mil trabalhadores formais</strong>, além do polo universitário de medicina.</p><h4>O nicho dentro do nicho</h4><p>Enfermeiras e técnicas de plantão noturno têm uma dor muito específica: dirigir sozinha à noite, cansada, em ruas vazias. Não é o mesmo medo genérico de dirigir, é um medo nomeável, e medo nomeável converte muito melhor em anúncio.</p><h4>Como ativar</h4><ul><li>Campanha segmentada por local de trabalho no Meta</li><li>Criativo falando diretamente de plantão noturno</li><li>Público concentrado em poucos endereços, o que barateia muito a segmentação</li></ul>'},
+o3:{e:"Oportunidade 03",t:"Usinas e agronegócio em Sertãozinho",b:'<p>Sertãozinho é polo nacional de equipamentos sucroalcooleiros e a região é o coração do agronegócio paulista. São frotas grandes, com exigência de treinamento de direção defensiva vinda de norma interna e principalmente de seguradora.</p><h4>O erro a evitar</h4><p>Vender segurança para gestor de frota não funciona. Ele já ouviu isso mil vezes.</p><h4>O argumento que funciona</h4><blockquote>Treinamento reduz sinistralidade. Sinistralidade menor reduz prêmio de seguro e custo de manutenção. O treinamento se paga na apólice.</blockquote><h4>Com quem falar</h4><p>Gestor de frota e SESMT. Não o RH, que não tem o orçamento nem sente a dor.</p>'},
+o4:{e:"Oportunidade 04",t:"Agrishow e Fenasucro",b:'<p>Ribeirão Preto sedia a Agrishow e Sertãozinho a Fenasucro. São os dois eventos que colocam, em poucos dias e a poucos quilômetros, praticamente todos os decisores de frota do agronegócio da região no mesmo lugar.</p><h4>Não precisa de estande</h4><p>Circular pelo evento, agendar café com gestores de frota e sair com 20 contatos qualificados já resolve o ano inteiro do B2B. O custo é uma credencial e dois dias de agenda.</p><h4>Por que isso é raro</h4><p>Nenhum canal de mídia paga compra esse tipo de acesso. Você não consegue segmentar "gestor de frota de usina sucroalcooleira" no Meta com precisão. Presencialmente, eles estão todos ali.</p>'},
+o5:{e:"Oportunidade 05",t:"Psicólogos e terapeutas",b:'<p>Medo de dirigir tem nome clínico, <strong>amaxofobia</strong>, e é tratado por psicólogos. O terapeuta trabalha a fobia, mas normalmente não tem como acompanhar o paciente na prática, no carro, na rua.</p><h4>Complementaridade perfeita</h4><ul><li>O psicólogo indica pacientes que já processaram a fobia e precisam da prática</li><li>A Dirija indica alunos que precisam de suporte emocional mais profundo antes de dirigir</li><li>Nenhum dos dois compete com o outro</li></ul><h4>Escala</h4><p>Cinco a dez psicólogos parceiros na cidade geram fluxo constante de leads pré-aquecidos, com custo de aquisição zero e taxa de fechamento muito acima da média de tráfego pago.</p>'},
+o6:{e:"Oportunidade 06",t:"Corretoras de seguro",b:'<p>Seguradora quer reduzir sinistro. Corretor quer reter cliente e ter algo a mais para oferecer. Treinamento de direção defensiva serve aos dois.</p><h4>Nos dois lados do negócio</h4><ul><li><strong>B2C:</strong> motorista jovem com apólice cara, ou cliente que acabou de bater</li><li><strong>B2B:</strong> frotas, onde a redução de sinistro é medida em dinheiro</li></ul><h4>Como ativar</h4><p>Oferecer como benefício agregado à apólice, com comissão de indicação para o corretor.</p><h4>O timing</h4><p>Corretor de seguros é um dos pouquíssimos profissionais que fala com o cliente exatamente no momento em que ele está pensando em risco no trânsito.</p>'},
+o7:{e:"Oportunidade 07",t:"Autoescolas como parceiras",b:'<p>A queixa comum é que autoescolas oferecem o mesmo serviço com qualidade inferior. Existe uma leitura oposta e mais lucrativa.</p><blockquote>Elas oferecem porque o cliente pede, não porque sabem fazer. Existe demanda entrando na porta delas todos os dias e sendo mal atendida.</blockquote><h4>A proposta</h4><p>Modelo white-label: a autoescola capta e repassa, a Dirija executa com o método próprio e os dois dividem.</p><h4>O que isso resolve</h4><ul><li>Transforma o concorrente em canal de distribuição</li><li>Resolve o problema da qualidade inferior na fonte, em vez de brigar com ele no anúncio</li><li>Elimina o custo de disputar as mesmas palavras-chave</li></ul>'},
+o8:{e:"Oportunidade 08",t:"Instrutor Independente",b:'<p>Em dezembro de 2025 o CONTRAN aprovou o fim da obrigatoriedade da autoescola para a primeira habilitação, criando oficialmente a figura do <strong>Instrutor Independente</strong>. O candidato passa a poder contratar um profissional credenciado diretamente.</p><h4>O que muda no tamanho do mercado</h4><table><tr><th>Antes</th><th>Depois</th></tr><tr><td>Habilitados com medo de dirigir</td><td class="n">Nicho</td></tr><tr><td>Todo mundo que quer tirar CNH</td><td class="n">Massa</td></tr></table><h4>Ressalva honesta</h4><p>Em março de 2026 a Câmara instalou uma comissão especial para tentar reverter a medida, sob pressão do setor de autoescolas. O cenário regulatório ainda não está estabilizado.</p><p>Por isso tratamos essa frente como <strong>aposta monitorada de alto retorno</strong>, e não como base do plano. Nenhum cenário depende dela para funcionar.</p>'},
+o9:{e:"Oportunidade 09",t:"SIPAT e semanas de segurança",b:'<p>Toda empresa com CIPA precisa realizar a SIPAT anualmente. Todo ano o RH precisa encontrar palestrantes e temas, e segurança no trânsito é dos mais pedidos e dos mais difíceis de preencher com conteúdo bom.</p><h4>A porta de entrada</h4><p>Uma palestra de uma hora, barata ou até gratuita, é a entrada mais fácil que existe no B2B.</p><h4>O que você leva de lá</h4><ul><li>Contato direto do gestor de frota</li><li>Competência já demonstrada na frente da diretoria</li><li>Autoridade construída antes de qualquer proposta comercial</li></ul><p>É prospecção que não parece prospecção.</p>'},
+o10:{e:"Oportunidade 10",t:"Aula em carro automático",b:'<p>O Detran-SP passou a admitir carro automático no exame prático e boa parte da frota nova já é automática.</p><h4>A dor real</h4><p>Muita gente com medo de dirigir tem medo <strong>especificamente do câmbio</strong>, não do trânsito. Embreagem, morro, motor morrendo no farol. Autoescola tradicional raramente oferece treino em automático.</p><h4>Por que é a campanha mais barata do portfólio</h4><ul><li>Dor extremamente específica, fácil de nomear no criativo</li><li>Pouquíssima concorrência anunciando</li><li>Intenção de busca alta e crescente</li></ul>'},
+
+/* ---------- diagnostico ---------- */
+score:{e:"Diagnóstico geral",t:"Por que 2,0 é uma boa notícia",b:'<p>Um score de 2,0 assusta à primeira vista. Olhando de perto, a distribuição é favorável.</p><h4>O que está fraco</h4><p>Processo, conteúdo e posicionamento. Os três se resolvem com implementação em 60 a 90 dias, sem investimento pesado e sem mudar nada na operação de aula.</p><h4>O que está forte</h4><p>O produto. A entrega presencial já é validada, já vende por indicação e já tem depoimentos reais de alunos que superaram o medo.</p><blockquote>O negócio não está quebrado. Está sem infraestrutura em volta de um produto que já funciona.</blockquote><h4>Por que isso importa comercialmente</h4><p>Construir um produto bom leva anos. Construir a estrutura de aquisição em volta dele leva 90 dias. Quem já tem o difícil pronto está muito mais perto do resultado do que parece.</p>'},
+d1:{e:"Vertical 01 · Nota 2",t:"Posicionamento",b:'<p>Duas ofertas muito diferentes convivem na mesma marca e na mesma página: medo de dirigir, que é B2C emocional, e treinamento de frota, que é B2B corporativo.</p><h4>O que isso causa</h4><ul><li>Quem chega buscando uma coisa esbarra na outra e perde confiança</li><li>O anúncio não sabe para quem falar</li><li>A página não consegue ter uma promessa única</li></ul><h4>A pergunta sem resposta</h4><blockquote>Por que aqui, e não na autoescola da esquina, que é mais barata?</blockquote><p>A diferenciação existe na prática, no método e no acompanhamento emocional. Ela só não está escrita em lugar nenhum. Enquanto não estiver, cada lead vai fazer essa conta sozinho, e uma parte vai errar a favor do concorrente.</p>'},
+d2:{e:"Vertical 02 · Nota 2",t:"Conteúdo",b:'<p>Existe produção de Reels no Instagram, que é o ativo mais aproveitável hoje. O problema está no resto.</p><h4>O que encontramos</h4><ul><li>Blog com artigos bem escritos e boa intenção de SEO, <strong>parado desde fevereiro de 2024</strong></li><li>Depoimentos na home são prints de rede social de 2018 a 2020</li><li>Nenhum sistema de captação de prova social nova a cada aluno atendido</li></ul><h4>Por que isso custa caro</h4><p>Prova social é o único insumo que <strong>derruba o custo por aluno sem aumentar a verba</strong>. Um depoimento novo de uma aluna que superou o medo vale mais em anúncio do que qualquer argumento técnico.</p><p>Todo aluno atendido é um depoimento que está sendo desperdiçado. Em um ano, são dezenas de criativos que deixaram de existir.</p>'},
+d3:{e:"Vertical 03 · Nota 3",t:"Produto",b:'<p>A nota mais alta do diagnóstico, e por bons motivos: preço claro, entrega presencial validada, resultado real e indicação espontânea acontecendo.</p><h4>O que trava em 3</h4><p>A forma de venda. Cobrar por hora-aula avulsa transfere ao cliente a decisão de quantas aulas fazer.</p><ul><li>Achata o ticket médio</li><li>Torna a previsão de receita impossível</li><li>Faz o aluno parar no meio do processo, quando o resultado ainda não veio</li></ul><h4>A mudança recomendada</h4><p>Vender um programa fechado, com número definido de encontros e preço único. Algo como <em>Programa Superação</em>.</p><h4>O ganho triplo</h4><ul><li>Ticket médio maior</li><li>Previsibilidade de receita</li><li>Adesão até o fim, que é onde o resultado aparece e onde nasce o depoimento</li></ul>'},
+d4:{e:"Vertical 04 · Nota 1",t:"Processo",b:'<p>A nota mais baixa, e o gargalo número um do projeto inteiro. Fizemos uma auditoria técnica do site e confirmamos ponto a ponto.</p><h4>O que a auditoria encontrou</h4><table><tr><th>Item</th><th>Situação</th></tr><tr><td>Pixel do Meta instalado</td><td class="n">Não</td></tr><tr><td>Google Analytics e Tag Manager</td><td class="n">Sim</td></tr><tr><td>Título principal (H1) na home</td><td class="n">Nenhum</td></tr><tr><td>Descrição para o Google</td><td class="n">Ausente</td></tr><tr><td>Compressão de página</td><td class="n">Desativada</td></tr><tr><td>Arquivos travando o carregamento</td><td class="n">70</td></tr><tr><td>CRM ou registro de origem do lead</td><td class="n">Não existe</td></tr></table><h4>O que isso significa na prática</h4><p>A camada de tags já existe, o Pixel simplesmente não está lá. Sem ele, o Meta não recebe sinal de conversão e otimiza para clique barato em vez de aluno fechado, que é uma otimização completamente diferente e muito pior.</p><p>Sem H1 e sem descrição, o Google monta o resultado de busca por conta própria e a página perde posição para concorrentes com metade do conteúdo.</p><blockquote>Nessa condição, rodar tráfego pago é apostar. Com a medição instalada, vira gestão.</blockquote>'},
+
+/* ---------- funil ---------- */
+f0:{e:"Funil · Entrada",t:"O investimento em mídia",b:'<p>R$ 1.500 por mês em Meta Ads, o mínimo recomendado para o algoritmo sair da fase de aprendizado e começar a otimizar de verdade.</p><h4>Por que Meta e não Google</h4><ul><li>Medo de dirigir é uma dor que a pessoa <strong>não pesquisa</strong>, ela reconhece quando vê</li><li>É uma dor com carga emocional, que funciona melhor em vídeo e imagem do que em texto de busca</li><li>O público em Ribeirão está mapeável por local de trabalho, interesse e comportamento</li></ul><h4>Onde o Google entra depois</h4><p>Quando existir volume de busca por marca e por "aula para habilitados", o Google vira canal de colheita, não de descoberta.</p>'},
+f1:{e:"Funil · Etapa 01",t:"300 leads, com CPL de R$ 5",b:'<p>O custo por lead de R$ 5 é a nossa referência de operação para esse tipo de campanha local com dor emocional bem definida.</p><h4>O que sustenta esse número</h4><ul><li>Praça geograficamente concentrada, com custo de impressão baixo</li><li>Dor de altíssima identificação, que gera taxa de clique acima da média</li><li>Formulário nativo do Meta, sem depender de site lento</li><li>Criativo construído sobre a dor específica, não sobre o serviço</li></ul><h4>Ressalva honesta</h4><p>O primeiro mês roda com CPL cerca de 30% mais alto, em torno de R$ 6,50, porque o algoritmo está aprendendo. O CPL de regime aparece a partir da terceira ou quarta semana.</p>'},
+f2:{e:"Funil · Etapa 02",t:"180 conversas qualificadas",b:'<p>Do total de leads, cerca de 60% engajam em conversa real no WhatsApp.</p><h4>O que define essa taxa</h4><ul><li><strong>Velocidade de resposta</strong>, que é o fator dominante</li><li>Qualidade da primeira mensagem, que não pode ser pitch</li><li>Pergunta qualificatória logo no início, para separar curiosidade de intenção</li></ul><h4>Onde essa taxa quebra</h4><p>Resposta manual em horário comercial derruba esse número facilmente para 35% ou 40%. Quem manda mensagem às 21h30 criando coragem não espera até as 9h do dia seguinte.</p><p>É exatamente aqui que o agente de IA muda o resultado da campanha inteira, sem mexer em um centavo de verba.</p>'},
+f3:{e:"Funil · Etapa 03",t:"72 aulas experimentais agendadas",b:'<p>Cerca de 40% das conversas qualificadas chegam ao agendamento.</p><h4>A aula experimental como mecanismo</h4><p>Para quem tem medo, o obstáculo não é o preço, é <strong>dar o primeiro passo</strong>. Uma aula experimental transforma uma decisão grande e assustadora em uma decisão pequena e reversível.</p><h4>O que aumenta essa taxa</h4><ul><li>Oferecer dois horários fechados em vez de perguntar quando pode</li><li>Confirmação automática no dia anterior e no dia</li><li>Nome do instrutor e foto enviados antes, que reduz a ansiedade de encontrar um estranho</li></ul>'},
+f4:{e:"Funil · Etapa 04",t:"50 comparecimentos",b:'<p>Cerca de 70% de quem agenda comparece. É uma taxa boa para o setor, e ela é quase inteiramente construída antes do dia da aula.</p><h4>O que sustenta os 70%</h4><ul><li>Confirmação em mais de um toque</li><li>Contato humano ou humanizado entre o agendamento e a aula</li><li>Reforço do que vai acontecer, minuto a minuto, para reduzir o medo do desconhecido</li></ul><h4>Onde se perde</h4><p>Agendamento com mais de cinco dias de distância derruba muito o comparecimento. Quanto mais perto do momento da coragem, melhor.</p>'},
+f5:{e:"Funil · Resultado",t:"23 alunos por mês",b:'<p>Cerca de 45% de quem faz a aula experimental fecha o programa.</p><h4>Esse é o número mais importante do funil</h4><p>E também o mais controlável, porque ele <strong>não depende de mídia</strong>. Depende do instrutor, do acolhimento e da forma como a oferta é apresentada no final da aula.</p><h4>A conta completa</h4><div class="kpi"><div><b>23</b><i>alunos por mês</i></div><div><b>R$ 66</b><i>custo por aluno</i></div><div><b>R$ 23.000</b><i>receita gerada</i></div><div><b>15,3x</b><i>retorno sobre a mídia</i></div></div><h4>Ressalva</h4><p>O ticket de R$ 1.000 assume pacote médio de cinco aulas a R$ 200. Esse é o número que precisamos confirmar juntos, porque toda a projeção gira em torno dele.</p>'+FT},
+cpa:{e:"Indicador",t:"R$ 66 por aluno",b:'<p>Cada aluno novo custa cerca de R$ 66 em mídia, contra um ticket médio estimado de R$ 1.000.</p><h4>A leitura correta</h4><p>Isso significa que a mídia representa aproximadamente <strong>6,6% da receita</strong> gerada. Em serviços locais de alto envolvimento, qualquer coisa abaixo de 20% já é considerada saudável.</p><h4>Margem de segurança</h4><p>Mesmo que o CPL dobre para R$ 10 e a taxa de fechamento caia pela metade, o custo por aluno sobe para cerca de R$ 265, e a operação continua largamente lucrativa.</p><p>É essa folga que permite escalar sem medo.</p>'},
+roas:{e:"Indicador",t:"15,3x de retorno",b:'<p>R$ 1.500 investidos em mídia gerando aproximadamente R$ 23.000 em receita.</p><h4>Considerando também o nosso trabalho</h4><table><tr><th>Item</th><th>Valor</th></tr><tr><td>Mídia</td><td class="n">R$ 1.500</td></tr><tr><td>Gestão Totum, plano Básico</td><td class="n">R$ 1.797</td></tr><tr><td>Custo total</td><td class="n">R$ 3.297</td></tr><tr><td>Receita gerada</td><td class="n">R$ 23.000</td></tr><tr><td>Retorno total</td><td class="n">7,0x</td></tr></table><h4>O que isso quer dizer</h4><p>Cada real colocado na operação de aquisição volta sete vezes, antes de descontar o custo da aula em si.</p>'+FT},
+teto:{e:"Alerta importante",t:"O teto muda de lugar",b:'<p>Com custo por lead de R$ 5, gerar demanda deixa de ser o problema. Isso é uma boa notícia, mas exige uma decisão.</p><h4>A conta de capacidade</h4><table><tr><th>Item</th><th>Valor</th></tr><tr><td>Alunos previstos no primeiro mês cheio</td><td class="n">23</td></tr><tr><td>Horas de aula, a 5 aulas por aluno</td><td class="n">115h</td></tr><tr><td>Capacidade real de 1 instrutor por mês</td><td class="n">120 a 130h</td></tr></table><h4>Leitura</h4><p>Um único instrutor fica praticamente lotado já no segundo mês de campanha, considerando deslocamento entre alunos, remarcações e faltas.</p><blockquote>A partir daí, aumentar a verba não aumenta o faturamento. Só gera fila, espera e avaliação ruim.</blockquote><h4>A decisão</h4><p>Cada instrutor adicional destrava aproximadamente <strong>R$ 24.000 de faturamento mensal</strong>. Essa é a conta que define até onde os cenários podem ir.</p>'},
+
+/* ---------- cenarios ---------- */
+cA:{e:"Cenário 01",t:"Conservador",b:'<p>Verba mantida em R$ 1.500 por mês, um instrutor, taxas de funil sem melhoria.</p><table><tr><th>Mês</th><th>Verba</th><th>Alunos</th><th>Faturamento</th></tr><tr><td>Setembro</td><td class="n">R$ 1.500</td><td class="n">17</td><td class="n">R$ 17.000</td></tr><tr><td>Outubro</td><td class="n">R$ 1.500</td><td class="n">23</td><td class="n">R$ 23.000</td></tr><tr><td>Novembro</td><td class="n">R$ 1.500</td><td class="n">24</td><td class="n">R$ 24.000</td></tr><tr><td>Dezembro</td><td class="n">R$ 1.500</td><td class="n">24</td><td class="n">R$ 24.000</td></tr></table><h4>O que acontece aqui</h4><p>A partir de novembro o crescimento para, e <strong>não é por falta de lead</strong>. É porque o instrutor único atinge o limite de horas disponíveis.</p><h4>Total do período</h4><div class="kpi"><div><b>88</b><i>alunos em 4 meses</i></div><div><b>R$ 88.000</b><i>faturamento acumulado</i></div><div><b>R$ 6.000</b><i>investidos em mídia</i></div></div><p>Mesmo no cenário mais conservador, o retorno sobre a mídia fica acima de 14x. Este cenário não é ruim, ele apenas deixa dinheiro na mesa.</p>'+FT},
+cB:{e:"Cenário 02",t:"Moderado",b:'<p>Verba escalando conforme o retorno se confirma, agente de IA no WhatsApp a partir de outubro e um segundo instrutor entrando na operação.</p><table><tr><th>Mês</th><th>Verba</th><th>Alunos</th><th>B2B</th><th>Faturamento</th></tr><tr><td>Setembro</td><td class="n">R$ 1.500</td><td class="n">17</td><td class="n">0</td><td class="n">R$ 17.000</td></tr><tr><td>Outubro</td><td class="n">R$ 2.000</td><td class="n">36</td><td class="n">1</td><td class="n">R$ 44.000</td></tr><tr><td>Novembro</td><td class="n">R$ 2.600</td><td class="n">48</td><td class="n">1</td><td class="n">R$ 56.000</td></tr><tr><td>Dezembro</td><td class="n">R$ 2.600</td><td class="n">48</td><td class="n">2</td><td class="n">R$ 64.000</td></tr></table><h4>O que muda em relação ao conservador</h4><ul><li>O agente de IA sobe a taxa de conversão do funil de 7,6% para cerca de 10%</li><li>O segundo instrutor eleva o teto de 24 para 48 alunos por mês</li><li>A frente B2B entra por prospecção ativa, sem consumir verba de mídia</li></ul><h4>Total do período</h4><div class="kpi"><div><b>149</b><i>alunos</i></div><div><b>4</b><i>empresas B2B</i></div><div><b>R$ 181.000</b><i>faturamento acumulado</i></div><div><b>R$ 8.700</b><i>investidos em mídia</i></div></div><p><strong>Este é o cenário que consideramos mais realista</strong> se a decisão de contratar o segundo instrutor for tomada até o fim de setembro.</p>'+FT},
+cC:{e:"Cenário 03",t:"Agressivo",b:'<p>Três instrutores, prospecção B2B ativa desde o primeiro mês e abertura da rede credenciada de instrutores no modelo de mini franquia.</p><table><tr><th>Mês</th><th>Verba</th><th>Alunos</th><th>B2B</th><th>Faturamento</th></tr><tr><td>Setembro</td><td class="n">R$ 1.500</td><td class="n">17</td><td class="n">1</td><td class="n">R$ 25.000</td></tr><tr><td>Outubro</td><td class="n">R$ 2.500</td><td class="n">45</td><td class="n">2</td><td class="n">R$ 61.000</td></tr><tr><td>Novembro</td><td class="n">R$ 3.500</td><td class="n">70</td><td class="n">2</td><td class="n">R$ 91.000</td></tr><tr><td>Dezembro</td><td class="n">R$ 4.000</td><td class="n">72</td><td class="n">3</td><td class="n">R$ 108.000</td></tr></table><h4>O que este cenário exige</h4><ul><li>Três instrutores e três veículos disponíveis até novembro</li><li>Alguém dedicado à prospecção B2B, mesmo que meio período</li><li>Decisão sobre a rede credenciada tomada ainda em outubro</li></ul><h4>Total do período</h4><div class="kpi"><div><b>204</b><i>alunos</i></div><div><b>8</b><i>empresas B2B</i></div><div><b>R$ 285.000</b><i>faturamento acumulado</i></div><div><b>R$ 11.500</b><i>investidos em mídia</i></div></div><h4>Honestidade sobre este cenário</h4><p>Ele é uma projeção de <strong>potencial de mercado</strong>, não uma promessa de entrega. Depende de decisões de contratação e estrutura que estão fora do controle da agência. A demanda cabe. A pergunta é se a operação cabe.</p>'+FT},
+
+/* ---------- gargalos ---------- */
+g1:{e:"Gargalo 01",t:"Cegueira de dados",b:'<p>Confirmamos na auditoria: o site tem Google Analytics e Tag Manager instalados, mas <strong>não tem o Pixel do Meta</strong>. E não existe CRM nem registro de origem do lead em lugar nenhum.</p><h4>O que acontece nessa condição</h4><ul><li>O Meta não recebe sinal de conversão</li><li>A campanha otimiza para "clique barato" em vez de "aluno fechado"</li><li>Ninguém consegue dizer qual criativo trouxe qual aluno</li><li>Não dá para desligar o que não funciona nem escalar o que funciona</li></ul><h4>O custo estimado</h4><p>Campanhas sem sinal de conversão operam com custo por aquisição <strong>40% a 70% mais alto</strong> que campanhas com medição completa, para a mesma verba e o mesmo criativo.</p><h4>Prazo de correção</h4><p>Primeiros sete dias do trabalho. É a primeira coisa que fazemos, antes de qualquer criativo.</p>'},
+g2:{e:"Gargalo 02",t:"Tempo de resposta",b:'<p>Lead de medo de dirigir é lead emocional. A pessoa criou coragem <strong>naquele instante específico</strong> e mandou mensagem. Se a resposta demora horas, a coragem passa.</p><h4>A dinâmica real</h4><ul><li>Boa parte das mensagens chega à noite ou no fim de semana</li><li>Atendimento manual em horário comercial responde no dia seguinte</li><li>Entre o impulso e a resposta, o medo volta e a pessoa desiste</li></ul><h4>O impacto</h4><p>Sem atendimento imediato, uma fatia relevante dos leads pagos morre antes de virar conversa. Isso derruba a taxa de resposta de 60% para 35% ou 40%, o que reduz o resultado da campanha em cerca de um terço.</p><h4>A solução</h4><p>Agente de IA respondendo em menos de um minuto, 24 horas por dia, qualificando e já oferecendo dois horários de aula experimental.</p><blockquote>É o único ajuste do plano que aumenta o faturamento sem aumentar um centavo de verba.</blockquote>'},
+g3:{e:"Gargalo 03",t:"Horas de aula disponíveis",b:'<p>Com custo por lead de R$ 5, gerar demanda é a parte fácil. O limite real do negócio passa a ser quantas horas de aula existem para vender.</p><h4>A conta</h4><table><tr><th>Item</th><th>Valor</th></tr><tr><td>Capacidade teórica de 1 instrutor</td><td class="n">176h/mês</td></tr><tr><td>Capacidade real, com deslocamento e faltas</td><td class="n">120 a 130h</td></tr><tr><td>Alunos que isso comporta, a 5 aulas cada</td><td class="n">24 a 26</td></tr><tr><td>Faturamento destravado por instrutor</td><td class="n">~R$ 24.000/mês</td></tr></table><h4>A pergunta que precisamos responder juntos</h4><p>Quantos instrutores e veículos estão disponíveis hoje, e qual a disposição de ampliar esse número nos próximos 60 dias?</p><p>A resposta define qual dos três cenários é possível. Não adianta escolher o cenário agressivo sem a estrutura para atender.</p><h4>A alternativa sem folha de pagamento</h4><p>A rede credenciada de instrutores, no modelo de mini franquia, resolve capacidade sem contratação e sem compra de frota.</p>'},
+
+/* ---------- plano ---------- */
+s1:{e:"Sprint 01 · Setembro",t:"Fundação",b:'<p>Trinta dias para instalar tudo que falta antes de a campanha poder ser gerenciada de verdade.</p><h4>Entregas</h4><ol><li><strong>Infraestrutura de medição:</strong> Pixel do Meta, API de Conversões, evento de lead no WhatsApp e link rastreável por criativo</li><li><strong>Landing page de conversão</strong> focada em uma dor, uma promessa e um chamado</li><li><strong>Correções técnicas do site:</strong> título principal, descrição para o Google e compressão de página</li><li><strong>Reempacotamento da oferta</strong> em programa fechado, saindo da hora-aula avulsa</li><li><strong>Primeira campanha no ar</strong> com R$ 1.500</li></ol><h4>O que esperar</h4><p>Mês de aprendizado do algoritmo. A meta realista é de <strong>17 alunos</strong>, e o entregável mais valioso não é o número: é descobrir qual dor e qual criativo performam melhor nessa praça.</p><h4>Duas definições necessárias do lado do cliente</h4><ul><li>Quantas aulas tem o pacote médio</li><li>Quantos instrutores e veículos estão disponíveis</li></ul>'},
+s2:{e:"Sprint 02 · Outubro",t:"Conversão",b:'<p>Com dado na mão, o foco sai de gerar lead e vai para não perder nenhum.</p><h4>Entregas</h4><ol><li><strong>Agente de IA no WhatsApp:</strong> resposta em menos de um minuto, 24 horas, qualificando e agendando</li><li><strong>Captação sistemática de prova social:</strong> roteiro fixo gravado com todo aluno ao final do programa</li><li><strong>Escala de verba para R$ 2.000 a R$ 2.500</strong>, condicionada ao custo por aluno de setembro</li><li><strong>Públicos semelhantes</strong> construídos a partir da base de WhatsApp e da lista de clientes antigos</li><li><strong>Abertura da frente B2B</strong> com lista de 50 empresas de frota, usinas e transportadoras da região</li></ol><h4>O que esperar</h4><p>Meta de <strong>36 a 45 alunos</strong> e a primeira empresa B2B fechada. A taxa de conversão do funil deve subir de 7,6% para cerca de 9%.</p><h4>Regra de escala</h4><p>Só aumentamos verba se o custo por aluno de setembro tiver ficado dentro do previsto. Escalar com custo ruim é multiplicar prejuízo.</p>'},
+s3:{e:"Sprint 03 · Novembro",t:"Escala",b:'<p>Com funil calibrado e capacidade ampliada, o trabalho vira expansão de território e de canais.</p><h4>Entregas</h4><ol><li><strong>Expansão geográfica</strong> para Sertãozinho, Cravinhos, Jardinópolis, Bonfim Paulista e Brodowski</li><li><strong>Verba em R$ 2.600 a R$ 4.000</strong>, condicionada à capacidade de atendimento</li><li><strong>Três parcerias de indicação ativas:</strong> concessionárias, psicólogos e corretoras de seguro</li><li><strong>Levantamento do credenciamento como Instrutor Independente</strong> e do modelo de rede</li><li><strong>CRM implantado</strong> com cadência automática de follow-up</li></ol><h4>O que esperar</h4><p>Meta de <strong>48 a 70 alunos</strong>, dependendo de quantos instrutores estiverem disponíveis, e a operação rodando com previsibilidade mensal.</p><h4>Por que o CRM entra agora</h4><p>Lead que não fechou não é lead perdido, é lead adiado. Sem CRM, ele simplesmente desaparece. Com volume acima de 300 leads por mês, isso deixa de ser detalhe e vira dinheiro.</p>'},
+franquia:{e:"Frente paralela",t:"Rede credenciada de instrutores",b:'<p>A capacidade de atendimento é o teto do negócio. Existem dois jeitos de levantar esse teto: contratar, ou credenciar.</p><h4>O modelo</h4><p>Terceirizar instrutores autônomos que operam <strong>com o método, o material e o padrão de atendimento Dirija + Fácil</strong>, em um formato próximo de mini franquia.</p><h4>Por que isso é forte agora</h4><p>A resolução do CONTRAN criou oficialmente a figura do Instrutor Independente. Isso significa que vai existir uma quantidade grande de instrutores autônomos no mercado procurando por demanda, marca e método.</p><blockquote>A Dirija tem exatamente o que falta a eles: método, marca e uma máquina de gerar aluno. Eles têm exatamente o que falta à Dirija: carro e hora disponível.</blockquote><h4>Vantagens do modelo</h4><ul><li>Cresce sem folha de pagamento e sem compra de frota</li><li>Permite expansão para outras cidades da região sem estrutura física</li><li>Transforma capacidade em variável, não em custo fixo</li><li>Cria barreira de entrada: o método padronizado vira o ativo</li></ul><h4>O que precisa ser estudado antes</h4><ul><li>Exigências de credenciamento junto ao Detran-SP</li><li>Formato contratual e divisão de receita</li><li>Padrão mínimo de qualidade e como auditá-lo</li></ul><p>Este levantamento entra no Sprint 03 como frente própria.</p>'},
+pacote:{e:"Decisão de produto",t:"Programa fechado em vez de hora-aula",b:'<p>Hoje a venda é por hora avulsa: R$ 140 a parte teórica, R$ 200 teórica mais prática. A decisão de quantas aulas fazer fica com o aluno.</p><h4>O problema disso</h4><ul><li>O aluno para no meio, justamente quando o resultado ainda não apareceu</li><li>O ticket médio fica imprevisível e baixo</li><li>Não dá para projetar receita nem planejar capacidade</li><li>Sem conclusão do processo, não nasce depoimento</li></ul><h4>A proposta</h4><p>Um programa com nome, número fechado de encontros e preço único. Algo como <em>Programa Superação, 5 encontros</em>.</p><h4>Os três ganhos</h4><table><tr><th>Ganho</th><th>Efeito</th></tr><tr><td>Ticket médio</td><td class="n">Sobe</td></tr><tr><td>Previsibilidade</td><td class="n">Aparece</td></tr><tr><td>Conclusão do processo</td><td class="n">Aumenta</td></tr></table><p>E conclusão do processo é o que gera resultado real, indicação e prova social nova.</p>'},
+regiao:{e:"Expansão",t:"Região metropolitana",b:'<p>A operação está limitada a Ribeirão Preto, que tem cerca de 700 mil habitantes. A região metropolitana tem <strong>1,7 milhão de pessoas e 1,34 milhão de veículos</strong>, distribuídos em 34 municípios.</p><h4>As cidades mais próximas</h4><p>Sertãozinho, Cravinhos, Jardinópolis, Dumont, Brodowski, Pontal e o distrito de Bonfim Paulista estão em processo de conurbação com Ribeirão. Várias delas ficam a 20 ou 30 minutos do centro.</p><h4>O detalhe que quase ninguém percebe</h4><blockquote>Quem tem medo de dirigir em cidade pequena muitas vezes precisa justamente vir a Ribeirão. O trânsito da capital regional é exatamente o medo dele.</blockquote><p>Ou seja: o morador de Cravinhos não é um lead distante. Ele é um lead com uma dor <em>mais específica ainda</em>, e a solução está onde ele já precisa ir.</p><h4>Impacto</h4><p>Restringir o raio à cidade é abrir mão de mais da metade do mercado endereçável, sem nenhum ganho em troca.</p>'},
+
+/* ---------- planos ---------- */
+pE:{e:"Plano",t:"Essencial · R$ 1.197",b:'<p>Para quem quer validar o canal antes de comprometer verba maior.</p><h4>O que está incluído</h4><ul><li>Meta Ads, uma plataforma</li><li>Uma landing page de conversão</li><li>Criativos produzidos conforme a necessidade da campanha</li><li>Pixel e API de Conversões instalados</li><li>Públicos semelhantes construídos a partir da sua base</li><li>Relatório mensal de performance</li></ul><h4>O que não está incluído</h4><ul><li>Agente de IA no WhatsApp</li><li>CRM</li><li>Dashboard exclusivo</li><li>Segunda plataforma de anúncio</li></ul><h4>Nível de resultado esperado</h4><p>Resultado consistente entre <strong>90 e 120 dias</strong>. Este plano chega ao mesmo lugar que os outros, só que mais devagar, porque conta com menos alavancas de conversão.</p>'},
+pB:{e:"Plano",t:"Básico · R$ 1.797",b:'<p>O ponto de partida recomendado para a Dirija + Fácil. Tráfego, página, conteúdo e presença local trabalhando juntos desde o primeiro mês.</p><h4>O que está incluído</h4><ul><li>Gestão completa de mídia paga em uma plataforma</li><li>Landing page completa</li><li>Criativos produzidos conforme a necessidade da campanha</li><li>Pixel e API de Conversões</li><li>Google Meu Negócio otimizado</li><li>Dashboard exclusivo na nossa plataforma de clientes</li><li>Kit de respostas às objeções mais comuns</li><li>Roteiro de captação de depoimentos</li><li>Reativação da base de contatos existente</li></ul><h4>Agente de IA por nossa conta</h4><p>Incluímos <strong>14 dias de Agente de IA no WhatsApp sem custo</strong>, respondendo em menos de um minuto, 24 horas por dia.</p><p>Não é cortesia solta: é a forma mais honesta de mostrar, com o seu próprio lead e o seu próprio número, quanto o tempo de resposta muda a taxa de agendamento. Se a diferença aparecer nos números, a conversa sobre o plano Avançado se resolve sozinha.</p><h4>Nível de resultado esperado</h4><p>Resultado consistente entre <strong>60 e 90 dias</strong>.</p>'},
+pA:{e:"Plano",t:"Avançado · R$ 2.997",b:'<p>Para quando o volume de leads passa a exigir organização, e cada lead perdido custa caro.</p><h4>Tudo do plano Básico, mais</h4><ul><li>CRM implantado e configurado, com funil por origem de lead</li><li>Agente de IA no WhatsApp, 24 horas, permanente</li><li>Qualificação e agendamento automáticos</li><li>Cadência automática de follow-up para quem não respondeu</li><li>Reativação mensal de leads frios</li><li>Retorno de conversão para o algoritmo</li><li>Reunião quinzenal de performance</li><li>Até duas plataformas de anúncio</li></ul><h4>Por que este plano se paga sozinho</h4><p>O fechamento da Dirija acontece presencialmente. Isso significa que, sem CRM, <strong>o Meta nunca fica sabendo quais leads viraram alunos</strong>. Ele continua procurando pessoas parecidas com quem clicou, e não com quem comprou.</p><p>Com o CRM devolvendo essa informação, o algoritmo passa a caçar o perfil certo. O custo por aluno cai, e a diferença de mensalidade se paga em mídia economizada a partir de aproximadamente 300 leads por mês.</p><blockquote>Não é um plano mais caro. É o plano em que a mídia custa menos.</blockquote><h4>Nível de resultado esperado</h4><p>Resultado consistente entre <strong>30 e 60 dias</strong>.</p>'},
+
+/* ---------- bonus ---------- */
+b1:{e:"Incluído",t:"Agente de IA no WhatsApp",b:'<p>Um atendente que responde em menos de um minuto, a qualquer hora, todos os dias.</p><h4>O que ele faz</h4><ul><li>Responde imediatamente quem chega pelo anúncio</li><li>Faz as perguntas de qualificação</li><li>Oferece dois horários de aula experimental e agenda</li><li>Passa para o vendedor apenas quem está pronto</li></ul><h4>Por que isso importa tanto neste negócio</h4><p>Quem tem medo de dirigir manda mensagem no momento exato em que cria coragem, e isso costuma acontecer à noite ou no fim de semana. Se a resposta vem no dia seguinte, a coragem já passou.</p><h4>Ganho esperado</h4><p>De <strong>20% a 35% mais agendamentos</strong>, sem aumentar um centavo de verba.</p>'},
+b2:{e:"Incluído",t:"Google Meu Negócio otimizado",b:'<p>Categoria correta, serviços descritos, fotos, horários, área de atendimento e campanha de avaliações.</p><h4>Por que vale muito em negócio local</h4><p>Quem busca "aula de direção para habilitados em Ribeirão Preto" está no momento mais quente possível de intenção. É alguém que já decidiu resolver o problema e está procurando quem resolve.</p><h4>O melhor detalhe</h4><p>Esse clique é <strong>gratuito</strong>. Não passa por leilão, não tem custo por lead, não depende de verba.</p><h4>Efeito colateral positivo</h4><p>O perfil bem preenchido também aparece no mapa, e o mapa aparece antes dos resultados normais de busca.</p>'},
+b3:{e:"Incluído",t:"Dashboard exclusivo",b:'<p>Um painel na nossa plataforma de clientes, com os números da sua campanha atualizados automaticamente.</p><h4>O que você acompanha</h4><ul><li>Quanto foi investido</li><li>Quantos leads chegaram</li><li>Quanto custou cada lead</li><li>Quanto custou cada aluno</li><li>Evolução ao longo do mês</li></ul><h4>Por que isso importa</h4><p>Você não precisa esperar reunião nem pedir relatório para saber como está. Abre e vê.</p><blockquote>Transparência não é gentileza, é método. Quem enxerga o número acompanha a decisão junto com a gente.</blockquote>'},
+b4:{e:"Incluído",t:"Respostas às objeções",b:'<p>Um documento com as dúvidas e objeções mais comuns já respondidas, prontas para o vendedor usar no WhatsApp.</p><h4>O que ele cobre</h4><ul><li>"Está caro"</li><li>"A autoescola cobra menos"</li><li>"E se eu não conseguir?"</li><li>"Não tenho tempo agora"</li><li>"Vou pensar e te falo"</li></ul><h4>Por que fazemos isso</h4><p>Metade do resultado da campanha é decidido depois que o lead chega. Um vendedor com resposta pronta para a objeção certa converte mais do que um vendedor improvisando, mesmo sendo a mesma pessoa.</p><h4>Ganho esperado</h4><p>De <strong>5 a 10 pontos percentuais</strong> na taxa de fechamento.</p>'},
+b5:{e:"Incluído",t:"Captação de depoimentos",b:'<p>Um roteiro simples, de cinco perguntas, que o instrutor faz ao aluno no último encontro. Gravado no celular, sem produção.</p><h4>Por que isso vale ouro aqui</h4><p>Nenhum argumento técnico convence tanto quanto uma pessoa dizendo, com a própria voz, que tinha pânico de dirigir e hoje leva os filhos na escola.</p><h4>O ativo que se acumula</h4><p>Cada aluno atendido vira um criativo novo. Em três meses, você tem um estoque de prova social que a concorrência não consegue copiar.</p><blockquote>Prova social é o único insumo que reduz o custo por aluno sem aumentar a verba.</blockquote>'},
+r1:{e:"Resumo 01",t:"O mercado é 2,4x maior que a cidade",b:'<p>A operação está limitada hoje a Ribeirão Preto, que tem cerca de 700 mil habitantes. A região metropolitana tem <strong>1,7 milhão de pessoas e 1,34 milhão de veículos</strong> em 34 municípios, vários deles a 20 ou 30 minutos do centro.</p><h4>E dez canais parados</h4><p>Concessionárias, setor de saúde, usinas de Sertãozinho, Agrishow, psicólogos, corretoras de seguro, autoescolas como parceiras, Instrutor Independente, SIPAT e carro automático. Nenhum deles está sendo usado hoje, e a maioria tem custo de aquisição próximo de zero.</p>'},
+r2:{e:"Resumo 02",t:"O produto funciona, a estrutura em volta não",b:'<p>Score de diagnóstico de 2,0 de 5, com uma distribuição favorável: o que está fraco é barato de consertar, o que está forte é caro de construir e já está pronto.</p><h4>O que a auditoria técnica encontrou</h4><ul><li>Google Analytics e Tag Manager instalados, mas <strong>nenhum Pixel do Meta</strong></li><li>Nenhum título principal na home</li><li>Sem descrição para o Google</li><li>Compressão de página desativada</li><li>Nenhum CRM ou registro de origem do lead</li></ul><h4>A consequência</h4><p>Sem sinal de conversão, a campanha otimiza para clique barato em vez de aluno fechado, e ninguém consegue dizer qual anúncio gerou qual matrícula.</p>'},
+r3:{e:"Resumo 03",t:"R$ 1.500 viram 23 alunos por mês",b:'<div class="kpi"><div><b>300</b><i>leads a R$ 5 cada</i></div><div><b>23</b><i>alunos fechados</i></div><div><b>R$ 66</b><i>custo por aluno</i></div><div><b>15,3x</b><i>retorno sobre a mídia</i></div></div><h4>Considerando também o nosso trabalho</h4><p>Com mídia e gestão somadas, R$ 3.297 de custo total gerando cerca de R$ 23.000 de receita, um retorno de <strong>7,0x</strong> antes de descontar o custo da aula em si.</p><h4>Ressalva</h4><p>O ticket de R$ 1.000 assume pacote médio de cinco aulas. Confirmar esse número é a primeira coisa que precisamos fazer juntos.</p>'+FT},
+r4:{e:"Resumo 04",t:"Cada instrutor destrava R$ 24 mil por mês",b:'<p>Com custo por lead de R$ 5, gerar demanda deixa de ser o desafio. O teto do negócio passa a ser quantas horas de aula existem para vender.</p><table><tr><th>Item</th><th>Valor</th></tr><tr><td>Capacidade real de 1 instrutor</td><td class="n">120 a 130h/mês</td></tr><tr><td>Alunos que isso comporta</td><td class="n">24 a 26</td></tr><tr><td>Faturamento destravado</td><td class="n">~R$ 24.000/mês</td></tr></table><h4>A alternativa sem folha de pagamento</h4><p>A rede credenciada de instrutores, no modelo de mini franquia, resolve capacidade sem contratação e sem compra de frota. Com a criação da figura do Instrutor Independente pelo CONTRAN, vai existir um contingente de profissionais autônomos procurando exatamente o que a Dirija tem: método, marca e demanda.</p>'},
+r5:{e:"Resumo 05",t:"Dezembro entre R$ 24 mil e R$ 108 mil",b:'<table><tr><th>Cenário</th><th>Estrutura</th><th>Dezembro</th></tr><tr><td>Conservador</td><td>1 instrutor</td><td class="n">R$ 24.000</td></tr><tr><td>Moderado</td><td>2 instrutores</td><td class="n">R$ 64.000</td></tr><tr><td>Agressivo</td><td>3 instrutores + rede</td><td class="n">R$ 108.000</td></tr></table><h4>O ponto central</h4><blockquote>A diferença entre os três cenários não está na verba de mídia. Está em quantas horas de aula existem para vender.</blockquote><p>Nós entregamos a demanda. A decisão de quanto dessa demanda vira faturamento é de capacidade operacional, e ela precisa ser tomada agora, não em novembro.</p>'+FT},
+fechar:{e:"Próximo passo",t:"Começar em setembro",b:'<p>Entrando agora, os primeiros 30 dias são de fundação e a campanha sobe ainda em setembro.</p><h4>O que fazemos na primeira semana</h4><ul><li>Pixel do Meta e API de Conversões instalados</li><li>Correções técnicas do site: título principal, descrição e compressão</li><li>Rastreamento de origem de lead configurado</li></ul><h4>O que precisamos de vocês para começar</h4><ol><li><strong>Quantos instrutores e veículos</strong> estão disponíveis hoje, e a disposição de ampliar em 60 dias</li><li><strong>Quantas aulas tem o pacote médio</strong> de um aluno que conclui o processo</li><li><strong>Acesso à base de contatos</strong> de WhatsApp e aos cadastros antigos do site</li></ol><h4>O que muda no primeiro mês</h4><p>Meta realista de <strong>17 alunos</strong> em setembro, com o algoritmo ainda aprendendo, e o mapeamento de qual dor e qual criativo performam melhor nesta praça. A partir de outubro, o funil entra em regime.</p><h4>Incluído no plano Básico</h4><p>Agente de IA no WhatsApp por <strong>14 dias sem custo</strong>, respondendo em menos de um minuto. É a forma mais honesta de mostrar, com o lead de vocês e o número de vocês, quanto o tempo de resposta muda a taxa de agendamento.</p>'},
+b6:{e:"Incluído",t:"Reativação da sua base",b:'<p>Todos os cadastros antigos do site e os contatos de WhatsApp acumulados ao longo dos anos são transformados em dois ativos.</p><h4>Primeiro: campanha de reativação</h4><p>Muita gente demonstrou interesse em algum momento e não foi trabalhada. Uma parte dessas pessoas ainda tem o mesmo problema hoje.</p><h4>Segundo: público qualificado</h4><p>A lista alimenta a criação de públicos semelhantes no Meta. O algoritmo passa a procurar pessoas parecidas com quem já demonstrou interesse real, em vez de partir do zero.</p><h4>O ponto</h4><p>É receita e qualidade de segmentação vindas de um ativo que <strong>já existe e está parado</strong>. Não custa mídia nem tempo do cliente.</p>'}
+
+};
+
+(function(){
+var slides=[].slice.call(document.querySelectorAll('.slide')), i=0, n=slides.length,
+bar=document.getElementById('bar'), count=document.getElementById('count'),
+hint=document.getElementById('hint'), stage=document.getElementById('stage'),
+ov=document.getElementById('ov'), mw=document.getElementById('mw'),
+meye=document.getElementById('meye'), mtitle=document.getElementById('mtitle'),
+mbody=document.getElementById('mbody'), mx=document.getElementById('mx');
+
+function pad(x){return x<10?'0'+x:''+x;}
+function render(){
+  slides.forEach(function(s,k){s.classList.toggle('on',k===i);});
+  bar.style.width=((i+1)/n*100)+'%';
+  count.textContent=pad(i+1)+' / '+pad(n);
+}
+function go(d){
+  if(ov.classList.contains('on')) return;
+  var t=i+d; if(t<0||t>=n) return;
+  i=t; render();
+  if(i>0&&hint) hint.style.opacity=0;
+}
+function fit(){
+  stage.style.transform='scale('+Math.min(window.innerWidth/1600,window.innerHeight/900)+')';
+}
+function open(key){
+  var d=M[key]; if(!d) return;
+  meye.textContent=d.e||''; mtitle.textContent=d.t||''; mbody.innerHTML=d.b||'';
+  mw.scrollTop=0; ov.classList.add('on');
+}
+function close(){ ov.classList.remove('on'); }
+
+document.addEventListener('click',function(e){
+  var t=e.target.closest('[data-m]');
+  if(t){ open(t.getAttribute('data-m')); return; }
+});
+mx.addEventListener('click',close);
+ov.addEventListener('click',function(e){ if(e.target===ov) close(); });
+
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){ close(); return; }
+  if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){e.preventDefault();go(1);}
+  if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();go(-1);}
+  if(e.key==='Home'&&!ov.classList.contains('on')){i=0;render();}
+  if(e.key==='End'&&!ov.classList.contains('on')){i=n-1;render();}
+});
+document.getElementById('prev').addEventListener('click',function(e){e.stopPropagation();go(-1);});
+document.getElementById('next').addEventListener('click',function(e){e.stopPropagation();go(1);});
+
+var x0=null;
+document.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;},{passive:true});
+document.addEventListener('touchend',function(e){
+  if(x0===null||ov.classList.contains('on'))return;
+  var dx=e.changedTouches[0].clientX-x0;
+  if(Math.abs(dx)>50) go(dx<0?1:-1);
+  x0=null;
+},{passive:true});
+
+window.addEventListener('resize',fit);
+fit(); render();
+})();
+</script>
+</body>
+</html>

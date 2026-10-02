@@ -91,12 +91,34 @@ social-media/   17 skills de social media content (fonte: charlie947/social-medi
 /skills install <nome-da-skill>
 ```
 
-### Claude Code / Cowork
-Claude Code (e o Cowork, que roda sobre o mesmo agente) carrega skills de `.claude/skills/`. Para consumir este repositório sem duplicar arquivos, referencie-o como submódulo ou faça um link simbólico da raiz do projeto:
+### Claude Code / Cowork (jeito oficial: marketplace)
+Este repo é um marketplace de plugins (`.claude-plugin/marketplace.json`). Cada plugin aponta para categorias daqui, então não existe cópia de arquivo:
+
+| Plugin | Categorias |
+|---|---|
+| `totum-skills` | `totum/`, `decisao/`, `documentos/` + hook `superchat-meter` |
+| `totum-frontend` | `frontend/` (com `estilo/` e `imagem/`) |
+| `totum-conteudo` | `conteudo/` |
+| `totum-vendas` | `vendas/` |
+| `totum-automacao` | `automacao/` |
+| `totum-marketing` | `marketing/`, `social-media/` |
+| `totum-pesquisa-dados` | `pesquisa/`, `analytics/` |
+| `totum-dev-tools` | `dev-tools/` (com `figma-mcp/`) |
+
+```bash
+/plugin marketplace add totum-house/skills
+/plugin install totum-skills@totum-house
+# instale só os outros que fizerem sentido para o ambiente
+/plugin marketplace update totum-house   # depois de cada push
+```
+No Cowork: Personalizar > Plugins > adicionar marketplace pelo GitHub `totum-house/skills`.
+
+**Hook `superchat-meter`** (`hooks/superchat-meter.py`, vem com `totum-skills`): a cada mensagem lê o transcript, mede turnos e tokens reais (campo `usage`) e, ao passar de 50/75/90% da janela ou 30/45/60 turnos, faz o Claude acionar a `superchat-totum`. Roda em Claude Code e Cowork; no chat comum do claude.ai não existe hook. Opcional: `TOTUM_CONTEXT_WINDOW=1000000` fixa a janela, `TOTUM_SUPERCHAT_QUIET=1` só fala ao cruzar nível.
+
+Alternativa sem plugin (sem o hook): link simbólico da raiz para `.claude/skills`:
 ```bash
 ln -s /caminho/para/totum-house-skills .claude/skills
 ```
-Cada subpasta `<categoria>/<skill>/` funciona como uma skill independente — o carregador não se importa com a categoria intermediária no caminho.
 
 ### OpenCode
 O OpenCode varre `skills/*/SKILL.md` a partir da raiz do projeto (ou `.opencode/skills/`) e também lê `.claude/skills/` como caminho de compatibilidade. O mesmo link simbólico acima funciona para os dois:
@@ -129,3 +151,13 @@ Este repositório é a fonte única — não deve haver a mesma skill (ou uma sk
 ---
 
 Mantido pelo time Totum BuildOps. Dúvidas: [grupototum.com](https://grupototum.com)
+
+## Unificação 2026-10-02
+
+- Entraram (estavam só na conta ou no plugin antigo `grupototum/totum-skills`): `soul-totum`, `dev-totum`, `verificar-totum`, `totum-n8n`, `kommo-n8n-oauth-troubleshoot`, `conexao-agente-openclaw-kommo`, `implementacao-kommo-gratuita`, `totum-apresentacao-comercial`, categoria `conteudo/` (7 skills).
+- Atualizadas com a versão mais completa da conta: `design-system-extrator` (aceita HTML exportado), `planejamento-estrategico`.
+- `superchat-totum` v3: usa a medição real do hook.
+- `karpathy-guidelines` ganhou a seção de conexão com `dev-totum`, `verificar-totum` e `soul-totum` (a `guia-code` segue fora, era cópia).
+- `hermione`: nome em minúsculo.
+- Pendentes: `totum-content-*` x `totum-conteudo-*` (dois pipelines de reel), `analise-front-totum-v1` (legado), `dev-totum`/`verificar-totum` x `executing-plans`/`verification-before-completion` (sobreposição parcial), `dev-tools/figma-mcp` x plugin oficial `figma:*`.
+- O repo `grupototum/totum-skills` fica aposentado: arquivar no GitHub depois que este marketplace estiver instalado.

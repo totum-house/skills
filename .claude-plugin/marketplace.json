@@ -1,0 +1,145 @@
+{
+    "name": "totum-house",
+    "owner": {
+        "name": "Grupo Totum",
+        "email": "totumpersonalizados@gmail.com"
+    },
+    "metadata": {
+        "description": "Central única de skills do Grupo Totum",
+        "version": "1.0.0"
+    },
+    "plugins": [
+        {
+            "name": "totum-skills",
+            "source": "./",
+            "description": "Núcleo Totum: identidade, orquestração, superchat (com hook que mede mensagens e tokens reais), dev com portão duplo, verificação, decisão, documentos.",
+            "version": "1.0.0",
+            "author": {
+                "name": "Grupo Totum",
+                "email": "totumpersonalizados@gmail.com"
+            },
+            "strict": false,
+            "skills": [
+                "./totum",
+                "./decisao",
+                "./documentos"
+            ],
+            "hooks": {
+                "UserPromptSubmit": [
+                    {
+                        "hooks": [
+                            {
+                                "type": "command",
+                                "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/superchat-meter.py\" 2>/dev/null || true",
+                                "timeout": 10
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "name": "totum-frontend",
+            "source": "./",
+            "description": "Frontend e design Totum: análise de front, blueprint, design system, estilos de UI, imagem para código, prévia de hero, go-live.",
+            "version": "1.0.0",
+            "author": {
+                "name": "Grupo Totum",
+                "email": "totumpersonalizados@gmail.com"
+            },
+            "strict": false,
+            "skills": [
+                "./frontend",
+                "./frontend/estilo",
+                "./frontend/imagem"
+            ]
+        },
+        {
+            "name": "totum-conteudo",
+            "source": "./",
+            "description": "Pipeline de conteúdo Totum: setup, radar, calendário, inteligência, leitura e roteiro de reels.",
+            "version": "1.0.0",
+            "author": {
+                "name": "Grupo Totum",
+                "email": "totumpersonalizados@gmail.com"
+            },
+            "strict": false,
+            "skills": [
+                "./conteudo"
+            ]
+        },
+        {
+            "name": "totum-vendas",
+            "source": "./",
+            "description": "Comercial Totum: planejamento estratégico, script de vendas, apresentação comercial.",
+            "version": "1.0.0",
+            "author": {
+                "name": "Grupo Totum",
+                "email": "totumpersonalizados@gmail.com"
+            },
+            "strict": false,
+            "skills": [
+                "./vendas"
+            ]
+        },
+        {
+            "name": "totum-automacao",
+            "source": "./",
+            "description": "Automação Totum: n8n, Kommo, OpenClaw, microdecisões para n8n.",
+            "version": "1.0.0",
+            "author": {
+                "name": "Grupo Totum",
+                "email": "totumpersonalizados@gmail.com"
+            },
+            "strict": false,
+            "skills": [
+                "./automacao"
+            ]
+        },
+        {
+            "name": "totum-marketing",
+            "source": "./",
+            "description": "Marketing e social media: SEO, ads, CRO, copy, e-mail, posts, reels, carrosséis.",
+            "version": "1.0.0",
+            "author": {
+                "name": "Grupo Totum",
+                "email": "totumpersonalizados@gmail.com"
+            },
+            "strict": false,
+            "skills": [
+                "./marketing",
+                "./social-media"
+            ]
+        },
+        {
+            "name": "totum-pesquisa-dados",
+            "source": "./",
+            "description": "Pesquisa e análise de dados: busca multi-engine, pesquisa social, finanças, planilhas.",
+            "version": "1.0.0",
+            "author": {
+                "name": "Grupo Totum",
+                "email": "totumpersonalizados@gmail.com"
+            },
+            "strict": false,
+            "skills": [
+                "./pesquisa",
+                "./analytics"
+            ]
+        },
+        {
+            "name": "totum-dev-tools",
+            "source": "./",
+            "description": "Ferramentas de dev: MCP builder, testes de webapp, skills do Figma MCP.",
+            "version": "1.0.0",
+            "author": {
+                "name": "Grupo Totum",
+                "email": "totumpersonalizados@gmail.com"
+            },
+            "strict": false,
+            "skills": [
+                "./dev-tools",
+                "./dev-tools/figma-mcp"
+            ]
+        }
+    ]
+}
