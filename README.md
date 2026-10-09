@@ -104,6 +104,7 @@ Este repo é um marketplace de plugins (`.claude-plugin/marketplace.json`). Cada
 | `totum-marketing` | `marketing/`, `social-media/` |
 | `totum-pesquisa-dados` | `pesquisa/`, `analytics/` |
 | `totum-dev-tools` | `dev-tools/` (Figma fica com o plugin oficial `figma:*`) |
+| `medidor-tokens` | `mods/medidor-tokens/` (mod de interface, ver abaixo) |
 
 ```bash
 /plugin marketplace add totum-house/skills
@@ -114,6 +115,8 @@ Este repo é um marketplace de plugins (`.claude-plugin/marketplace.json`). Cada
 No Cowork: Personalizar > Plugins > adicionar marketplace pelo GitHub `totum-house/skills`.
 
 **Hook `superchat-meter`** (`hooks/superchat-meter.py`, vem com `totum-skills`): a cada mensagem lê o transcript, mede turnos e tokens reais (campo `usage`) e, ao passar de 50/75/90% da janela ou 30/45/60 turnos, faz o Claude acionar a `superchat-totum`. Roda em Claude Code e Cowork; no chat comum do claude.ai não existe hook. Opcional: `TOTUM_CONTEXT_WINDOW=1000000` fixa a janela, `TOTUM_SUPERCHAT_QUIET=1` só fala ao cruzar nível.
+
+**Mod `medidor-tokens`** (`mods/medidor-tokens/`): mostra o uso real da janela de contexto, os limites de 5h/7 dias e o custo da sessão. Linha de status sempre visível, painel que abre sozinho ao iniciar a sessão (reabre com `/tokens`), faixa acima do campo de mensagem a partir de 70% e avisos em 70/85/95%. Também grava a medida em `~/.claude/totum/medidor/<sessão>.json`, e o `superchat-meter` passa a usar a janela exata em vez de adivinhar 200k ou 1M. Roda onde mods rodam (Claude Code e Cowork). Instalação: `/plugin install medidor-tokens@totum-house`.
 
 Alternativa sem plugin (sem o hook): link simbólico da raiz para `.claude/skills`:
 ```bash
@@ -157,6 +160,12 @@ Mantido pelo time Totum BuildOps. Dúvidas: [grupototum.com](https://grupototum.
 - Entraram (estavam só na conta ou no plugin antigo `grupototum/totum-skills`): `soul-totum`, `dev-totum`, `verificar-totum`, `totum-n8n`, `kommo-n8n-oauth-troubleshoot`, `conexao-agente-openclaw-kommo`, `implementacao-kommo-gratuita`, `totum-apresentacao-comercial`, categoria `conteudo/` (7 skills).
 - Atualizadas com a versão mais completa da conta: `design-system-extrator` (aceita HTML exportado), `planejamento-estrategico`.
 - `superchat-totum` v3: usa a medição real do hook.
+
+## 2026-10-09
+
+- Novo mod `medidor-tokens` (painel automático, `/tokens`, status e alertas de contexto).
+- `superchat-meter` lê a janela exata do mod quando ele está instalado.
+- `superchat-totum` v3.1: reconhece o mod como fonte e corrige o texto que dizia ser estimativa no Cowork.
 - `karpathy-guidelines` ganhou a seção de conexão com `dev-totum`, `verificar-totum` e `soul-totum` (a `guia-code` segue fora, era cópia).
 - `hermione`: nome em minúsculo.
 - Decidido em 2026-10-09: conteúdo fica com `totum-content-*` (mais atual; radar cobre inteligência e leitura, roteiro cobre o roteiro). Figma fica só com o plugin oficial (mais leve). Verificação fica com `verificar-totum` (mais atual e ligada ao `dev-totum`); `executing-plans`, `writing-plans` e `subagent-driven-development` continuam como fases, não são duplicatas.
