@@ -28,6 +28,11 @@ Níveis usados pelo hook (o primeiro que bater vale):
 - 🟠 **Laranja** — 75% da janela ou 45 turnos
 - 🔴 **Vermelho** — 90% da janela, 60 turnos, ou compactação automática já ocorreu
 
+**Compact ou superchat?** O alerta do hook já traz uma recomendação:
+- `/compact` quando o chat continua no mesmo assunto. Resume dentro da sessão, custa uma chamada, mas o corte é automático. Direcione: `/compact foca nas decisões e arquivos alterados`.
+- `superchat` (CHECKPOINT + chat novo) quando o assunto mudou ou o chat já foi compactado antes. Custa mais na hora, mas o corte é decidido e o documento de passagem fica salvo para qualquer ambiente.
+A detecção de mudança de assunto compara os termos das primeiras mensagens com os das últimas 3. É heurística: apresente a recomendação e deixe o usuário decidir.
+
 O hook avisa uma vez por nível por sessão. Se o usuário pedir "superchat status", leia a última linha `[superchat-meter]` do contexto e mostre.
 
 **Onde o hook NÃO existe (chat comum do claude.ai, API direta, ambiente sem o plugin):** não há linha `[superchat-meter]` no contexto. Aí use a heurística de turnos como aproximação e deixe claro que é estimativa. No Claude Code sem o plugin, sugira `/context` para ver o uso real.
