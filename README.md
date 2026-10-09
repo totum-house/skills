@@ -28,10 +28,12 @@ Central única de skills do ecossistema Totum — compartilhada entre Claude Cod
 | [find-skills](pesquisa/find-skills/SKILL.md) | `pesquisa` | Descobre e sugere skills instaláveis quando o usuário pergunta "como faço X" | Usuário busca funcionalidade que pode existir como skill |
 | [n8n-workflow-automation](automacao/n8n-workflow-automation/SKILL.md) | `automacao` | Gera JSON de workflow n8n genérico com idempotência, retry, logging e fila de revisão humana | Criar automação auditável que não falhe silenciosamente, sem ligação com o formato Totum |
 | [totum-microdecisoes-para-n8n](automacao/totum-microdecisoes-para-n8n/SKILL.md) | `automacao` | Converte um Mapa de Microdecisões Totum (anúncio, carrossel, conteúdo) em workflow n8n com checkpoints humanos | Transformar o mapa de microdecisões do agente de design Totum em fluxo n8n importável |
+| [kommo-n8n-roteamento](automacao/kommo-n8n-roteamento/SKILL.md) | `automacao` | Conecta Kommo ao n8n, audita a conta em modo leitura, monta o Roteador Central (DRY RUN antes de mutar), corrige Salesbot e ativa com testes e rollback | Roteamento de leads, responsável errado, round-robin, duplicatas no Kommo |
 | [totum-script-vendas](vendas/totum-script-vendas/SKILL.md) | `vendas` | Escreve script, copy, cadência ou kit comercial completo da Totum para qualquer produto/nicho; entrevista antes, recomenda o modelo certo, entrega com mapa problema-solução-resultado | Script de ligação, mensagem de prospecção, copy de anúncio, cadência de follow-up, resposta de objeção, "o que eu mando agora" para um lead |
 | [planejamento-estrategico](vendas/planejamento-estrategico/SKILL.md) | `vendas` | Entrevista estruturada sobre o funil comercial de uma agência (CPL, agendamento, comparecimento, conversão, ticket, churn) e gera diagnóstico + projeção em 3 cenários + plano de 90 dias | Planejamento, diagnóstico de agência, projeção de faturamento, cenários de crescimento, "analisar minha agência" |
 | [nano-pdf](documentos/nano-pdf/SKILL.md) | `documentos` | Edita PDFs com instruções em linguagem natural via CLI `nano-pdf` | Modificar, extrair ou reorganizar conteúdo de PDFs |
 | [faxina-geral](documentos/faxina-geral/SKILL.md) | `documentos` | Arquiteto de informação: consolida, deduplica e indexa uma base de documentos/conhecimento | Organizar arquivos, limpar base de conhecimento, criar índice, reduzir tokens de contexto |
+| [logo-studio](frontend/logo-studio/SKILL.md) | `frontend` | Audita, corrige, redesenha ou moderniza logos preservando restrições de marca, com aprovação explícita e mockup final | Trabalhar uma marca ou logo de cliente |
 | [uiux-auditor](frontend/uiux-auditor/SKILL.md) | `frontend` | Auditoria cirúrgica de UI/UX (Gestalt, hierarquia, grid/proporção, usabilidade; modo completo com Nielsen/Fitts/Hick/Atomic/WCAG) | Analisar/criticar interface, wireframe, protótipo ou fluxo enviado — não cria do zero |
 | [design-system-extrator](frontend/design-system-extrator/SKILL.md) | `frontend` | Extrai design system de um site ao vivo via URL (cores, tipografia, grid, componentes) direto do CSS renderizado | Benchmark visual de concorrente, tirar paleta/fontes de um site, documentar tokens de terceiro |
 | [totum-design-system](frontend/totum-design-system/SKILL.md) | `frontend` | Aplica o design system oficial da Totum (dark-first, tokens do totum-system) em sistemas internos | Criar/redesenhar dashboard, CRM, ERP ou produto operacional da Totum/Pixel System/uPixel |
@@ -162,6 +164,8 @@ Mantido pelo time Totum BuildOps. Dúvidas: [grupototum.com](https://grupototum.
 - `superchat-totum` v3: usa a medição real do hook.
 
 ## 2026-10-09
+
+- Entraram `kommo-n8n-roteamento` (era o plugin avulso `totum-kommo`) e `logo-studio` (era o plugin avulso `logo-studio`). Com isso o repo cobre tudo o que estava espalhado na conta e nos uploads.
 
 - Novo mod `medidor-tokens` (painel automático, `/tokens`, status e alertas de contexto).
 - `superchat-meter` lê a janela exata do mod quando ele está instalado.
