@@ -12,6 +12,8 @@ Funciona onde hooks de plugin rodam: Claude Code e Cowork.
 Nao roda no chat comum do claude.ai (la nao existe hook).
 
 Config por variavel de ambiente (opcional):
+  Se o mod medidor-tokens estiver instalado, a janela e o uso vem dele
+  (exatos). Sem o mod:
   TOTUM_CONTEXT_WINDOW   janela em tokens (padrao: auto, 200k ou 1M;
                          auto e hipotese, fixe o valor se souber)
   TOTUM_SUPERCHAT_QUIET  "1" = so fala quando cruzar nivel
@@ -109,6 +111,22 @@ def scan(path):
     return turns, last_ctx, out_total, compactions, first_ctx, user_msgs
 
 
+def read_medidor(session_id):
+    """Medida exata gravada pelo mod medidor-tokens, se existir e for recente."""
+    if not session_id:
+        return None
+    p = os.path.expanduser(f"~/.claude/totum/medidor/{session_id}.json")
+    try:
+        import time
+        if time.time() - os.path.getmtime(p) > 900:
+            return None
+        with open(p, encoding="utf-8") as f:
+            m = json.load(f)
+        return m if int(m.get("window") or 0) > 0 else None
+    except Exception:
+        return None
+
+
 def main():
     try:
         data = json.load(sys.stdin)
@@ -121,10 +139,15 @@ def main():
     rec, why = recommend(user_msgs, compactions)
     turns += 1  # a mensagem que esta chegando agora
 
+    medidor = read_medidor(data.get("session_id"))
     env_win = os.environ.get("TOTUM_CONTEXT_WINDOW")
     # Hipotese: sessao que ja nasce com >100k (muita tool/skill carregada, tipico do
     # Cowork) ou que passou de 200k so faz sentido numa janela de 1M.
-    if env_win and env_win.isdigit():
+    if medidor:
+        # janela exata informada pelo mod medidor-tokens (fonte preferida)
+        window = int(medidor["window"])
+        ctx = max(ctx, int(medidor.get("tokens") or 0))
+    elif env_win and env_win.isdigit():
         window = int(env_win)
     else:
         window = 1_000_000 if (ctx > 200_000 or base > 100_000) else 200_000

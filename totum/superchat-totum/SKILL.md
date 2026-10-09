@@ -21,7 +21,7 @@ Você é o **guardião da continuidade** entre chats Claude. Seu trabalho é det
 [superchat-meter] turno N | contexto X tok (~Y% de JANELA) | saida acumulada Z tok | base inicial B tok
 ```
 
-Esses números são **medição real** (campo `usage` da API), não estimativa. Quando a linha vier acompanhada de `NIVEL ... atingido`, acione esta skill na hora, mostre o alerta abaixo com os números do hook e pergunte se executa o CHECKPOINT. Depois responda ao pedido normalmente.
+Esses números são **medição real** (campo `usage` da API), não estimativa. Com o mod `medidor-tokens` instalado, a janela também é exata (o hook lê a medida que o mod grava); sem ele, a janela é inferida (200k ou 1M) e vale dizer isso ao mostrar o percentual. O mod também mostra o uso ao usuário em tempo real (linha de status e painel `/tokens`), então ele pode já estar vendo o número antes do alerta. Quando a linha vier acompanhada de `NIVEL ... atingido`, acione esta skill na hora, mostre o alerta abaixo com os números do hook e pergunte se executa o CHECKPOINT. Depois responda ao pedido normalmente.
 
 Níveis usados pelo hook (o primeiro que bater vale):
 - 🟡 **Amarelo** — 50% da janela ou 30 turnos
@@ -35,14 +35,14 @@ A detecção de mudança de assunto compara os termos das primeiras mensagens co
 
 O hook avisa uma vez por nível por sessão. Se o usuário pedir "superchat status", leia a última linha `[superchat-meter]` do contexto e mostre.
 
-**Onde o hook NÃO existe (chat comum do claude.ai, API direta, ambiente sem o plugin):** não há linha `[superchat-meter]` no contexto. Aí use a heurística de turnos como aproximação e deixe claro que é estimativa. No Claude Code sem o plugin, sugira `/context` para ver o uso real.
+**Onde o hook NÃO existe (chat comum do claude.ai, API direta, ambiente sem o plugin):** não há linha `[superchat-meter]` no contexto. Aí use a heurística de turnos como aproximação e deixe claro que é estimativa. No Claude Code sem o plugin, sugira `/context` para ver o uso real, ou instalar o mod `medidor-tokens` (`/plugin install medidor-tokens@totum-house`).
 
 **Ao detectar sinal amarelo ou acima, em qualquer ambiente, emita o alerta:**
 
 ```
 ⚠️ SUPERCHAT TOTUM — ALERTA DE CONTEXTO
 Nível: [🟡 AMARELO | 🟠 LARANJA | 🔴 VERMELHO]
-Fonte: [superchat-meter (medição real) | /context | estimativa por turnos]
+Fonte: [superchat-meter + medidor-tokens (janela exata) | superchat-meter (janela inferida) | /context | estimativa por turnos]
 Uso: [X] tok (~[Y]% da janela) | [N] turnos | saída acumulada [Z] tok
 Risco: [custo elevado | possibilidade de alucinação | perda de contexto]
 
@@ -214,7 +214,7 @@ Para sugerir as skills corretas no novo chat, classifique o trabalho do chat atu
 1. **Nunca migra sozinho** — sempre pede confirmação
 2. **Handoff antes de fechar** — nunca encerre um chat longo sem gerar o documento
 3. **Sem perda zero** — o próximo chat deve conseguir continuar de onde parou sem perguntar o que aconteceu
-4. **Compatível com todos os ambientes** — adapta o método de medição e de entrega ao contexto (real via `/context` no Code, estimativa por turnos no Cowork/chat)
+4. **Compatível com todos os ambientes** — adapta o método de medição e de entrega ao contexto (real via hook `superchat-meter` e mod `medidor-tokens` no Code e no Cowork, `/context` no Code sem plugin, estimativa por turnos só no chat comum)
 5. **O correio Totum é opcional** — use apenas se o sistema inbox/outbox estiver ativo no contexto
 6. **Título é responsabilidade do usuário** — a skill sugere "Nome vN", mas a renomeação do chat é manual, feita na interface
 

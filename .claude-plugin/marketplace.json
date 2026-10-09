@@ -13,7 +13,7 @@
             "name": "totum-skills",
             "source": "./",
             "description": "Núcleo Totum: identidade, orquestração, superchat (com hook que mede mensagens e tokens reais), dev com portão duplo, verificação, decisão, documentos.",
-            "version": "1.1.0",
+            "version": "1.2.0",
             "author": {
                 "name": "Grupo Totum",
                 "email": "totumpersonalizados@gmail.com"
@@ -139,6 +139,16 @@
             "skills": [
                 "./dev-tools"
             ]
+        },
+        {
+            "name": "medidor-tokens",
+            "source": "./mods/medidor-tokens",
+            "description": "Mod: medidor real de contexto, limites de uso e custo. Linha de status, painel /tokens que abre sozinho, alertas em 70/85/95% e medida exata para o superchat-meter.",
+            "version": "0.2.0",
+            "author": {
+                "name": "Grupo Totum",
+                "email": "totumpersonalizados@gmail.com"
+            }
         }
     ]
 }
