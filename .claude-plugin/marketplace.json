@@ -13,7 +13,7 @@
             "name": "totum-skills",
             "source": "./",
             "description": "Núcleo Totum: identidade, orquestração, superchat (com hook que mede mensagens e tokens reais), dev com portão duplo, verificação, decisão, documentos.",
-            "version": "1.0.0",
+            "version": "1.1.0",
             "author": {
                 "name": "Grupo Totum",
                 "email": "totumpersonalizados@gmail.com"
@@ -57,8 +57,8 @@
         {
             "name": "totum-conteudo",
             "source": "./",
-            "description": "Pipeline de conteúdo Totum: setup, radar, calendário, inteligência, leitura e roteiro de reels.",
-            "version": "1.0.0",
+            "description": "Pipeline de conteúdo Totum (Tigrinha): setup, radar, calendário e roteiro de reels.",
+            "version": "1.1.0",
             "author": {
                 "name": "Grupo Totum",
                 "email": "totumpersonalizados@gmail.com"
@@ -129,16 +129,15 @@
         {
             "name": "totum-dev-tools",
             "source": "./",
-            "description": "Ferramentas de dev: MCP builder, testes de webapp, skills do Figma MCP.",
-            "version": "1.0.0",
+            "description": "Ferramentas de dev: MCP builder e testes de webapp. Figma fica com o plugin oficial.",
+            "version": "1.1.0",
             "author": {
                 "name": "Grupo Totum",
                 "email": "totumpersonalizados@gmail.com"
             },
             "strict": false,
             "skills": [
-                "./dev-tools",
-                "./dev-tools/figma-mcp"
+                "./dev-tools"
             ]
         }
     ]

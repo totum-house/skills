@@ -56,7 +56,7 @@ Central única de skills do ecossistema Totum — compartilhada entre Claude Cod
 | [mcp-builder](dev-tools/mcp-builder/SKILL.md) | `dev-tools` | Guia completo para criar MCP servers de qualidade (Python FastMCP ou Node TypeScript SDK) | Construir MCP para integrar APIs externas com LLMs |
 | [dispatching-parallel-agents](decisao/dispatching-parallel-agents/SKILL.md) | `decisao` | Delega 2+ tarefas independentes a agentes paralelos com contexto isolado | 2+ tarefas sem dependência que podem rodar ao mesmo tempo |
 | [systematic-debugging](decisao/systematic-debugging/SKILL.md) | `decisao` | Protocolo de debug que encontra causa-raiz antes de propor qualquer fix | Qualquer bug, falha de teste ou comportamento inesperado — antes de tentar corrigir |
-| [verification-before-completion](decisao/verification-before-completion/SKILL.md) | `decisao` | Exige evidência real (rodar e observar) antes de declarar trabalho concluído | Antes de fechar qualquer tarefa, fazer commit ou criar PR |
+| [verificar-totum](decisao/verificar-totum/SKILL.md) | `decisao` | Portão de verificação com detector de racionalização (substitui a verification-before-completion) | Antes de fechar qualquer tarefa, fazer commit ou criar PR |
 | [subagent-driven-development](decisao/subagent-driven-development/SKILL.md) | `decisao` | Desenvolvimento conduzido por subagentes: um pesquisa, outro implementa, outro revisa | Features complexas onde isolamento de contexto por função reduz erro |
 | [writing-plans](decisao/writing-plans/SKILL.md) | `decisao` | Como estruturar planos de trabalho que agentes conseguem executar sem ambiguidade | Antes de delegar qualquer tarefa a agente ou subagente |
 | [executing-plans](decisao/executing-plans/SKILL.md) | `decisao` | Como executar um plano recebido — verificação de premissas, sequenciamento, checkpoints | Ao receber e executar um plano vindo de outro agente ou do Rael |
@@ -103,7 +103,7 @@ Este repo é um marketplace de plugins (`.claude-plugin/marketplace.json`). Cada
 | `totum-automacao` | `automacao/` |
 | `totum-marketing` | `marketing/`, `social-media/` |
 | `totum-pesquisa-dados` | `pesquisa/`, `analytics/` |
-| `totum-dev-tools` | `dev-tools/` (com `figma-mcp/`) |
+| `totum-dev-tools` | `dev-tools/` (Figma fica com o plugin oficial `figma:*`) |
 
 ```bash
 /plugin marketplace add totum-house/skills
@@ -159,5 +159,6 @@ Mantido pelo time Totum BuildOps. Dúvidas: [grupototum.com](https://grupototum.
 - `superchat-totum` v3: usa a medição real do hook.
 - `karpathy-guidelines` ganhou a seção de conexão com `dev-totum`, `verificar-totum` e `soul-totum` (a `guia-code` segue fora, era cópia).
 - `hermione`: nome em minúsculo.
-- Pendentes: `totum-content-*` x `totum-conteudo-*` (dois pipelines de reel), `analise-front-totum-v1` (legado), `dev-totum`/`verificar-totum` x `executing-plans`/`verification-before-completion` (sobreposição parcial), `dev-tools/figma-mcp` x plugin oficial `figma:*`.
+- Decidido em 2026-10-09: conteúdo fica com `totum-content-*` (mais atual; radar cobre inteligência e leitura, roteiro cobre o roteiro). Figma fica só com o plugin oficial (mais leve). Verificação fica com `verificar-totum` (mais atual e ligada ao `dev-totum`); `executing-plans`, `writing-plans` e `subagent-driven-development` continuam como fases, não são duplicatas.
+- Pendentes: `analise-front-totum-v1` (legado); `totum-content-roteiro` cita a skill `totum-content-pauta`, que não existe no repo.
 - O repo `grupototum/totum-skills` fica aposentado: arquivar no GitHub depois que este marketplace estiver instalado.
