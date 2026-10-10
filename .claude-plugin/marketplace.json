@@ -143,8 +143,9 @@
         {
             "name": "medidor-tokens",
             "source": "./mods/medidor-tokens",
+            "strict": false,
             "description": "Mod: medidor real de contexto, limites de uso e custo. Linha de status, painel /tokens que abre sozinho, alertas em 70/85/95% e medida exata para o superchat-meter.",
-            "version": "0.2.0",
+            "version": "0.2.1",
             "author": {
                 "name": "Grupo Totum",
                 "email": "totumpersonalizados@gmail.com"
