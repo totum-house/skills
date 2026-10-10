@@ -4,10 +4,8 @@ description: >-
   Revisão periódica autônoma de repositórios. Varre o projeto, conserta sozinho
   o que é claramente crítico e seguro, commita e pusha com trava de segurança,
   relata o que fez, e só então pergunta o que depende de decisão. Inclui
-  checklist de engenharia avançada: padrões de backend (CQRS, idempotência, DLQ,
-  rate limiting), arquitetura e CI/CD, aprovação de código gerado por IA (4
-  testes obrigatórios: carga, cobertura ≥85%, complexidade ciclomática,
-  dependências), e gestão de dependências entre módulos. Use SEMPRE que o usuário
+  checklist de engenharia avançada (backend, arquitetura, CI/CD, aprovação de
+  código gerado por IA e dependências entre módulos). Use SEMPRE que o usuário
   pedir "revisão periódica", "revisar o repo/projeto", "rodar a revisão",
   "revisao-totum", "clean up antes de subir", "auditar e consertar o que der",
   "passar o pente fino no código", "revisar e commitar o que for seguro", ou

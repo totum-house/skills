@@ -4,8 +4,7 @@ description: >
   Gera a apresentação comercial da Totum em slides HTML interativos, no design system da marca,
   a partir de um diagnóstico real do negócio do lead. Estrutura SPIN organizada em Problema,
   Solução e Resultado, com pouco texto no slide e todo o aprofundamento em janelas modais.
-  Inclui auditoria técnica automática do site do lead, pesquisa de mercado da praça,
-  motor de cálculo de funil, projeção em três cenários e escada de ofertas do catálogo Totum.
+  Inclui auditoria do site do lead, pesquisa da praça, cálculo de funil, três cenários e escada de ofertas.
   Acione SEMPRE que o usuário pedir "apresentação comercial", "slides para a reunião",
   "montar a apresentação do lead", "deck de vendas", "apresentação do planejamento",
   "/totum-apresentacao-comercial", ou enviar um site, Instagram ou nome de empresa pedindo
