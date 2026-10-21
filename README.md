@@ -14,6 +14,7 @@ Central única de skills do ecossistema Totum — compartilhada entre Claude Cod
 | [superchat-totum](totum/superchat-totum/SKILL.md) | `totum` | Gerenciador de ciclo de vida de contexto para chats Claude | Monitorar uso de contexto via `/context` no Claude Code, Cowork ou claude.ai |
 | [totum-lp-copy](totum/totum-lp-copy/SKILL.md) | `totum` | Copy de landing page humanizada e de alta conversão para o mercado BR (PAS/AIDA/StoryBrand + anti-IA) | Copy de LP, headline/subheadline, reescrever ou auditar página de vendas |
 | [feed-perfeito](totum/feed-perfeito/SKILL.md) | `totum` | Gera o briefing completo de feed de Instagram para agência nichada (onboarding, posts de "enche linguiça", depoimentos fixados, caixinhas de pergunta, checklist) | Criar feed, montar Instagram, briefing de conteúdo/social media para cliente de agência |
+| [totum-explorar-escalar](conteudo/totum-explorar-escalar/SKILL.md) | `conteudo` | Sprint de conteúdo de 30 dias no método Explorar e Escalar (testa formatos, escala o vencedor, virais viram carrossel). Levanta contexto, faz até 15 perguntas e entrega temas, argumentos e esqueletos, separando agente e humano | Plano de crescimento acelerado de perfil para um cliente, "sprint de 30 dias", "explorar e escalar" |
 | [llm-council](decisao/llm-council/SKILL.md) | `decisao` | 5 advisors de IA analisam uma decisão de forma independente e entregam veredicto consolidado | "Council this", decisões com múltiplas opções e stakes reais |
 | [karpathy-guidelines](decisao/karpathy-guidelines/SKILL.md) | `decisao` | Diretrizes para reduzir erros comuns de LLM em código — mudanças cirúrgicas, sem overengineering | Sempre que estiver escrevendo, revisando ou refatorando código |
 | [prompt-master](decisao/prompt-master/SKILL.md) | `decisao` | Gera prompts otimizados por ferramenta de IA (Claude, GPT, Cursor, Midjourney etc.) | Criar, corrigir ou adaptar um prompt para uma ferramenta de IA específica |
@@ -175,3 +176,7 @@ Mantido pelo time Totum BuildOps. Dúvidas: [grupototum.com](https://grupototum.
 - Decidido em 2026-10-09: conteúdo fica com `totum-content-*` (mais atual; radar cobre inteligência e leitura, roteiro cobre o roteiro). Figma fica só com o plugin oficial (mais leve). Verificação fica com `verificar-totum` (mais atual e ligada ao `dev-totum`); `executing-plans`, `writing-plans` e `subagent-driven-development` continuam como fases, não são duplicatas.
 - Pendentes: `analise-front-totum-v1` (legado); `totum-content-roteiro` cita a skill `totum-content-pauta`, que não existe no repo.
 - O repo `grupototum/totum-skills` fica aposentado: arquivar no GitHub depois que este marketplace estiver instalado.
+
+## 2026-10-21
+
+- Nova skill `totum-explorar-escalar` em `conteudo/` (plugin `totum-conteudo` 1.2.0). Orquestra `totum-content-setup`, `totum-content-radar` e `totum-content-calendario` num sprint de 30 dias. Não escreve roteiro: entrega tema, argumento e esqueleto em tópicos.
