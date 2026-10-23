@@ -9,7 +9,7 @@ description: >-
 ---
 # Protocolo Design
 
-v0.1, 23/10/2026. Monta o livro de regras de uma marca a partir do material dela e de uma entrevista curta. Depois disso, totum-visual-codes e totum-design-peca passam a funcionar para essa marca.
+v0.2, 23/10/2026. Monta o livro de regras de uma marca a partir do material dela e de uma entrevista curta. Depois disso, totum-visual-codes e totum-design-peca passam a funcionar para essa marca.
 
 ## Modos
 
@@ -35,6 +35,9 @@ Junte tudo o que já existe: o livro atual, a ficha no Notion, a pasta do Drive 
 - **Linguagem visual**: grid e margens, tratamento de foto, grafismos e elementos recorrentes, nível de texto por peça, iluminação, materialidade. Traduza para códigos de totum-visual-codes e proponha códigos próprios do cliente quando um elemento se repetir.
 - **Padrões que funcionam**: o que as peças aprovadas têm em comum e o que as rejeitadas têm de diferente.
 - **Conflitos**: material que se contradiz, por exemplo identidade antiga contra identidade nova. Liste com a evidência e a data de cada lado.
+
+### 2b. Pesquisa de referências
+Quando o material do cliente for pouco para algum tema ou formato, pesquise por cliente + tema (setor, público, datas, ofertas) no Designi (designi.com.br) e no Pinterest, as duas contas logadas no navegador. Monte um painel com 6 a 12 prévias, cada uma com o link e o que ela ensina (composição, luz, grafismo, tipografia). O Rael aprova ou corta na entrevista. Designi: 2 downloads por dia, re-download conta; baixe o PSD só quando precisar das camadas (fontes, grafismos) e confira antes se já está no Drive. Nunca curtir, salvar, seguir ou comentar.
 
 ### 3. Entrevista
 Conversa, não formulário. Faça no máximo 5 perguntas por rodada, sempre começando pelos conflitos e pelo que trava a produção. Para cada pergunta, traga a sua recomendação, para o Rael só confirmar ou corrigir. Pergunte apenas o que o material não responde:

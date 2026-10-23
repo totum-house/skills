@@ -8,7 +8,7 @@ description: >-
 ---
 # Totum Design Peça
 
-v0.3, 23/10/2026. Base: skill totum-prompt-peca (testes de agosto de 2026), Prompt Compiler e QA Rápido do Visual-Codes-MVP, Design System Totum v1.1, regra DS-006 ("composição híbrida, nenhum texto crítico rasterizado") e o teste uPixel de 23/10/2026. Material de apoio: `apoio/logica-de-design/` (nesta pasta).
+v0.4, 23/10/2026. Base: skill totum-prompt-peca (testes de agosto de 2026), Prompt Compiler e QA Rápido do Visual-Codes-MVP, Design System Totum v1.1, regra DS-006 ("composição híbrida, nenhum texto crítico rasterizado") e o teste uPixel de 23/10/2026. Material de apoio: `apoio/logica-de-design/` (nesta pasta).
 
 Notion (Clientes e Pedidos de peças) e o brand kit em `/workspace/totum-lab/design/clientes/<slug>/brand-kit/` são fontes externas a esta skill. Não estão neste repositório.
 
@@ -35,6 +35,7 @@ Nunca diga que gerou imagem quando entregou só prompt.
 3. Ideia criativa por âncora: 3 ideias (da pessoa, da referência, do negócio), desenháveis e do mundo do cliente. Individual: recomende uma e espere. Lote: escolha a melhor e registre as outras duas.
 4. Receita: de totum-visual-codes.
 5. Referências: anexe 2 a 4 imagens aprovadas do cliente ao motor. Sem referência a peça se afasta da marca.
+   - Faltou referência para o tema? Pesquise por cliente + tema (setor, data, oferta) no Designi (designi.com.br, conta logada no navegador) e no Pinterest (conta do Gmail da Totum no navegador). Use as prévias como referência de composição, luz e clima; registre o link de cada uma. Designi tem 2 downloads por dia (re-download conta): baixe o PSD só quando precisar das camadas, e antes procure se o arquivo já está no Drive. Nunca curtir, salvar, seguir ou comentar.
 6. Gere a cena sem texto e sem logo (padrão). Depois aplique texto e logo em camada determinística (Pillow/SVG, Remotion, Canva ou Figma) com a fonte oficial e o logo oficial. Se a fonte oficial não estiver instalada, pare e avise; não substitua sem registrar.
    - Exceção: texto curto gerado no motor quando o livro de regras do cliente disser que o teste provou fidelidade. O logo nunca é gerado.
 7. QA rápido, entrega e registro em `receitas.md`.
