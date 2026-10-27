@@ -29,6 +29,7 @@ Central única de skills do ecossistema Totum — compartilhada entre Claude Cod
 | [n8n-workflow-automation](automacao/n8n-workflow-automation/SKILL.md) | `automacao` | Gera JSON de workflow n8n genérico com idempotência, retry, logging e fila de revisão humana | Criar automação auditável que não falhe silenciosamente, sem ligação com o formato Totum |
 | [totum-microdecisoes-para-n8n](automacao/totum-microdecisoes-para-n8n/SKILL.md) | `automacao` | Converte um Mapa de Microdecisões Totum (anúncio, carrossel, conteúdo) em workflow n8n com checkpoints humanos | Transformar o mapa de microdecisões do agente de design Totum em fluxo n8n importável |
 | [kommo-n8n-roteamento](automacao/kommo-n8n-roteamento/SKILL.md) | `automacao` | Conecta Kommo ao n8n, audita a conta em modo leitura, monta o Roteador Central (DRY RUN antes de mutar), corrige Salesbot e ativa com testes e rollback | Roteamento de leads, responsável errado, round-robin, duplicatas no Kommo |
+| [automacao/referencias/jev](automacao/referencias/jev/README.md) | `automacao` | Catálogo do Jev (modelo de decisão da TypeSafe, `typesafe-ai/jev` no Vercel AI Gateway) e de 10 repositórios de agentes rápidos | Avaliar triagem de lead, roteamento e agente de navegador barato. Uso pago, só com OK |
 | [totum-script-vendas](vendas/totum-script-vendas/SKILL.md) | `vendas` | Escreve script, copy, cadência ou kit comercial completo da Totum para qualquer produto/nicho; entrevista antes, recomenda o modelo certo, entrega com mapa problema-solução-resultado | Script de ligação, mensagem de prospecção, copy de anúncio, cadência de follow-up, resposta de objeção, "o que eu mando agora" para um lead |
 | [planejamento-estrategico](vendas/planejamento-estrategico/SKILL.md) | `vendas` | Entrevista estruturada sobre o funil comercial de uma agência (CPL, agendamento, comparecimento, conversão, ticket, churn) e gera diagnóstico + projeção em 3 cenários + plano de 90 dias | Planejamento, diagnóstico de agência, projeção de faturamento, cenários de crescimento, "analisar minha agência" |
 | [nano-pdf](documentos/nano-pdf/SKILL.md) | `documentos` | Edita PDFs com instruções em linguagem natural via CLI `nano-pdf` | Modificar, extrair ou reorganizar conteúdo de PDFs |
@@ -57,6 +58,8 @@ Central única de skills do ecossistema Totum — compartilhada entre Claude Cod
 | [totum-ui-brutalista](frontend/estilo/totum-ui-brutalista/SKILL.md) | `frontend` | Direção de estilo brutalista/industrial — tipografia suíça, grid rígido, paleta utilitária, degradação analógica simulada | Dashboard denso, portfólio ou site editorial com estética de "blueprint desclassificado" |
 | [totum-stitch-design](frontend/estilo/totum-stitch-design/SKILL.md) | `frontend` | Sistema de design semântico para o Google Stitch — gera `DESIGN.md` compatível com agentes, mesmo padrão anti-genérico | Preparar a direção de estilo Totum para geração de tela no Google Stitch |
 | [frontend-design](frontend/frontend-design/SKILL.md) | `frontend` | Guia de design visual distintivo e intencional — paleta, tipografia, escolhas não-genéricas para novas UIs | Construir ou reformular UI com identidade visual forte; evitar "cara de template" |
+| [frontend/terceiros/\*](frontend/terceiros/README.md) | `frontend` | 26 skills de design de terceiros com licença MIT e fonte fixada: design-taste (24), better-design e superdesign | Direção visual e gosto em LP e site. Plugin opcional `totum-design-terceiros` |
+| [frontend/referencias](frontend/referencias/README.md) | `frontend` | Catálogo (só links) de bibliotecas de componentes, shaders e animação, mais fontes e exemplos de DESIGN.md | Escolher blocos e referências visuais antes de montar uma LP |
 | [webapp-testing](dev-tools/webapp-testing/SKILL.md) | `dev-tools` | Testa apps web locais com Playwright Python — screenshots, logs de browser, debugging de UI | Verificar funcionalidade de frontend, capturar screenshots, debugar comportamento de UI |
 | [mcp-builder](dev-tools/mcp-builder/SKILL.md) | `dev-tools` | Guia completo para criar MCP servers de qualidade (Python FastMCP ou Node TypeScript SDK) | Construir MCP para integrar APIs externas com LLMs |
 | [dispatching-parallel-agents](decisao/dispatching-parallel-agents/SKILL.md) | `decisao` | Delega 2+ tarefas independentes a agentes paralelos com contexto isolado | 2+ tarefas sem dependência que podem rodar ao mesmo tempo |
@@ -82,6 +85,8 @@ documentos/     Processamento, edição e organização de documentos (PDF, base
 frontend/       Geração e auditoria de interface visual e frontend — UI, design system, imagem, publicação web
   frontend/imagem/   Geração/análise de peças visuais a partir de imagem ou referência
   frontend/estilo/   Direções de estilo visual (UI kits, redesign, variações de tom)
+  frontend/terceiros/   Skills de design de terceiros, sem edição, com LICENSE e FONTE.md em cada pasta
+  frontend/referencias/ Catálogo de bibliotecas e fontes de DESIGN.md (links, sem código copiado)
 dev-tools/      Ferramentas de desenvolvimento — testing, MCP servers
 brand/          Identidade visual canônica da Totum — tokens, glassmorphism, gradientes, anti-patterns
 marketing/      50 skills de marketing e copywriting (fonte: coreyhaines31/marketingskills) — uso primário: Tigrinha
@@ -103,6 +108,7 @@ Este repo é um marketplace de plugins (`.claude-plugin/marketplace.json`). Cada
 |---|---|
 | `totum-skills` | `totum/`, `decisao/`, `documentos/` + hook `superchat-meter` |
 | `totum-frontend` | `frontend/` (com `estilo/` e `imagem/`) |
+| `totum-design-terceiros` | `frontend/terceiros/` (opcional) |
 | `totum-conteudo` | `conteudo/` |
 | `totum-vendas` | `vendas/` |
 | `totum-automacao` | `automacao/` |
@@ -183,3 +189,10 @@ Mantido pelo time Totum BuildOps. Dúvidas: [grupototum.com](https://grupototum.
 
 - Entraram `totum-visual-codes` e `totum-design-peca` em `frontend/imagem/`. O plugin `totum-frontend` já aponta para `./frontend/imagem`, então não há entrada nova no marketplace.
 - Entrou `protocolo-design` em `frontend/imagem/`, coberto pelo mesmo `./frontend/imagem` do plugin `totum-frontend`.
+
+## 2026-10-27
+
+- Entrou `frontend/terceiros/` com 26 skills de design de terceiros (MIT, conteúdo original, `LICENSE` e `FONTE.md` com commit fixado em cada pasta): as 24 do `madebymustafa/design-taste`, `better-design` (`marvkr/better-design`, precisa do MCP) e `superdesign` (`superdesigndev/superdesign-skill`, usa créditos do superdesign.dev). Plugin novo e opcional `totum-design-terceiros`.
+- Entrou `frontend/referencias/` com o catálogo das bibliotecas do post do @RoundtableSpace (só links) e `frontend/referencias/design-md/` com as fontes de DESIGN.md do post do @studio_yebisu e dois exemplos do setor financeiro (VoltAgent, MIT).
+- Entrou `automacao/referencias/jev/` com o catálogo do Jev e dos repositórios do post do @tranmautritam. Nada copiado: são ferramentas que dependem de chave paga.
+- Os arquivos copiados de terceiros mantêm o texto original, inclusive a pontuação dos autores.

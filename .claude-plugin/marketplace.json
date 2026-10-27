@@ -55,6 +55,20 @@
             ]
         },
         {
+            "name": "totum-design-terceiros",
+            "source": "./",
+            "description": "Skills de design de terceiros (licença MIT, com fonte): design-taste (24 skills de gosto visual), better-design (precisa do MCP) e superdesign (usa créditos do superdesign.dev). Opcional, instale só onde fizer sentido.",
+            "version": "1.0.0",
+            "author": {
+                "name": "Grupo Totum",
+                "email": "totumpersonalizados@gmail.com"
+            },
+            "strict": false,
+            "skills": [
+                "./frontend/terceiros"
+            ]
+        },
+        {
             "name": "totum-conteudo",
             "source": "./",
             "description": "Pipeline de conteúdo Totum (Tigrinha): setup, radar, calendário e roteiro de reels.",
