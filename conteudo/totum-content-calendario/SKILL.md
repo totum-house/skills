@@ -111,3 +111,49 @@ Mais:
 ## O número que julga a grade
 
 Não é volume publicado, é **conversa iniciada**. Para 4 contratos no mês, com 30% de conversa para reunião e 30% de reunião para contrato, são cerca de 45 conversas, ou 1,5 por dia. É esse o alvo que a grade persegue.
+
+
+---
+
+## Molde Notion Totum Lab
+
+Formato de entrega da grade no Notion, usado pela social media da Totum desde o Calendário Editorial Novembro/26. Molde copiado da referência que o Rael mandou em 23/10/2026. A grade lógica acima continua igual; aqui muda só onde e como ela fica no Notion.
+
+### Hierarquia
+
+```
+CENTRAL DE CONTEÚDOS                  página de teamspace
+└── CLIENTES                          database inline, view Galeria
+    └── <NOME DO CLIENTE EM CAIXA ALTA>   uma linha por cliente (é uma página)
+        ├── INFO          toggle H2, com a subpágina BACKLOG (links de Drive, menções, tabela de estratégia)
+        ├── GUIA DE STORIES, CAMPANHAS, GRAVAÇÃO dd/mm   toggles H2 opcionais
+        └── EDITORIAIS    toggle H2
+              └── Calendário Editorial <Mês>/<aa>   uma subpágina por mês, em ordem
+```
+
+### Página do mês
+- Capa com foto ou arte do cliente, sem ícone.
+- Um database inline com o nome do cliente em caixa normal.
+- Propriedades: `Name` (título), `Date` (só data), `Tags` multi_select usada como status, um valor por peça: A Fazer (cinza), Postado (verde), Pendente (amarelo), Gravar (vermelho).
+- Uma view só, "Calendar view", pela `Date`, ordenada por data. Sem filtro.
+- Mês novo: duplicar a página do mês anterior e renomear.
+
+### Nome das peças
+- Carrossel: `(Carrossel) <frase do slide 1>`.
+- Estático: a headline da arte, sem prefixo.
+- Reels: `Reels <tema>` ou `Reels <pessoa>: <tema>`.
+- Depoimento: `Prova Social` ou `Depoimento`.
+- Especiais: `(Caixinha de perguntas) <pergunta>`, `dd/mm <data comemorativa>`, `#<Quadro> <tema>`.
+
+### Corpo da peça
+Texto corrido, sem metadados:
+- Carrossel: `SLIDE 02` e o texto, um bloco por slide, nota de produção entre parênteses, divisor, `Legenda:`.
+- Estático: texto de apoio da arte, divisor, `Legenda:`.
+- Reels: `Referência:`, `Formato:` (opcional), falas entre aspas curvas com `(Texto na tela: X | tempo)`, notas de gravação entre parênteses, divisor, `Legenda:`.
+- Multiplataforma: depois da legenda, `Legenda TikTok:` e `YouTube Shorts:` (título, descrição, hashtags).
+
+### Regras da casa
+- Sem travessão e sem emoji, mesmo que a referência use.
+- Pilar, objetivo e fase do ciclo 10+10+10 ficam numa tabela no BACKLOG, não no corpo das peças.
+- Aprovação pela Tag, não por checklist no corpo.
+- Criar ou alterar página no Notion do cliente só com OK do Rael.
