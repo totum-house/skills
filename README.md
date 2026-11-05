@@ -52,6 +52,7 @@ Central única de skills do ecossistema Totum — compartilhada entre Claude Cod
 | [totum-visual-codes](frontend/imagem/totum-visual-codes/SKILL.md) | `frontend` | Monta a receita de Visual Codes (40 códigos com barra, como `/meta_ad` ou `/brand_lock`) antes de gerar peça visual de cliente | Antes de anúncio, post, carrossel, story, capa ou KV; quando alguém escrever códigos com barra ou `/auto` |
 | [totum-design-peca](frontend/imagem/totum-design-peca/SKILL.md) | `frontend` | Cria peça visual de cliente (anúncio Meta, post, carrossel, story, capa, KV): imagem direta ou prompt para Nano Banana/ChatGPT Imagens, sempre depois de `totum-visual-codes` | Gerar ou promptar a peça; não serve para copy de LP, roteiro ou edição de vídeo |
 | [protocolo-design](frontend/imagem/protocolo-design/SKILL.md) | `frontend` | Cadastra, corrige ou atualiza o design system de um cliente (ou submarca) a partir de logo, KVs, peças modelo e referências, com análise e entrevista | Montar ou atualizar o livro de regras e os KVs de prova; peças do dia a dia ficam com `totum-design-peca` |
+| [manual-da-marca](frontend/imagem/manual-da-marca/SKILL.md) | `frontend` | Entrega completa de marca (logo, regras, posicionamento, apresentação, mockups, manual PDF, design system HTML + kit ChatGPT) | Montar o pacote de entrega de identidade visual de um cliente; brand kit interno fica com `protocolo-design`; peças do dia a dia ficam com `totum-design-peca` |
 | [totum-kit-de-marca](frontend/estilo/totum-kit-de-marca/SKILL.md) | `frontend` | Gera imagens de kit de marca premium — guias de marca, sistema de logo, deck de identidade, apresentação de universo visual | Criar ou apresentar identidade visual/kit de marca de um cliente ou produto |
 | [totum-design-premium-suave](frontend/estilo/totum-design-premium-suave/SKILL.md) | `frontend` | Direção de estilo "agência de ponta": fontes, espaçamento, sombra, cards e animação que fazem um site parecer caro | Elevar um design que está com "cara barata"/genérica de IA |
 | [totum-ui-minimalista](frontend/estilo/totum-ui-minimalista/SKILL.md) | `frontend` | Direção de estilo editorial minimalista — paleta monocromática quente, grids bento planos, sem gradiente/sombra pesada | Interface limpa em estilo editorial/workspace de alto contraste |
@@ -196,3 +197,7 @@ Mantido pelo time Totum BuildOps. Dúvidas: [grupototum.com](https://grupototum.
 - Entrou `frontend/referencias/` com o catálogo das bibliotecas do post do @RoundtableSpace (só links) e `frontend/referencias/design-md/` com as fontes de DESIGN.md do post do @studio_yebisu e dois exemplos do setor financeiro (VoltAgent, MIT).
 - Entrou `automacao/referencias/jev/` com o catálogo do Jev e dos repositórios do post do @tranmautritam. Nada copiado: são ferramentas que dependem de chave paga.
 - Os arquivos copiados de terceiros mantêm o texto original, inclusive a pontuação dos autores.
+
+## 2026-11-05
+
+- Entrou `manual-da-marca` em `frontend/imagem/`, coberto pelo mesmo `./frontend/imagem` do plugin `totum-frontend`.
