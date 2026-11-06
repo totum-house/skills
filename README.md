@@ -12,6 +12,7 @@ Central única de skills do ecossistema Totum — compartilhada entre Claude Cod
 | [auto-loop](totum/auto-loop/SKILL.md) | `totum` | Executor de loops autônomos do Totum OS (loop engineering) — dispara, verifica e encerra sozinho | Automatizar tarefa recorrente e verificável, sem julgamento humano a cada passo |
 | [hermione](totum/hermione/SKILL.md) | `totum` | Agente de pesquisa e organização do conhecimento integrado ao Alexandria (Supabase) do Totum OS | Pesquisa profunda, catalogação e conexão de conhecimento dentro do ecossistema Totum |
 | [superchat-totum](totum/superchat-totum/SKILL.md) | `totum` | Gerenciador de ciclo de vida de contexto para chats Claude | Monitorar uso de contexto via `/context` no Claude Code, Cowork ou claude.ai |
+| [totum-system-taby-sync](totum/totum-system-taby-sync/SKILL.md) | `totum` | Sincroniza tarefas do Totum System para o Taby (sentido único) e resume prioridades | Revisão de tarefas do Rael, o que tenho pra hoje |
 | [totum-lp-copy](totum/totum-lp-copy/SKILL.md) | `totum` | Copy de landing page humanizada e de alta conversão para o mercado BR (PAS/AIDA/StoryBrand + anti-IA) | Copy de LP, headline/subheadline, reescrever ou auditar página de vendas |
 | [feed-perfeito](totum/feed-perfeito/SKILL.md) | `totum` | Gera o briefing completo de feed de Instagram para agência nichada (onboarding, posts de "enche linguiça", depoimentos fixados, caixinhas de pergunta, checklist) | Criar feed, montar Instagram, briefing de conteúdo/social media para cliente de agência |
 | [totum-explorar-escalar](conteudo/totum-explorar-escalar/SKILL.md) | `conteudo` | Sprint de conteúdo de 30 dias no método Explorar e Escalar (testa formatos, escala o vencedor, virais viram carrossel). Levanta contexto, faz até 15 perguntas e entrega temas, argumentos e esqueletos, separando agente e humano | Plano de crescimento acelerado de perfil para um cliente, "sprint de 30 dias", "explorar e escalar" |
@@ -31,6 +32,8 @@ Central única de skills do ecossistema Totum — compartilhada entre Claude Cod
 | [n8n-workflow-automation](automacao/n8n-workflow-automation/SKILL.md) | `automacao` | Gera JSON de workflow n8n genérico com idempotência, retry, logging e fila de revisão humana | Criar automação auditável que não falhe silenciosamente, sem ligação com o formato Totum |
 | [totum-microdecisoes-para-n8n](automacao/totum-microdecisoes-para-n8n/SKILL.md) | `automacao` | Converte um Mapa de Microdecisões Totum (anúncio, carrossel, conteúdo) em workflow n8n com checkpoints humanos | Transformar o mapa de microdecisões do agente de design Totum em fluxo n8n importável |
 | [kommo-n8n-roteamento](automacao/kommo-n8n-roteamento/SKILL.md) | `automacao` | Conecta Kommo ao n8n, audita a conta em modo leitura, monta o Roteador Central (DRY RUN antes de mutar), corrige Salesbot e ativa com testes e rollback | Roteamento de leads, responsável errado, round-robin, duplicatas no Kommo |
+| [kommo-disparo-salesbot](automacao/kommo-disparo-salesbot/SKILL.md) | `automacao` | Disparo em massa via Salesbot com janela de 24h do WhatsApp, trava anti-duplicidade, A/B de templates e fallback de texto livre | Disparo de campanha/lançamento, lembrete de evento, mandar template pra uma etapa |
+| [kommo-painel-funil](automacao/kommo-painel-funil/SKILL.md) | `automacao` | Conta leads por etapa e publica num painel Dashboard, em ciclo, somente leitura no Kommo | Acompanhar lançamento, painel do funil pro cliente |
 | [automacao/referencias/jev](automacao/referencias/jev/README.md) | `automacao` | Catálogo do Jev (modelo de decisão da TypeSafe, `typesafe-ai/jev` no Vercel AI Gateway) e de 10 repositórios de agentes rápidos | Avaliar triagem de lead, roteamento e agente de navegador barato. Uso pago, só com OK |
 | [totum-script-vendas](vendas/totum-script-vendas/SKILL.md) | `vendas` | Escreve script, copy, cadência ou kit comercial completo da Totum para qualquer produto/nicho; entrevista antes, recomenda o modelo certo, entrega com mapa problema-solução-resultado | Script de ligação, mensagem de prospecção, copy de anúncio, cadência de follow-up, resposta de objeção, "o que eu mando agora" para um lead |
 | [planejamento-estrategico](vendas/planejamento-estrategico/SKILL.md) | `vendas` | Entrevista estruturada sobre o funil comercial de uma agência (CPL, agendamento, comparecimento, conversão, ticket, churn) e gera diagnóstico + projeção em 3 cenários + plano de 90 dias | Planejamento, diagnóstico de agência, projeção de faturamento, cenários de crescimento, "analisar minha agência" |
@@ -38,6 +41,7 @@ Central única de skills do ecossistema Totum — compartilhada entre Claude Cod
 | [totum-sdr-wa-link](vendas/totum-sdr-wa-link/SKILL.md) | `vendas` | SDR assistido por WhatsApp: planilha gera link wa.me por lead e o envio é manual, um a um, sem custo de API | Montar ou rodar lote de abordagem a partir da base do uPixel (ou CSV), com chip Business e aprovação do Rael antes de qualquer envio |
 | [nano-pdf](documentos/nano-pdf/SKILL.md) | `documentos` | Edita PDFs com instruções em linguagem natural via CLI `nano-pdf` | Modificar, extrair ou reorganizar conteúdo de PDFs |
 | [faxina-geral](documentos/faxina-geral/SKILL.md) | `documentos` | Arquiteto de informação: consolida, deduplica e indexa uma base de documentos/conhecimento | Organizar arquivos, limpar base de conhecimento, criar índice, reduzir tokens de contexto |
+| [atualizar-indice](documentos/atualizar-indice/SKILL.md) | `documentos` | Mantém o 00_INDICE_GERAL.md fiel à estrutura da pasta, aplicando só mudanças estruturais | Rotina de índice das pastas do Cowork (The Office etc.) |
 | [logo-studio](frontend/logo-studio/SKILL.md) | `frontend` | Audita, corrige, redesenha ou moderniza logos preservando restrições de marca, com aprovação explícita e mockup final | Trabalhar uma marca ou logo de cliente |
 | [uiux-auditor](frontend/uiux-auditor/SKILL.md) | `frontend` | Auditoria cirúrgica de UI/UX (Gestalt, hierarquia, grid/proporção, usabilidade; modo completo com Nielsen/Fitts/Hick/Atomic/WCAG) | Analisar/criticar interface, wireframe, protótipo ou fluxo enviado — não cria do zero |
 | [design-system-extrator](frontend/design-system-extrator/SKILL.md) | `frontend` | Extrai design system de um site ao vivo via URL (cores, tipografia, grid, componentes) direto do CSS renderizado | Benchmark visual de concorrente, tirar paleta/fontes de um site, documentar tokens de terceiro |
@@ -159,6 +163,12 @@ ln -s /caminho/para/totum-house-skills .opencode/skills
 
 Em todos os casos, cada pasta de skill contém um `SKILL.md` com as instruções completas de uso, triggers e exemplos — e pode conter subpastas `references/`, `examples/`, `frameworks/` ou `scripts/` com material de apoio citado pelo próprio SKILL.md.
 
+### Ligar os agentes locais ao repo (OpenCode, Hermes, Codex)
+
+`scripts/link-agents.sh` cria um link simbólico por skill dentro de cada agente (`~/.opencode/skills/<categoria>--<skill>`, `~/.hermes/skills/<skill>`, `~/.codex/skills/<skill>`). É idempotente e nunca apaga: o que for substituído vai para `~/.skills-quarentena/<timestamp>/`. Também tira da frente as cópias soltas em `~/.claude/skills` que o marketplace já entrega e as cópias antigas `totum-<skill>` do Hermes. Rode com `--dry-run` para ver antes. A tarefa agendada de sync roda o script depois de cada pull.
+
+Atenção: o curador do Hermes edita skills sozinho. Com o link, essas edições caem no repo e sobem no sync seguinte. O resumo do sync lista os arquivos enviados para dar para conferir.
+
 ## Contribuindo
 
 1. Crie uma pasta `<categoria>/<nome-da-skill>/` (ou `<categoria>/<subpasta>/<nome-da-skill>/` dentro de `frontend/`)
@@ -234,3 +244,10 @@ Mantido pelo time Totum BuildOps. Dúvidas: [grupototum.com](https://grupototum.
 
 - Entrou `totum-sdr-wa-link` em `vendas/`, coberto por `./vendas` no plugin `totum-vendas`.
 - Entraram `totum-calendario-notion` em `conteudo/` (plugin `totum-conteudo` 1.3.0, índice `./conteudo`) e `totum-kit-producao` em `frontend/imagem/` (plugin `totum-frontend` 1.2.0, mesmo índice `./frontend/imagem` de `manual-da-marca` e `protocolo-design`).
+
+## 2026-11-06 (tarde)
+
+- Rotinas agendadas viraram skills: `kommo-disparo-salesbot` e `kommo-painel-funil` em `automacao/`, `totum-system-taby-sync` em `totum/`, `atualizar-indice` em `documentos/`.
+- Entrou `scripts/link-agents.sh` para ligar OpenCode, Hermes e Codex ao repo por link simbólico.
+- Cópias antigas no Hermes (`totum-revisao-totum`, `totum-karpathy-guidelines`, `totum-prompt-master`, `totum-hermione`, `totum-faxina-geral`, `totum-uiux-auditor` e demais `totum-<skill>`) foram para a quarentena: eram resumos de 7/08 das versões do repo.
+- O Claude Code do Mac passou a usar o marketplace `totum-house` apontando para o clone local, no lugar do plugin antigo `totum-skills@totum` v0.1.0.
