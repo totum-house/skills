@@ -33,6 +33,7 @@ Central única de skills do ecossistema Totum — compartilhada entre Claude Cod
 | [totum-script-vendas](vendas/totum-script-vendas/SKILL.md) | `vendas` | Escreve script, copy, cadência ou kit comercial completo da Totum para qualquer produto/nicho; entrevista antes, recomenda o modelo certo, entrega com mapa problema-solução-resultado | Script de ligação, mensagem de prospecção, copy de anúncio, cadência de follow-up, resposta de objeção, "o que eu mando agora" para um lead |
 | [planejamento-estrategico](vendas/planejamento-estrategico/SKILL.md) | `vendas` | Entrevista estruturada sobre o funil comercial de uma agência (CPL, agendamento, comparecimento, conversão, ticket, churn) e gera diagnóstico + projeção em 3 cenários + plano de 90 dias | Planejamento, diagnóstico de agência, projeção de faturamento, cenários de crescimento, "analisar minha agência" |
 | [totum-pricing-marca](vendas/totum-pricing-marca/SKILL.md) | `vendas` | Faixas orientativas dos pacotes Essencial, Completo e Completo + sistema (preço final do Rael) | Valor, faixa de preço ou proposta de pacote de identidade visual, antes de mandar número ao cliente |
+| [totum-sdr-wa-link](vendas/totum-sdr-wa-link/SKILL.md) | `vendas` | SDR assistido por WhatsApp: planilha gera link wa.me por lead e o envio é manual, um a um, sem custo de API | Montar ou rodar lote de abordagem a partir da base do uPixel (ou CSV), com chip Business e aprovação do Rael antes de qualquer envio |
 | [nano-pdf](documentos/nano-pdf/SKILL.md) | `documentos` | Edita PDFs com instruções em linguagem natural via CLI `nano-pdf` | Modificar, extrair ou reorganizar conteúdo de PDFs |
 | [faxina-geral](documentos/faxina-geral/SKILL.md) | `documentos` | Arquiteto de informação: consolida, deduplica e indexa uma base de documentos/conhecimento | Organizar arquivos, limpar base de conhecimento, criar índice, reduzir tokens de contexto |
 | [logo-studio](frontend/logo-studio/SKILL.md) | `frontend` | Audita, corrige, redesenha ou moderniza logos preservando restrições de marca, com aprovação explícita e mockup final | Trabalhar uma marca ou logo de cliente |
@@ -221,3 +222,7 @@ Mantido pelo time Totum BuildOps. Dúvidas: [grupototum.com](https://grupototum.
 - Entrou `totum-red-theme-slides` em `brand/`. O plugin `totum-frontend` passou a apontar para `./brand` e subiu para a versão 1.1.0.
 - Entrou `teste-tres-caixas` em `dev-tools/`, coberto por `./dev-tools`.
 - Nova pasta `video/` com `totum-novela-producao`, `planejar-edicao` e `pavo-video-longo`. Plugin novo `totum-video` (1.0.0) apontando para `./video`.
+
+## 2026-11-06
+
+- Entrou `totum-sdr-wa-link` em `vendas/`, coberto por `./vendas` no plugin `totum-vendas`.
