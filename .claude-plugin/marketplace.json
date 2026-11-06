@@ -42,7 +42,7 @@
             "name": "totum-frontend",
             "source": "./",
             "description": "Frontend e design Totum: análise de front, blueprint, design system, estilos de UI, imagem para código, prévia de hero, go-live.",
-            "version": "1.0.0",
+            "version": "1.1.0",
             "author": {
                 "name": "Grupo Totum",
                 "email": "totumpersonalizados@gmail.com"
@@ -51,7 +51,22 @@
             "skills": [
                 "./frontend",
                 "./frontend/estilo",
-                "./frontend/imagem"
+                "./frontend/imagem",
+                "./brand"
+            ]
+        },
+        {
+            "name": "totum-design-terceiros",
+            "source": "./",
+            "description": "Skills de design de terceiros (licença MIT, com fonte): design-taste (24 skills de gosto visual), better-design (precisa do MCP) e superdesign (usa créditos do superdesign.dev). Opcional, instale só onde fizer sentido.",
+            "version": "1.0.0",
+            "author": {
+                "name": "Grupo Totum",
+                "email": "totumpersonalizados@gmail.com"
+            },
+            "strict": false,
+            "skills": [
+                "./frontend/terceiros"
             ]
         },
         {
@@ -138,6 +153,20 @@
             "strict": false,
             "skills": [
                 "./dev-tools"
+            ]
+        },
+        {
+            "name": "totum-video",
+            "source": "./",
+            "description": "Vídeo Totum: plano de edição, vídeo longo e mini-novela com IA (microcenas, takes de 4 s, Pavo), pacote de produção de capítulo.",
+            "version": "1.0.0",
+            "author": {
+                "name": "Grupo Totum",
+                "email": "totumpersonalizados@gmail.com"
+            },
+            "strict": false,
+            "skills": [
+                "./video"
             ]
         },
         {

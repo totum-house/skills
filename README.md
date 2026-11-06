@@ -30,8 +30,11 @@ Central única de skills do ecossistema Totum — compartilhada entre Claude Cod
 | [n8n-workflow-automation](automacao/n8n-workflow-automation/SKILL.md) | `automacao` | Gera JSON de workflow n8n genérico com idempotência, retry, logging e fila de revisão humana | Criar automação auditável que não falhe silenciosamente, sem ligação com o formato Totum |
 | [totum-microdecisoes-para-n8n](automacao/totum-microdecisoes-para-n8n/SKILL.md) | `automacao` | Converte um Mapa de Microdecisões Totum (anúncio, carrossel, conteúdo) em workflow n8n com checkpoints humanos | Transformar o mapa de microdecisões do agente de design Totum em fluxo n8n importável |
 | [kommo-n8n-roteamento](automacao/kommo-n8n-roteamento/SKILL.md) | `automacao` | Conecta Kommo ao n8n, audita a conta em modo leitura, monta o Roteador Central (DRY RUN antes de mutar), corrige Salesbot e ativa com testes e rollback | Roteamento de leads, responsável errado, round-robin, duplicatas no Kommo |
+| [automacao/referencias/jev](automacao/referencias/jev/README.md) | `automacao` | Catálogo do Jev (modelo de decisão da TypeSafe, `typesafe-ai/jev` no Vercel AI Gateway) e de 10 repositórios de agentes rápidos | Avaliar triagem de lead, roteamento e agente de navegador barato. Uso pago, só com OK |
 | [totum-script-vendas](vendas/totum-script-vendas/SKILL.md) | `vendas` | Escreve script, copy, cadência ou kit comercial completo da Totum para qualquer produto/nicho; entrevista antes, recomenda o modelo certo, entrega com mapa problema-solução-resultado | Script de ligação, mensagem de prospecção, copy de anúncio, cadência de follow-up, resposta de objeção, "o que eu mando agora" para um lead |
 | [planejamento-estrategico](vendas/planejamento-estrategico/SKILL.md) | `vendas` | Entrevista estruturada sobre o funil comercial de uma agência (CPL, agendamento, comparecimento, conversão, ticket, churn) e gera diagnóstico + projeção em 3 cenários + plano de 90 dias | Planejamento, diagnóstico de agência, projeção de faturamento, cenários de crescimento, "analisar minha agência" |
+| [totum-pricing-marca](vendas/totum-pricing-marca/SKILL.md) | `vendas` | Faixas orientativas dos pacotes Essencial, Completo e Completo + sistema (preço final do Rael) | Valor, faixa de preço ou proposta de pacote de identidade visual, antes de mandar número ao cliente |
+| [totum-sdr-wa-link](vendas/totum-sdr-wa-link/SKILL.md) | `vendas` | SDR assistido por WhatsApp: planilha gera link wa.me por lead e o envio é manual, um a um, sem custo de API | Montar ou rodar lote de abordagem a partir da base do uPixel (ou CSV), com chip Business e aprovação do Rael antes de qualquer envio |
 | [nano-pdf](documentos/nano-pdf/SKILL.md) | `documentos` | Edita PDFs com instruções em linguagem natural via CLI `nano-pdf` | Modificar, extrair ou reorganizar conteúdo de PDFs |
 | [faxina-geral](documentos/faxina-geral/SKILL.md) | `documentos` | Arquiteto de informação: consolida, deduplica e indexa uma base de documentos/conhecimento | Organizar arquivos, limpar base de conhecimento, criar índice, reduzir tokens de contexto |
 | [logo-studio](frontend/logo-studio/SKILL.md) | `frontend` | Audita, corrige, redesenha ou moderniza logos preservando restrições de marca, com aprovação explícita e mockup final | Trabalhar uma marca ou logo de cliente |
@@ -39,6 +42,7 @@ Central única de skills do ecossistema Totum — compartilhada entre Claude Cod
 | [design-system-extrator](frontend/design-system-extrator/SKILL.md) | `frontend` | Extrai design system de um site ao vivo via URL (cores, tipografia, grid, componentes) direto do CSS renderizado | Benchmark visual de concorrente, tirar paleta/fontes de um site, documentar tokens de terceiro |
 | [totum-design-system](frontend/totum-design-system/SKILL.md) | `frontend` | Aplica o design system oficial da Totum (dark-first, tokens do totum-system) em sistemas internos | Criar/redesenhar dashboard, CRM, ERP ou produto operacional da Totum/Pixel System/uPixel |
 | [go-live](frontend/go-live/SKILL.md) | `frontend` | Checklist de publicação de página web feita com IA (favicon, meta/OG, JSON-LD, sitemap, analytics, WEBP) | Antes de lançar/publicar uma página — o que falta antes de ir ao ar |
+| [zion-lab-pop-sites](frontend/zion-lab-pop-sites/SKILL.md) | `frontend` | POP de site e LP: entrevista em blocos, Lovable, GitHub, Vercel | Começar um projeto novo de site ou landing page |
 | [totum-blueprint](frontend/totum-blueprint/SKILL.md) | `frontend` | Coordenador visual: conduz passo a passo de referência bruta até prompt pronto pro builder (tokens, componentes, direção de arte, plano responsivo, cut list, gate de validação) | Receber imagem/PRD/print e precisar especificar antes de montar Figma ou código — roda antes do código, nunca depois |
 | [totum-redesign-existente](frontend/totum-redesign-existente/SKILL.md) | `frontend` | Audita um site/app existente, identifica padrões genéricos de IA e eleva ao nível premium sem quebrar funcionalidade | Elevar/redesenhar algo que já existe, em qualquer framework CSS |
 | [analise-front-totum](frontend/analise-front-totum/SKILL.md) | `frontend` | Skill padrão (v2) de gosto visual para frontend — lê o briefing, infere linguagem de design, evita cara de template genérico | Padrão atual para dar bom gosto a landing pages, portfólios e redesigns |
@@ -49,14 +53,23 @@ Central única de skills do ecossistema Totum — compartilhada entre Claude Cod
 | [totum-imagem-para-codigo](frontend/imagem/totum-imagem-para-codigo/SKILL.md) | `frontend` | Fluxo imagem-para-código: gera a referência visual do site primeiro, depois implementa o frontend batendo o mais próximo possível dela | Implementar um site do zero com qualidade de referência visual definida antes do código |
 | [social-key-visual](frontend/imagem/social-key-visual/SKILL.md) | `frontend` | Extrai design system de 4 imagens de referência e gera key visuals/posts (feed, stories, retrato) em PNG | Gerar artes com identidade de marca a partir de referências visuais enviadas |
 | [previa-hero](frontend/imagem/previa-hero/SKILL.md) | `frontend` | Gera prévia visual de Hero Section em duas direções de arte com duas opções de copy cada, mockup laptop/iPhone na moldura institucional, e o prompt final pronto para ChatGPT/Gemini gerar as imagens | "/Previa_Hero", prévia de landing page para lead, mockup de hero para prospecção, duas opções de hero a partir de logo/foto do cliente |
+| [totum-visual-codes](frontend/imagem/totum-visual-codes/SKILL.md) | `frontend` | Monta a receita de Visual Codes (40 códigos com barra, como `/meta_ad` ou `/brand_lock`) antes de gerar peça visual de cliente | Antes de anúncio, post, carrossel, story, capa ou KV; quando alguém escrever códigos com barra ou `/auto` |
+| [totum-design-peca](frontend/imagem/totum-design-peca/SKILL.md) | `frontend` | Cria peça visual de cliente (anúncio Meta, post, carrossel, story, capa, KV): imagem direta ou prompt para Nano Banana/ChatGPT Imagens, sempre depois de `totum-visual-codes` | Gerar ou promptar a peça; não serve para copy de LP, roteiro ou edição de vídeo |
+| [protocolo-design](frontend/imagem/protocolo-design/SKILL.md) | `frontend` | Cadastra, corrige ou atualiza o design system de um cliente (ou submarca) a partir de logo, KVs, peças modelo e referências, com análise e entrevista | Montar ou atualizar o livro de regras e os KVs de prova; peças do dia a dia ficam com `totum-design-peca` |
+| [manual-da-marca](frontend/imagem/manual-da-marca/SKILL.md) | `frontend` | Entrega completa de marca (logo, regras, posicionamento, apresentação, mockups, manual PDF, design system HTML + kit ChatGPT) | Montar o pacote de entrega de identidade visual de um cliente; brand kit interno fica com `protocolo-design`; peças do dia a dia ficam com `totum-design-peca` |
+| [totum-imagem-para-psd](frontend/imagem/totum-imagem-para-psd/SKILL.md) | `frontend` | Imagem chapada para PSD com camadas nomeadas e texto vivo na fonte da marca, abrindo no PhotoCraft | Transformar PNG ou JPG chapado em PSD editável no PhotoCraft |
+| [totum-kv-camadas](frontend/imagem/totum-kv-camadas/SKILL.md) | `frontend` | KV, post ou carrossel no método Cenova: base sem texto com foto real, PSD em camadas, QA PhotoCraft | Produzir KV, post ou carrossel de cliente no método Cenova |
 | [totum-kit-de-marca](frontend/estilo/totum-kit-de-marca/SKILL.md) | `frontend` | Gera imagens de kit de marca premium — guias de marca, sistema de logo, deck de identidade, apresentação de universo visual | Criar ou apresentar identidade visual/kit de marca de um cliente ou produto |
 | [totum-design-premium-suave](frontend/estilo/totum-design-premium-suave/SKILL.md) | `frontend` | Direção de estilo "agência de ponta": fontes, espaçamento, sombra, cards e animação que fazem um site parecer caro | Elevar um design que está com "cara barata"/genérica de IA |
 | [totum-ui-minimalista](frontend/estilo/totum-ui-minimalista/SKILL.md) | `frontend` | Direção de estilo editorial minimalista — paleta monocromática quente, grids bento planos, sem gradiente/sombra pesada | Interface limpa em estilo editorial/workspace de alto contraste |
 | [totum-ui-brutalista](frontend/estilo/totum-ui-brutalista/SKILL.md) | `frontend` | Direção de estilo brutalista/industrial — tipografia suíça, grid rígido, paleta utilitária, degradação analógica simulada | Dashboard denso, portfólio ou site editorial com estética de "blueprint desclassificado" |
 | [totum-stitch-design](frontend/estilo/totum-stitch-design/SKILL.md) | `frontend` | Sistema de design semântico para o Google Stitch — gera `DESIGN.md` compatível com agentes, mesmo padrão anti-genérico | Preparar a direção de estilo Totum para geração de tela no Google Stitch |
 | [frontend-design](frontend/frontend-design/SKILL.md) | `frontend` | Guia de design visual distintivo e intencional — paleta, tipografia, escolhas não-genéricas para novas UIs | Construir ou reformular UI com identidade visual forte; evitar "cara de template" |
+| [frontend/terceiros/\*](frontend/terceiros/README.md) | `frontend` | 26 skills de design de terceiros com licença MIT e fonte fixada: design-taste (24), better-design e superdesign | Direção visual e gosto em LP e site. Plugin opcional `totum-design-terceiros` |
+| [frontend/referencias](frontend/referencias/README.md) | `frontend` | Catálogo (só links) de bibliotecas de componentes, shaders e animação, mais fontes e exemplos de DESIGN.md | Escolher blocos e referências visuais antes de montar uma LP |
 | [webapp-testing](dev-tools/webapp-testing/SKILL.md) | `dev-tools` | Testa apps web locais com Playwright Python — screenshots, logs de browser, debugging de UI | Verificar funcionalidade de frontend, capturar screenshots, debugar comportamento de UI |
 | [mcp-builder](dev-tools/mcp-builder/SKILL.md) | `dev-tools` | Guia completo para criar MCP servers de qualidade (Python FastMCP ou Node TypeScript SDK) | Construir MCP para integrar APIs externas com LLMs |
+| [teste-tres-caixas](dev-tools/teste-tres-caixas/SKILL.md) | `dev-tools` | QA de app web com repositório em caixa branca, cinza e preta | Ciclo de QA só leitura de app web com repositório |
 | [dispatching-parallel-agents](decisao/dispatching-parallel-agents/SKILL.md) | `decisao` | Delega 2+ tarefas independentes a agentes paralelos com contexto isolado | 2+ tarefas sem dependência que podem rodar ao mesmo tempo |
 | [systematic-debugging](decisao/systematic-debugging/SKILL.md) | `decisao` | Protocolo de debug que encontra causa-raiz antes de propor qualquer fix | Qualquer bug, falha de teste ou comportamento inesperado — antes de tentar corrigir |
 | [verificar-totum](decisao/verificar-totum/SKILL.md) | `decisao` | Portão de verificação com detector de racionalização (substitui a verification-before-completion) | Antes de fechar qualquer tarefa, fazer commit ou criar PR |
@@ -64,8 +77,13 @@ Central única de skills do ecossistema Totum — compartilhada entre Claude Cod
 | [writing-plans](decisao/writing-plans/SKILL.md) | `decisao` | Como estruturar planos de trabalho que agentes conseguem executar sem ambiguidade | Antes de delegar qualquer tarefa a agente ou subagente |
 | [executing-plans](decisao/executing-plans/SKILL.md) | `decisao` | Como executar um plano recebido — verificação de premissas, sequenciamento, checkpoints | Ao receber e executar um plano vindo de outro agente ou do Rael |
 | [brand-totum](brand/BRAND_SKILL.md) | `brand` | Identidade visual completa da Totum — tokens, glassmorphism, gradientes, glows, motion, anti-patterns e checklist | Carregar antes de gerar qualquer UI, anúncio ou peça visual; padrão: REFERENCE → BRAND_SKILL → Agent → Output |
+| [totum-red-theme-slides](brand/totum-red-theme-slides/SKILL.md) | `brand` | Aplica o Totum Red Theme a um deck existente sem mudar conteúdo | Restyle visual de apresentação da Totum já escrita |
+| [totum-novela-producao](video/totum-novela-producao/SKILL.md) | `video` | Pacote de produção de capítulo de mini-novela (cenas até 12 s, takes até 4 s, fichas, prompts) para o Lab Vídeo | Capítulo com roteiro aprovado que precisa virar pacote de produção |
+| [planejar-edicao](video/planejar-edicao/SKILL.md) | `video` | Plano de edição antes de gastar crédito (batidas, tipos de insert, storyboard, orçamento) | Antes de editar ou gerar vídeo, com roteiro, bruto ou pedido de edição |
+| [pavo-video-longo](video/pavo-video-longo/SKILL.md) | `video` | Vídeo longo, reel ou mini-novela por microcenas: imagem por cena, clipe de 4 s, montagem | Produzir vídeo longo, reel ou episódio de mini-novela com IA por cenas |
 | [marketing/\*](marketing/) | `marketing` | 50 skills de marketing e copywriting (coreyhaines31) — copy, SEO, ads, email, lead magnets, pricing, CRO e mais | Ver lista completa em `marketing/` — workspace da Tigrinha |
 | [social-media/\*](social-media/) | `social-media` | 17 skills de social media (charlie947) — post-writer, reels-scripting, voice-builder, hook-generator e mais | Ver lista completa em `social-media/` — workspace da Tigrinha |
+| [totum-auditoria-instagram](conteudo/totum-auditoria-instagram/SKILL.md) | `conteudo` | Auditoria de perfil existente, tabela reaproveitar/adaptar/arquivar e plano com 3 fixados | Cliente já tem Instagram e precisa de diagnóstico do grid antes das artes |
 
 ## Categorias
 
@@ -80,8 +98,11 @@ documentos/     Processamento, edição e organização de documentos (PDF, base
 frontend/       Geração e auditoria de interface visual e frontend — UI, design system, imagem, publicação web
   frontend/imagem/   Geração/análise de peças visuais a partir de imagem ou referência
   frontend/estilo/   Direções de estilo visual (UI kits, redesign, variações de tom)
+  frontend/terceiros/   Skills de design de terceiros, sem edição, com LICENSE e FONTE.md em cada pasta
+  frontend/referencias/ Catálogo de bibliotecas e fontes de DESIGN.md (links, sem código copiado)
 dev-tools/      Ferramentas de desenvolvimento — testing, MCP servers
 brand/          Identidade visual canônica da Totum — tokens, glassmorphism, gradientes, anti-patterns
+video/          Vídeo com IA: plano de edição, vídeo longo, mini-novela
 marketing/      50 skills de marketing e copywriting (fonte: coreyhaines31/marketingskills) — uso primário: Tigrinha
 social-media/   17 skills de social media content (fonte: charlie947/social-media-skills) — uso primário: Tigrinha
 ```
@@ -100,13 +121,15 @@ Este repo é um marketplace de plugins (`.claude-plugin/marketplace.json`). Cada
 | Plugin | Categorias |
 |---|---|
 | `totum-skills` | `totum/`, `decisao/`, `documentos/` + hook `superchat-meter` |
-| `totum-frontend` | `frontend/` (com `estilo/` e `imagem/`) |
+| `totum-frontend` | `frontend/` (com `estilo/` e `imagem/`), `brand/` |
+| `totum-design-terceiros` | `frontend/terceiros/` (opcional) |
 | `totum-conteudo` | `conteudo/` |
 | `totum-vendas` | `vendas/` |
 | `totum-automacao` | `automacao/` |
 | `totum-marketing` | `marketing/`, `social-media/` |
 | `totum-pesquisa-dados` | `pesquisa/`, `analytics/` |
 | `totum-dev-tools` | `dev-tools/` (Figma fica com o plugin oficial `figma:*`) |
+| `totum-video` | `video/` |
 | `medidor-tokens` | `mods/medidor-tokens/` (mod de interface, ver abaixo) |
 
 ```bash
@@ -180,3 +203,31 @@ Mantido pelo time Totum BuildOps. Dúvidas: [grupototum.com](https://grupototum.
 ## 2026-10-21
 
 - Nova skill `totum-explorar-escalar` em `conteudo/` (plugin `totum-conteudo` 1.2.0). Orquestra `totum-content-setup`, `totum-content-radar` e `totum-content-calendario` num sprint de 30 dias. Não escreve roteiro: entrega tema, argumento e esqueleto em tópicos.
+
+## 2026-10-23
+
+- Entraram `totum-visual-codes` e `totum-design-peca` em `frontend/imagem/`. O plugin `totum-frontend` já aponta para `./frontend/imagem`, então não há entrada nova no marketplace.
+- Entrou `protocolo-design` em `frontend/imagem/`, coberto pelo mesmo `./frontend/imagem` do plugin `totum-frontend`.
+
+## 2026-10-27
+
+- Entrou `frontend/terceiros/` com 26 skills de design de terceiros (MIT, conteúdo original, `LICENSE` e `FONTE.md` com commit fixado em cada pasta): as 24 do `madebymustafa/design-taste`, `better-design` (`marvkr/better-design`, precisa do MCP) e `superdesign` (`superdesigndev/superdesign-skill`, usa créditos do superdesign.dev). Plugin novo e opcional `totum-design-terceiros`.
+- Entrou `frontend/referencias/` com o catálogo das bibliotecas do post do @RoundtableSpace (só links) e `frontend/referencias/design-md/` com as fontes de DESIGN.md do post do @studio_yebisu e dois exemplos do setor financeiro (VoltAgent, MIT).
+- Entrou `automacao/referencias/jev/` com o catálogo do Jev e dos repositórios do post do @tranmautritam. Nada copiado: são ferramentas que dependem de chave paga.
+- Os arquivos copiados de terceiros mantêm o texto original, inclusive a pontuação dos autores.
+
+## 2026-11-05
+
+- Entrou `manual-da-marca` em `frontend/imagem/`, coberto pelo mesmo `./frontend/imagem` do plugin `totum-frontend`. Já estava na main antes deste lote.
+- Entraram `totum-imagem-para-psd` e `totum-kv-camadas` em `frontend/imagem/`, cobertos por `./frontend/imagem`.
+- Entrou `zion-lab-pop-sites` em `frontend/`, coberto por `./frontend`.
+- Entrou `totum-auditoria-instagram` em `conteudo/`, coberto por `./conteudo`.
+- `totum-content-calendario` ganhou a seção "Molde Notion Totum Lab" (formato de entrega da grade no Notion).
+- Entrou `totum-pricing-marca` em `vendas/`, coberto por `./vendas`.
+- Entrou `totum-red-theme-slides` em `brand/`. O plugin `totum-frontend` passou a apontar para `./brand` e subiu para a versão 1.1.0.
+- Entrou `teste-tres-caixas` em `dev-tools/`, coberto por `./dev-tools`.
+- Nova pasta `video/` com `totum-novela-producao`, `planejar-edicao` e `pavo-video-longo`. Plugin novo `totum-video` (1.0.0) apontando para `./video`.
+
+## 2026-11-06
+
+- Entrou `totum-sdr-wa-link` em `vendas/`, coberto por `./vendas` no plugin `totum-vendas`.
