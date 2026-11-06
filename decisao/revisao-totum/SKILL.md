@@ -5,7 +5,8 @@ description: >-
   o que é claramente crítico e seguro, commita e pusha com trava de segurança,
   relata o que fez, e só então pergunta o que depende de decisão. Inclui
   checklist de engenharia avançada (backend, arquitetura, CI/CD, aprovação de
-  código gerado por IA e dependências entre módulos). Use SEMPRE que o usuário
+  código gerado por IA, dependências entre módulos e performance com 31
+  correções para app lento). Use SEMPRE que o usuário
   pedir "revisão periódica", "revisar o repo/projeto", "rodar a revisão",
   "revisao-totum", "clean up antes de subir", "auditar e consertar o que der",
   "passar o pente fino no código", "revisar e commitar o que for seguro", ou
@@ -189,6 +190,16 @@ Cheque estes padrões quando o projeto tiver backend com filas, eventos ou alta 
 - Ferramenta: `madge`, `dependency-cruiser`, ou verificação manual de imports
 
 **Regra geral para código de IA:** Se o código passou nos 4 testes → pode entrar no bucket 🟢/🔴. Se falhou em qualquer um → vai para 🟡, sempre.
+
+---
+
+## ⚡ Checklist de Performance: 31 correções (Rev 7)
+
+Quando a revisão for de performance, ou o app estiver lento, use `references/performance-31.md`. Ele lista as 31 correções (skeleton, WebP ou AVIF, dedupe de chamadas, debounce, paginação, CDN, fila, N+1, compressão, Redis, dependências, timeout, streaming de IA, UI otimista, lazy load, paralelismo, índices, OpenTelemetry, região, SSR ou build, scripts de terceiros, code splitting, virtualização, select de colunas, pool, re-render, cache do navegador, balanceamento, fontes, RUM e teste em celular e rede lenta), cada uma com o bucket padrão.
+- Meça antes e depois: tamanho do bundle, Lighthouse mobile com 3G lento nas telas mais pesadas e as consultas mais lentas. Sem número, não conta como melhoria.
+- Infra, cache de borda, Redis, OpenTelemetry, índices e migrations são sempre 🟡.
+- Item que não se aplica ao stack entra como N/A com motivo.
+- No relatório, inclua a tabela dos 31 itens: número, status (feito, pendente 🟡, N/A, já ok), arquivo ou commit, antes e depois.
 
 ---
 
