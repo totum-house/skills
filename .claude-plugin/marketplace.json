@@ -41,8 +41,8 @@
         {
             "name": "totum-frontend",
             "source": "./",
-            "description": "Frontend e design Totum: análise de front, blueprint, design system, estilos de UI, imagem para código, prévia de hero, go-live.",
-            "version": "1.1.0",
+            "description": "Frontend e design Totum: análise de front, blueprint, design system, estilos de UI, imagem para código, prévia de hero, kit de produção e go-live.",
+            "version": "1.2.0",
             "author": {
                 "name": "Grupo Totum",
                 "email": "totumpersonalizados@gmail.com"
@@ -72,8 +72,8 @@
         {
             "name": "totum-conteudo",
             "source": "./",
-            "description": "Pipeline de conteúdo Totum (Tigrinha): setup, radar, calendário, roteiro de reels e sprint Explorar e Escalar.",
-            "version": "1.2.0",
+            "description": "Pipeline de conteúdo Totum (Tigrinha): setup, radar, calendário, roteiro de reels, sprint Explorar e Escalar e calendário no Notion.",
+            "version": "1.3.0",
             "author": {
                 "name": "Grupo Totum",
                 "email": "totumpersonalizados@gmail.com"
