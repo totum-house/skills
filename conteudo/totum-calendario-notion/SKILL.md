@@ -14,6 +14,7 @@ description: >-
 v1.0, 06/11/2026. Transforma uma grade de peças (temas, datas, formatos, legendas)
 na estrutura de Notion que a social media da Totum entrega para a equipe e para o cliente.
 Calibrado na referência enviada pelo Rael em 23/10/2026 e aplicado no calendário Totum nov/2026.
+Consulte `references/formato-referencia.md` para a origem, exceções e detalhes visuais do molde.
 
 Não decide o que falar nem o ritmo do mês. Para isso use `totum-content-calendario`
 (grade lógica) ou `totum-explorar-escalar` (sprint de crescimento). Esta skill só
