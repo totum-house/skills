@@ -1,275 +1,248 @@
 ---
 name: totum-buildops-orchestrator
-description: "Orchestrates BuildOps: POPs, ADRs, SLAs, Gates, agents."
-version: 1.0.0
-author: Hermes Agent (Bulma)
+description: >-
+  Forja (ex-BuildOps): regras de construção, adequação, correção, teste e
+  manutenção de projetos digitais da Totum (LP, LP Express, site, sistema,
+  automação n8n/Kommo). Diz qual POP-014 se aplica, qual gate de qualidade
+  rodar pelo tamanho da mudança (P/M/G), o que é obrigatório por tipo de
+  projeto, as no-fly zones e quem aprova. Use SEMPRE ao começar ou retomar
+  trabalho técnico de cliente ou interno da Totum: "forja", "buildops",
+  "adequar sistema", "adequação", "criar LP", "LP express", "site novo",
+  "sistema novo", "corrigir bug em produção", "manutenção", "qual POP",
+  "qual gate", "posso fazer merge", "pode subir?". NÃO usar para conteúdo,
+  social media, tráfego ou POPs departamentais (fora do escopo da Forja).
+version: 1.1.0
+author: Rael + Claude (revisão Forja 2026-11-06)
 license: MIT
 metadata:
   hermes:
-    tags: [totum, buildops, orchestration, pop, adr, sla, quality-gate, agents]
-    related_skills: [orquestrar-totum, orquestracao-pepper-totum, dev-totum, revisao-totum, verificar-totum, totum-blueprint, totum-design-system, agent-criator, skill-creator, auto-loop, hermione, superchat-totum, faxina-geral, taste-design-review, taste-web-performance, taste-accessibility, karpathy-guidelines, llm-council, prompt-master, executing-plans, writing-plans, subagent-driven-development, dispatching-parallel-agents, n8n-workflow-automation, kommo-n8n-roteamento, teste-tres-caixas, webapp-testing, mcp-builder, google-sheets-gog, anygen-data-analysis, finance-analyzer]
+    tags: [totum, forja, buildops, pop-014, adr, sla, quality-gate]
+    related_skills: [dev-totum, verificar-totum, revisao-totum, soul-totum, karpathy-guidelines, totum-blueprint, totum-lp-copy, go-live, zion-lab-pop-sites, kommo-n8n-roteamento, n8n-workflow-automation, auto-loop, superchat-totum]
 ---
 
-# totum-buildops-orchestrator
+# Forja Totum (v1.1)
 
-## When to Use
+A Forja é o jeito Totum de construir e manter projetos digitais. Ela se apoia
+em três peças: **ADR** (por que decidimos), **POP-014 A a E** (como fazer) e
+**SLA** (quando e com que qualidade). Task sem SLA é task incompleta.
 
-Use when orchestrating BuildOps Totum workflows: classifying demands into POP-014 (A-E), applying ADR/POP/SLA, delegating to specialized agents (Tech Lead, Testador, Kimi Claw, Ollama, Lovable, Pepper), running Quality Gates, and ensuring full traceability from demand to deploy.
+Esta skill **não executa código**. Ela diz qual regra vale. A execução é da
+`dev-totum` (pipeline com dois portões) e a checagem final é da
+`verificar-totum`.
 
-## Proposito
-
-Skill **orquestradora-mestra** do ecossistema BuildOps Totum. Recebe uma demanda, classifica no POP correto (A-E), monta o plano tatico com ADR/POP/SLA, delega para agentes especializados, valida via Quality Gates, e garante rastreabilidade completa ate o deploy.
-
-**Principio:** Todo trabalho no Totum passa por ADR (porque), POP (como), SLA (quando/qualidade). Task sem SLA = task incompleta.
-
----
-
-## 1. CLASSIFICACAO DA DEMANDA (Entrada)
-
-Recebe input livre e determina:
-
-| Situacao | POP | Tag | Agente Inicial |
-|----------|-----|-----|----------------|
-| Projeto novo (LP, site, app, MicroSaaS) | POP-014-A Construir | [construir] | Tech Lead (Opus) |
-| Refactor / adequacao / elevar qualidade | POP-014-B Adequar | [adequar] | Tech Lead + Kleber |
-| Bug fix / incidente producao | POP-014-C Corrigir | [corrigir] | Tech Lead |
-| Testar / validar antes de merge/deploy | POP-014-D Testar | [testar] | Testador (Sonet) + Kimi Claw |
-| Manutencao continua / revisao recorrente | POP-014-E Manter | [manter] | Pepper / Kleber |
-| Landing Page | Vibe-Coding 3.1-3.2 + POP-A | [construir] | Lovable -> Tech Lead |
-| Site/Web App complexo | Vibe-Coding 3.3 + POP-A | [construir] | Tech Lead + Backend |
-| Adequacao sistema legado | POP-B + Vibe-Coding 3.4 | [adequar] | Tech Lead + Kleber |
-| Criacao sistema (MicroSaaS/CRM/ERP) | POP-A + Vibe-Coding 1.3 | [construir] | Tech Lead + Kimi Claw |
-| Manutencao continua | POP-E + Vibe-Coding 3.5 | [manter] | Pepper + Kleber |
-| Trafego Pago | POP Trafego Pago | [trafego] | Matheus Clone |
-| Criacao/Design/UX | POP Criacao | [criacao] | Juliana + Lovable |
-| Planejamento Social/Campanhas | POP Planejamento | [planejamento] | Juliana + Jonathan |
-| Comercial/SDR | POP Comercial | [comercial] | Rafael + SDRs |
-| Automacao/CRM (n8n+Kommo) | POP Automacao | [automacao] | Paulo/Kleber |
-| Governanca/Gestao | POP Governanca | [governanca] | Pepper |
-| Observabilidade/Loops | Quality Gate + Auto-loop | [observabilidade] | Kimi Claw + Auto-loop |
-
-**Se ambiguo:** Pergunta clarificadora ao Rael ("Qual o objetivo principal? Novo, fix, refactor, teste, manutencao?").
+> Fonte de verdade das normas: pasta BuildOps no Google Drive (`docs/decisoes-arquiteturais.md`,
+> `docs/principios-buildops.md`, `POP-014-A..E`). Se esta skill e o ADR divergirem,
+> **o ADR vence** e esta skill precisa ser corrigida.
 
 ---
 
-## 2. MONTAGEM DO PLANO TATICO (ADR + POP + SLA)
+## 0. Decisões vigentes do Rael (2026-11-06)
 
-Para a tag identificada, carrega o POP correspondente e:
+Valem acima de qualquer texto antigo de POP ou playbook.
 
-1. Le ADRs relevantes (docs/decisoes-arquiteturais.md) - decisoes D-XXX que impactam
-2. Le Principios (docs/principios-buildops.md) - replicados no topo do POP
-3. Carrega Checklist do POP (fases 1-5 + quando escalar)
-4. Define SLA (tempos padrao do POP + KPIs)
-4. Cria PROJECT_CARD.md se [construir] ou [adequar]
-5. Gera Tasks no Linear (via Composio) com template do POP
-6. Define Quality Gates aplicaveis (seguranca, performance, arquitetura, carga)
-7. Registra no memory/buildops-backlog.md com tag
-
-**Output:** Plano tatico em Markdown com:
-- Classificacao + POP + Tag
-- ADRs aplicaveis
-- Checklist faseado (Fase 1-5 do POP)
-- SLA + KPIs
-- Tasks Linear (IDs)
-- Quality Gates a passar
-- Agentes designados + modelos
-- Riscos + quando escalar
+| Tema | Decisão |
+|---|---|
+| Nome | O sistema se chama **Forja** (D-033). "BuildOps" é nome antigo. |
+| Supabase em **adequação** | **Respeitar o que já existe.** Projeto em Cloud continua em Cloud, projeto self-hosted continua self-hosted. Migrar não faz parte de adequação; se for necessário, vira projeto separado aprovado pelo Rael. |
+| Supabase em projeto novo | Padrão a confirmar com o Rael (D-016 diz Cloud, princípio 2 diz self-hosted). Até lá, perguntar antes de criar. |
+| Dados pessoais e IA | **Pode enviar dados pessoais a modelos via API** quando a tarefa precisar. Depois do uso: apagar dados de teste, exports e logs com dado pessoal, e rotacionar qualquer chave ou token que tenha sido exposto. Credencial nunca vai em prompt (isso continua proibido). |
+| Substituto de decisão | **Kleber** decide quando o Rael estiver indisponível. |
+| Ferramenta de tasks | **Totum System** (projeto interno) é a ferramenta oficial. Toda task técnica (issue, PR, spec) carrega o ID da task do Totum System. |
+| Pagamento | **Sinal antes de começar** + **aprovação do visual** como marco. Backend e integrações só começam depois do visual aprovado (Visual-First, D-033). |
+| Escopo | A Forja cobre só os POP-014 A a E. POPs departamentais (comercial, tráfego, ADM etc.) ficam fora desta skill. |
+| LP Express | Produto separado, com fluxo próprio (seção 4). |
 
 ---
 
-## 3. DELEGACAO PARA AGENTES (AI Scoring Vibe-Coding 2)
+## 1. Qual POP-014 abre
 
-| Papel | Agente | Modelo | Gatilho | Responsabilidade |
-|-------|--------|--------|---------|------------------|
-| Tech Lead / Arquiteto | totum-tech-lead | Claude (Opus/Sonnet) | [construir], [adequar] | Specs, arquitetura, code review final, decisoes tecnicas, Graphify |
-| Testador | totum-tester | Claude (Sonet) | [testar], [construir], [adequar] | Testes unitarios (80%), integracao (70%), Kimi Claw orchestration |
-| Redator / Docs | totum-writer | Gemini / Paper / Kimi Claw | [construir], [adequar], [manter] | Docs tecnicas, ADRs, changelog, /docs/dev/ + /docs/user/ |
-| UI/UX Generator | totum-ui-gen | Lovable / Stitch / Figma | LP, Site, MicroSaaS UI | Blueprints -> Prototipos -> Design Tokens -> Handoff |
-| Testes Continuos | totum-kimi-claw | Kimi Claw | [testar], CI/CD nightly | E2E, caixa cinza/preta, Ollama isolation, scheduled suites |
-| Privacidade / Backend Local | totum-ollama | Ollama (Local/VPS) | PII, dados sensiveis, mock APIs | Processamento local, dados sinteticos, embeddings |
-| Automacao CRM/n8n | totum-automation | Paulo/Kleber (Claude) | [automacao], Kommo+n8n | Workflows, roteamento, Dual Write, DLQ |
-| Trafego Pago | totum-traffic | Matheus Clone (Claude) | [trafego] | Campanhas, CPL/CPA, CRM integration |
-| Conteudo/Social | totum-content | Juliana + Jonathan | [planejamento], [criacao] | Calendario, copy, criativos, radar |
-| Governanca/Orquestracao | totum-pepper | Pepper (VPS) | [governanca], [manter] | Auditoria tasks, SLA, integracao depts, visao executiva |
-| Observabilidade/Loops | totum-auto-loop | Kimi Claw + Auto-loop | [observabilidade] | Elastic Stack, alertas, auto-issues, auto-loop |
+| Situação | POP | Tag |
+|---|---|---|
+| Projeto novo (LP, site, sistema, automação nova) | POP-014-A Construir | `[construir]` |
+| Melhorar, refatorar ou adequar algo que já existe, sem ser bug | POP-014-B Adequar | `[adequar]` |
+| Algo quebrou ou está errado em produção ou homologação | POP-014-C Corrigir | `[corrigir]` |
+| Validar antes de merge, deploy ou release | POP-014-D Testar | `[testar]` |
+| Rotina: backup, custo, atualização, segurança recorrente | POP-014-E Manter | `[manter]` |
 
-**Regras de delegacao (Vibe-Coding 2.3):**
-- Claude = Lider Arquitetura (ADRs, padroes, camadas, persistencia, comunicacao)
-- Gemini = Analista Dados/Docs (context window 2M, analise codebase, documentacao viva)
-- Lovable = Gerador UI (vibe coding puro, prototipos, handoff p/ dev core - NUNCA commit direto)
-- Ollama = Cofre Privacidade (10.0 - PII, financeiro, saude - 100% local)
-- Kimi Claw = Testes Continuos (memoria longa, Agent Swarm, skills, scheduled)
-- Manus = Automacao Pesquisa (scraping, sintese, viabilidade)
-- Stitch = Blueprinter (design-to-code inicial, velocidade 9.5)
+Ambíguo? Uma pergunta ao usuário: "é novo, fix, adequação, teste ou manutenção?"
 
 ---
 
-## 4. QUALITY GATES (Pipeline Obrigatorio)
+## 2. Tamanho da mudança e gate (P/M/G)
 
-Todo codigo passa pelo pipeline antes de merge:
+O tamanho sai do **Passo 0 da `dev-totum`**. A Forja só traduz:
 
-```yaml
-stages:
-  - lint_format:          {tool: eslint+prettier, criteria: zero_errors_warnings, sla: <2min}
-  - static_analysis:      {tool: semgrep+custom, criteria: no_critical_ai_patterns, sla: <5min}
-  - unit_tests:           {tool: jest+Kimi, criteria: coverage>=80%, all_pass, sla: <5min}
-  - integration_tests:    {tool: supertest+Kimi, criteria: coverage>=70%_endpoints, sla: <15min}
-  - arch_review:          {tool: Claude_auto, criteria: structural_changes_approved, sla: <10min}
-  - human_approval:       {tool: github/gitlab, criteria: required_for_critical, sla: variable}
-  - canary_deploy:        {tool: vercel, criteria: 5%_traffic_stable, sla: 10min_obs}
-  - smoke_tests:          {tool: Kimi_Claw, criteria: core_functionality_valid, sla: <5min}
-  - production_deploy:    {tool: blue_green, criteria: auto_rollback_on_degradation, sla: ---}
-```
+| dev-totum | Forja |
+|---|---|
+| trivial ou pequeno | **P** |
+| padrão | **M** |
+| grande | **G** |
 
-**Testes SLA (Vibe-Coding 5.5):**
-- Unit: 80% coverage, <5min, 100% Kimi, human review sec/fin
-- Integracao: 70% endpoints, <15min, 90% Kimi+review
-- E2E: 100% fluxos criticos, <30min, 80% Kimi Claw+validacao
-- Performance: 100% cenarios carga, 50% Ollama+Kimi
-- Seguranca: 100% codigo, <1h, 30% ferramentas + triagem
+**Sobe para G sempre** que tocar: schema ou migration, RLS, auth, Storage,
+dinheiro, integração externa nova, credencial, infra (Coolify, DNS, Traefik),
+ou estimativa acima de 5 dias. **G nunca é rebaixado.**
 
-**Penalidades:** Coverage < threshold -> block deploy | Tempo >150% baseline -> investigacao | Falha critica prod -> post-mortem 24h + update suite 48h
+Regras de classificação:
+- Na dúvida entre P e M, vale **M**.
+- Mudanças da mesma task na mesma área, dentro de 7 dias, **somam linhas** (proibido fatiar uma mudança grande em vários P).
+- Declare o tamanho em uma linha antes de começar: `Forja: [adequar] tamanho M (3 arquivos, sem área sensível).`
 
----
+### Matriz de gates
 
-## 5. CONTEXT ENGINEERING (Graphify)
+| Gate | P | M | G |
+|---|---|---|---|
+| PR (nunca push direto em main), build, lint, typecheck, secret scan | sim | sim | sim |
+| Semgrep padrão | sim | sim | sim |
+| Auditoria de dependências (bloqueia crítico e alto) | não | sim | sim |
+| Teste de regressão em bug de lógica | sim | sim | sim |
+| Teste antes do código em área sensível (D-027: dinheiro, schema, auth, integração) | n/a | se tocar área sensível | sim |
+| Cobertura numérica | não | não | só nos módulos sensíveis, com catraca (não pode cair) |
+| Preview (Vercel ou Coolify) + screenshot por rota nova no PR (D-033) | recomendado | sim | sim |
+| Lighthouse CI com limites D-029 (Performance ≥ 90, LCP < 2,5 s, CLS < 0,1, TBT < 200 ms), com tags de produção ligadas, mediana de 3 rodadas | em entrega web | em entrega web | em entrega web |
+| Spec (D-025) | não | 1 página | Spec Kit completo |
+| Revisão humana | autor humano: merge automático com CI verde. Autor agente: Rael ou Kleber conferem em até 24h úteis | Rael ou Kleber | Kleber e Rael (+ Sentinela se RLS, auth ou credencial) |
+| Rollback declarado no PR | não | recomendado | sim |
+| Migration testada numa cópia do backup antes de produção | n/a | n/a | sim, se houver migration |
+| Smoke test pós-deploy + observação (Sentry, uptime) | recomendado | 30 min | 60 min |
 
-- **Sempre** rode graphify update . ao iniciar [construir] ou [adequar]
-- Graphify.json = estrutura de dados para agentes (nao visual)
-- **Atualize** quando: novos arquivos, modificacao significativa, nova feature
-- **Nao rode** para mudancas triviais (cor de botao, copy)
-- Docs/ atualizado via sub-agent doc-sync-onboarding (obrigatorio no CloudMD)
+Fora do pipeline (não exigir): canário por % de tráfego, blue-green, cobertura
+de 80% global, revisão de arquitetura por IA como gate, Kimi Claw, Datadog,
+Elastic Stack. Revisão por IA (Claude Code Action) é **consultiva**.
 
----
-
-## 6. OBSERVABILIDADE + AUTO-LOOP
-
-- Elastic Stack (VPS): logs, metricas, APM
-- Auto-loop (auto-loop skill): roda 24h na VPS via SSH
-  - Agente observabilidade le logs -> cria issues se CPU/RAM/erros
-  - Kimi Claw nightly: E2E completo + performance + security scan
-  - Alertas: Slack #alerts-qa (real-time), email tech-leads (semanal), dashboard Grafana
-- SLOs internos 20-40% mais rigorosos que SLAs externos
+Serviços da VPS em Docker Compose (n8n, Chatwoot etc.) não têm rolling update
+no Coolify: deploy em janela combinada, com backup verificado e rollback declarado.
 
 ---
 
-## 7. ESCALACAO (Matriz POP)
+## 3. No-fly zones
 
-| Situacao | Acao | Aprovador |
-|----------|------|-----------|
-| Refactor toca schema/RLS/Auth | Parar -> Rael + Sentinela | Rael |
-| Custo estimado > 5 dias | Pepper avalia dividir | Pepper |
-| Descobre debito tecnico fora escopo | Parar -> reabrir escopo com Rael | Rael |
-| Prod caiu + cliente perdendo $ | Rael imediato (WhatsApp+call) | Rael |
-| Envolve credencial/vazamento | Protocolo D-007 (Sentinela+rotacao) | Sentinela |
-| Fix precisa mexer RLS/Auth/Storage | Vermelho na matriz -> Rael antes | Rael |
-| Nao consegue reproduzir bug | Kleber (2a opiniao) antes de shipar | Kleber |
-| Backup falhou 2x | Kleber (root cause) | Kleber |
-| Cost +30% mes-a-mes | Rael (revisar contratos) | Rael |
-| Restore test falhou | Sentinela + Kleber imediato | Sentinela+Kleber |
+Valem para gente e para agente. O que dá para automatizar vira branch
+protection, permissão negada ou hook; o texto só lembra.
 
----
-
-## 8. DOCUMENTACAO BILINGUE (Vibe-Coding 4.3.4)
-
-Todo projeto mantem:
-- /docs/dev/ - Arquitetura, APIs, ADRs, runbooks (Kimi Claw + revisao PR)
-- /docs/user/ - Fluxos, conceitos, troubleshooting (Paper + feedback usuarios)
-- Changelog automatico (Kimi Claw a cada commit)
-- ADRs em /docs/decisions/ (hash prompt + modelo + timestamp + engenheiro)
+| Zona | Regra |
+|---|---|
+| Produção | Nada de push direto em main. Sempre branch + PR. |
+| VPS e Docker | Proibido `docker volume rm`, `docker system prune`, `rm -rf` e `git push --force` sem autorização explícita. Antes de editar config de produção: backup com timestamp, editar em arquivo temporário, validar (`jq empty`, `docker compose config --quiet`), só então sobrescrever e monitorar os logs. |
+| Credenciais | Nunca em chat, repo ou prompt. Vazamento: protocolo D-007 com Sentinela, rotação imediata. O vault em `/home/totum/.pepper/` é do Sentinela: pedir a credencial, não ler direto. |
+| Schema, RLS, auth, Storage | Passa pelo Rael (ou Kleber) e Sentinela **antes**. |
+| Banco | DELETE, TRUNCATE e migration destrutiva só com aprovação e backup verificado. |
+| Custo | Stack fora do canônico ou custo acima de R$ 500/mês: Rael aprova antes de contratar. |
+| Agentes | Todo loop e toda action com `max-turns` e teto de gasto; chave de API por projeto. Bypass de permissões proibido em repo com credencial ou dado de cliente. |
+| Segurança ofensiva | DAST nunca contra produção ou dado real; só staging. |
+| Acesso | SSH só por chave, usuário sem root. |
+| Rede local | Usar `127.0.0.1`, nunca `localhost`, em client HTTP e config. |
+| Canais | Agente só fala nos canais da sua allowlist. |
 
 ---
 
-## 9. COMANDOS PRINCIPAIS
+## 4. Por situação: o que é obrigatório e quando está pronto
 
-| Comando | Acao |
-|---------|------|
-| /buildops classificar "<demanda>" | Classifica demanda, retorna POP + plano inicial |
-| /buildops planejar <tag> [--adr=<ids>] | Gera plano tatico completo com ADRs |
-| /buildops delegar <task_id> <agente> | Delegada task para agente especifico |
-| /buildops gate <pr_id> | Roda Quality Gates no PR |
-| /buildops status | Dashboard: tasks, SLAs, agentes, riscos |
-| /buildops escalar <motivo> | Escala conforme matriz |
-| /buildops sync-skills | Atualiza skills do totum-house/skills (08h/18h cron) |
+O que não está listado é dispensável por padrão (princípio 9: peso proporcional ao risco).
 
----
+### LP Express (produto separado)
+- Fluxo mínimo: template aprovado, copy fechada antes de começar, conteúdo do cliente, formulário entregando lead.
+- Gate: P/M com Lighthouse D-029.
+- Se precisar de qualquer coisa fora do template, **vira LP padrão** e muda de SLA.
+- Pronto: Lighthouse D-029, lead de teste entregue, aceite do cliente.
 
-## 10. INTEGRACOES
+### Landing page padrão (M)
+- Sinal recebido, visual aprovado (D-033), screenshot por seção no PR, D-029.
+- Automação de captura começa **em paralelo** ao visual, com o contrato do payload definido na spec.
+- Pronto: visual aprovado registrado, CI verde, Lighthouse D-029 (ou exceção assinada pelo Rael), **lead de teste percorreu formulário → n8n → Kommo com tags de origem e nicho**, task fechada no Totum System com link do PR.
 
-- Composio: Google Drive (sync), Linear (tasks), GitHub (PRs), Meta (ads)
-- n8n: Workflows Kommo, automacoes, Dual Write, DLQ
-- Graphify: Context engineering (graphify.json)
-- Elastic Stack: Observabilidade (VPS)
-- Ollama (Mac/VPS): Privacidade, mock APIs, dados sinteticos
-- Kimi Claw: Testes continuos, docs, changelog
-- Linear: Task management (templates por POP)
-- VPS (Hostinger/Kinghost): SSH host para agents 24h
+### Site institucional (M; G se tiver CMS com login)
+- Tudo da LP + SEO técnico (sitemap, metatags, JSON-LD; ver `go-live`) + monitor de uptime **fora da VPS**.
+- Pronto: o da LP + sitemap e metatags verificados, uptime ativo, manutenção contratada ou recusada por escrito.
 
----
+### Sistema novo: MicroSaaS, CRM, ERP (fase 1 = M, fase 2 = G)
+- Fase 1 (Visual-First): telas, fluxos e estados como spec leve; aprovação visual; sem backend.
+- Fase 2: Spec Kit por domínio (D-025), monolito modular com dependency-cruiser desde o commit 1 (D-024), teste antes em área sensível (D-027), teste de RLS por política, staging com banco próprio, backup e restore test no 1º trimestre.
+- Pronto: spec vinculada a cada PR, testes sensíveis verdes, migration testada em cópia, rollback declarado, doc-sync feito, SLA de suporte definido.
 
-## Exemplo de Uso
+### Adequação de legado (POP-014-B; G, fatiado se passar de 5 dias)
+1. **Baseline antes de mexer**: testes existentes, dependências com CVE, Semgrep, Lighthouse (se web), a métrica que a adequação quer melhorar.
+2. **Escopo fechado** no PROJECT_CARD: o que muda e o que **não** muda. Achou débito fora do escopo: **parar** e reabrir com o Rael.
+3. **Respeitar a stack existente** (Supabase Cloud ou self-hosted, como estiver). Não migrar infraestrutura dentro de adequação.
+4. **Testes de caracterização** nos trechos que vão mudar, antes do refactor.
+5. Tocou schema, RLS ou auth: Rael (ou Kleber) + Sentinela antes.
+6. Feature nova dentro do legado segue D-025 (spec) e D-027 (teste em área sensível).
+- Pronto: baseline registrado, nada mexido fora do escopo, zero regressão na suíte existente, métrica igual ou melhor, rollback documentado.
 
-```
-User: "Quero criar uma LP para um dermatologista em Volta Redonda, foco em procedimentos esteticos, prazo 3 dias."
+### Bug fix (POP-014-C; P se cumprir o critério, senão G)
+- Reproduzir e medir impacto antes; backup `.bak-<timestamp>` se houver banco.
+- Teste que falha antes e passa depois; fix cirúrgico, sem refactor junto.
+- "Trivial" (menos de 20 linhas, 1 arquivo) **não** inclui dinheiro, auth ou integração externa.
+- Pronto: causa raiz descrita, regressão coberta, cliente confirmou, tempos registrados na task. Em S1, post-mortem curto em até 48h.
 
-Hermes (totum-buildops-orchestrator):
-1. Classifica -> [construir] + LP -> POP-014-A + Vibe-Coding LP
-2. ADRs: D-001 (stack canonica), D-007 (credenciais), D-014 (Totum Red Theme)
-3. Plano:
-   - Fase 1: Briefing Mesa Entrada -> PROJECT_CARD.md
-   - Fase 2: totum-lp-copy (PAS/AIDA) -> copy aprovada
-   - Fase 3: totum-blueprint -> direcao visual (Tech Medico) -> Totum Red Theme
-   - Fase 4: Stitch -> Figma (tokens, componentes, Tech Medico glassmorphism)
-   - Fase 5: Lovable -> prototipo alta fidelidade -> handoff (tokens, estados, a11y)
-   - Fase 6: Graphify -> context engineering
-   - Fase 7: Dev Core (Claude+Graphify+TDD) -> Quality Gates
-   - Fase 8: Deploy canario -> Smoke -> Producao
-4. SLA: 2-5 dias uteis (setup LP) | KPIs: LCP<=1.8s, INP<=200ms, Conversao
-5. Delegacao:
-   - Copy -> totum-lp-copy (Claude)
-   - Visual -> totum-ui-gen (Lovable/Stitch/Figma)
-   - Dev -> totum-tech-lead (Claude Opus + Graphify)
-   - Testes -> totum-tester (Sonet) + totum-kimi-claw (Kimi Claw)
-   - Docs -> totum-writer (Gemini/Paper)
-6. Cria tasks no Linear (template POP-A + LP)
-7. Registra no buildops-backlog.md tag [construir]
-8. Retorna plano + tasks IDs + dashboard link
-```
+### Manutenção recorrente (POP-014-E)
+- Backup semanal verificado, restore test trimestral, auditoria de custo mensal (alerta se +30%), atualização de dependências com gate M, DLQ do n8n com alerta em tempo real.
+- Pronto: rotinas existem como tasks recorrentes no Totum System, última execução registrada, nenhum alerta sem dono.
+
+### Automação n8n e Kommo (M; G com dinheiro ou dado pessoal novo)
+- JSON do workflow versionado no Git; credencial só no cofre do n8n.
+- Pin data com casos de borda (lead sem telefone, duplicado, etapa inválida, payload malformado); idempotência por chave; DLQ; workflow de erro com alerta; teste de rate limit e de contrato do webhook.
+- Pronto: borda passa no pin data, workflow de erro disparado em teste, evento duplicado não gera efeito duplicado, primeira janela de monitoramento sem erro crítico.
 
 ---
 
-## Referencias (carregar quando necessario)
+## 5. SLA (metas iniciais, revisar em 90 dias com tempos reais)
 
-- totum-house/skills/totum/ - POP-014 A-E, principios, decisoes, glossario
-- totum-house/skills/totum/hermione - Pesquisa profunda
-- totum-house/skills/totum/orquestrar-totum - Kernel de sessao
-- totum-house/skills/totum/orquestracao-pepper-totum - Roteamento agentes
-- totum-house/skills/totum/totum-blueprint - Visual reference -> builder prompt
-- totum-house/skills/totum/totum-design-system - Dark-first, tokens, Geomanist
-- totum-house/skills/totum/totum-lp-copy - Copy humanizada BR
-- totum-house/skills/automacao/kommo-n8n-roteamento - CRM + n8n
-- totum-house/skills/automacao/n8n-workflow-automation - Workflows idempotentes
-- totum-house/skills/dev-tools/teste-tres-caixas - QA ciclo 3 caixas
-- totum-house/skills/dev-tools/webapp-testing - Dogfood QA
-- totum-house/skills/creative/vibe-coding-master-playbook - AI Scoring, SOP/SLA
-- totum-house/skills/research/multi-search-engine - 16 motores busca
-- totum-house/skills/analytics/finance-analyzer - DRE, Balanco, Fluxo Caixa
-- totum-house/skills/analytics/google-sheets-gog - Sheets via CLI
-- totum-house/skills/agent-criator - Checklist agentes Totum OS
-- totum-house/skills/skill-creator - Criar skills novas
-- totum-house/skills/auto-loop - Loops autonomos
-- totum-house/skills/totum/superchat-totum - Ciclo vida contexto
-- totum-house/skills/totum/faxina-geral - Arquitetura informacao
-- totum-house/skills/taste-design-review - Auditoria UI/UX
-- totum-house/skills/taste-web-performance - Core Web Vitals
-- totum-house/skills/taste-accessibility - A11y built-in
-- totum-house/skills/karpathy-guidelines - Anti-slop code
-- totum-house/skills/llm-council - 5 advisors decisao
-- totum-house/skills/prompt-master - Prompts otimizados
-- totum-house/skills/executing-plans - Execucao planos escritos
-- totum-house/skills/writing-plans - Planos multi-step
-- totum-house/skills/subagent-driven-development - Planos com subagentes
-- totum-house/skills/dispatching-parallel-agents - 2+ tasks independentes
-- totum-house/skills/mcp-builder - MCP servers
-- totum-house/skills/analytics/anygen-data-analysis - Analise datasets
-- totum-house/skills/analytics/finance-analyzer - Metricas financeiras
+| Classe | Exemplo | Resposta | Resolução |
+|---|---|---|---|
+| S1 | Sistema ou campanha fora do ar, lead sendo perdido | 30 min (horário comercial) | 4h úteis |
+| S2 | Funciona com defeito relevante | 2h úteis | 24h úteis |
+| S3 | Ajuste | dentro de 48h úteis | 48h úteis |
+
+- Lead inbound: resposta automática em até 5 min a qualquer hora; contato humano em até 2h úteis.
+- Fora do horário: alerta vai para Rael e Kleber.
+- Performance de entrega web: citar D-029, não repetir números de SLA antigos (85/80).
+
+---
+
+## 6. Escalação
+
+| Situação | Para quem |
+|---|---|
+| Schema, RLS, auth, Storage | Rael (ou Kleber) + Sentinela, antes |
+| Produção caiu e cliente perdendo dinheiro | Rael imediato (WhatsApp + ligação); indisponível: Kleber |
+| Credencial exposta | Protocolo D-007, Sentinela, rotação |
+| Estimativa acima de 5 dias | Pepper avalia fatiar |
+| Débito técnico fora do escopo | Parar, reabrir escopo com Rael |
+| Não reproduz o bug | Kleber (segunda opinião) antes de shipar |
+| Backup falhou 2x / restore falhou | Kleber / Sentinela + Kleber |
+| Custo +30% mês a mês ou stack nova > R$ 500/mês | Rael |
+
+---
+
+## 7. Quem executa (papéis reais)
+
+| Papel | Executor hoje |
+|---|---|
+| Tech lead | Claude Code + `dev-totum` + Spec Kit; decisão de Rael ou Kleber |
+| Testes | Claude Code com regra de teste no CLAUDE.md, `verificar-totum`, Claude Code Action (consultivo) |
+| UI | Lovable + `totum-blueprint`, preview Vercel |
+| Automação | n8n + skills Kommo/n8n |
+| Governança | Pepper (roteia e audita, não executa) + Rael |
+| Observabilidade | Sentry + uptime fora da VPS + alerta n8n (a montar) |
+
+Não delegar para agentes que não existem. Papel sem executor = pendência para o Rael.
+
+---
+
+## 8. Ao terminar qualquer trabalho
+
+1. Rodar `verificar-totum`.
+2. Conferir o critério de pronto da situação (seção 4).
+3. Registrar na task do Totum System: tamanho (P/M/G), gates rodados, link do PR, tempos.
+4. Se uma decisão nova foi tomada: virar D-0XX no ADR e atualizar o POP no mesmo commit.
+
+---
+
+## Mudanças da v1.0 para a v1.1 (2026-11-06)
+
+- Nome Forja; decisões do Rael da seção 0.
+- Gate por tamanho (P/M/G) ligado ao classificador da `dev-totum`, no lugar do pipeline único (canário 5%, blue-green, 80% global saíram).
+- No-fly zones explícitas.
+- Agentes fictícios (`totum-tech-lead`, `totum-tester` etc.) removidos; papéis reais na seção 7.
+- Referências com caminho errado e ferramentas sem uso comprovado (Linear, Elastic, Slack, Grafana, Kimi Claw) removidas.
+- Base: auditoria e plano estratégico de 2026-11-06 (46 documentos do Drive, validação independente com benchmarks públicos).
