@@ -1,7 +1,7 @@
 ---
 name: dev-totum
 description: >-
-  Pipeline de desenvolvimento com portão duplo e classificador de tamanho:
+  [ORQUESTRADORA] Pipeline de desenvolvimento com portão duplo e classificador de tamanho:
   dimensiona a cerimônia pelo raio de explosão, delega cada fase à skill certa,
   e trava em dois pontos (depois do plano, antes do commit). Use SEMPRE que for
   escrever código de verdade num repositório Totum: nova feature, corrigir bug,

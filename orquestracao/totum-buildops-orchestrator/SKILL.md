@@ -1,7 +1,7 @@
 ---
 name: totum-buildops-orchestrator
 description: >-
-  Forja (ex-BuildOps): regras de construção, adequação, correção, teste e
+  [ORQUESTRADORA] Forja (ex-BuildOps): regras de construção, adequação, correção, teste e
   manutenção de projetos digitais da Totum (LP, LP Express, site, sistema,
   automação n8n/Kommo). Diz qual POP-014 se aplica, qual gate de qualidade
   rodar pelo tamanho da mudança (P/M/G), o que é obrigatório por tipo de

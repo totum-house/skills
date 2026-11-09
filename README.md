@@ -7,12 +7,13 @@ Central única de skills do ecossistema Totum — compartilhada entre Claude Cod
 | Skill | Categoria | Descrição | Quando usar |
 |-------|-----------|-----------|-------------|
 | [agent-criator](totum/agent-criator/SKILL.md) | `totum` | Checklist completo para criar agentes Totum OS padronizados | Criar novo agente com identidade, memória, tools e validação |
-| [orquestracao-pepper-totum](totum/orquestracao-pepper-totum/SKILL.md) | `totum` | Roteia pedidos Totum entre Pepper, subagentes, especialistas e Rael (CEO operacional) | Roteamento, priorização, delegação contínua durante a execução |
-| [orquestrar-totum](totum/orquestrar-totum/SKILL.md) | `totum` | Kernel de sessão: analisa o prompt de entrada, mapeia skills e propõe plano de execução antes de agir | Início de sessão, prompts longos (150+ palavras) ou com 2+ intenções |
-| [auto-loop](totum/auto-loop/SKILL.md) | `totum` | Executor de loops autônomos do Totum OS (loop engineering) — dispara, verifica e encerra sozinho | Automatizar tarefa recorrente e verificável, sem julgamento humano a cada passo |
+| [orquestracao-pepper-totum](orquestracao/orquestracao-pepper-totum/SKILL.md) | `orquestracao` | Roteia pedidos Totum entre Pepper, subagentes, especialistas e Rael (CEO operacional) | Roteamento, priorização, delegação contínua durante a execução |
+| [orquestrar-totum](orquestracao/orquestrar-totum/SKILL.md) | `orquestracao` | Kernel de sessão: analisa o prompt de entrada, mapeia skills e propõe plano de execução antes de agir | Início de sessão, prompts longos (150+ palavras) ou com 2+ intenções |
+| [totum-atendimento](orquestracao/totum-atendimento/SKILL.md) | `orquestracao` | **[ORQUESTRADORA]** Scripts de atendimento, venda e pós-venda que o CLIENTE da Totum usa com o cliente final (paciente, aluno, candidato). Nichos: dermatologia, autoescola, odontologia, cursos e módulo geral. 17 situações, guardrails datados, automatizável x humano | "Script de atendimento", mensagem pro paciente/aluno, follow-up de orçamento, pós-venda, kit de atendimento do nicho. Vender a Totum para um lead fica com `totum-script-vendas` |
+| [totum-buildops-orchestrator](orquestracao/totum-buildops-orchestrator/SKILL.md) | `orquestracao` | **[ORQUESTRADORA]** Forja (ex-BuildOps): qual POP-014 abre, gate por tamanho (P/M/G), obrigatórios por tipo de projeto, no-fly zones e escalação, com as decisões vigentes do Rael | Começar ou retomar construção, adequação, correção, teste ou manutenção de projeto Totum; "pode subir?" |
+| [auto-loop](totum/auto-loop/SKILL.md) | `totum` | **[ORQUESTRADORA]** Executor de loops autônomos do Totum OS (loop engineering) — dispara, verifica e encerra sozinho | Automatizar tarefa recorrente e verificável, sem julgamento humano a cada passo |
 | [hermione](totum/hermione/SKILL.md) | `totum` | Agente de pesquisa e organização do conhecimento integrado ao Alexandria (Supabase) do Totum OS | Pesquisa profunda, catalogação e conexão de conhecimento dentro do ecossistema Totum |
 | [superchat-totum](totum/superchat-totum/SKILL.md) | `totum` | Gerenciador de ciclo de vida de contexto para chats Claude | Monitorar uso de contexto via `/context` no Claude Code, Cowork ou claude.ai |
-| [totum-buildops-orchestrator](totum/totum-buildops-orchestrator/SKILL.md) | `totum` | Forja (ex-BuildOps): qual POP-014 abre, gate por tamanho (P/M/G), obrigatórios por tipo de projeto, no-fly zones e escalação, com as decisões vigentes do Rael | Começar ou retomar construção, adequação, correção, teste ou manutenção de projeto Totum; "pode subir?" |
 | [totum-system-taby-sync](totum/totum-system-taby-sync/SKILL.md) | `totum` | Sincroniza tarefas do Totum System para o Taby (sentido único) e resume prioridades | Revisão de tarefas do Rael, o que tenho pra hoje |
 | [totum-lp-copy](totum/totum-lp-copy/SKILL.md) | `totum` | Copy de landing page humanizada e de alta conversão para o mercado BR (PAS/AIDA/StoryBrand + anti-IA) | Copy de LP, headline/subheadline, reescrever ou auditar página de vendas |
 | [feed-perfeito](totum/feed-perfeito/SKILL.md) | `totum` | Gera o briefing completo de feed de Instagram para agência nichada (onboarding, posts de "enche linguiça", depoimentos fixados, caixinhas de pergunta, checklist) | Criar feed, montar Instagram, briefing de conteúdo/social media para cliente de agência |
@@ -92,9 +93,22 @@ Central única de skills do ecossistema Totum — compartilhada entre Claude Cod
 | [social-media/\*](social-media/) | `social-media` | 17 skills de social media (charlie947) — post-writer, reels-scripting, voice-builder, hook-generator e mais | Ver lista completa em `social-media/` — workspace da Tigrinha |
 | [totum-auditoria-instagram](conteudo/totum-auditoria-instagram/SKILL.md) | `conteudo` | Auditoria de perfil existente, tabela reaproveitar/adaptar/arquivar e plano com 3 fixados | Cliente já tem Instagram e precisa de diagnóstico do grid antes das artes |
 
+## Orquestradoras
+
+Toda skill que coordena outras tem `[ORQUESTRADORA]` no início da descrição. As puras moram em `orquestracao/`. Estas orquestram mas ficam na pasta do próprio domínio, para não quebrar o fluxo delas:
+
+| Skill | Pasta | O que orquestra |
+|---|---|---|
+| dev-totum | `decisao/` | Pipeline de dev com portão duplo, delega cada fase à skill certa |
+| totum-blueprint | `frontend/` | Projeto visual, da referência bruta ao prompt do builder |
+| auto-loop | `totum/` | Ciclo de vida de loops autônomos (descoberta delegada à orquestrar-totum) |
+
+Os nomes das skills não mudaram, então os gatilhos continuam os mesmos.
+
 ## Categorias
 
 ```
+orquestracao/   TODAS as skills que orquestram outras (marcadas [ORQUESTRADORA] na descrição): orquestrar-totum, orquestracao-pepper-totum, totum-buildops-orchestrator, totum-atendimento
 totum/          Skills específicas do ecossistema Totum OS, seus agentes e produção de marketing autoral da Totum
 decisao/        Frameworks de decisão, revisão de código e raciocínio estruturado
 analytics/      Análise de dados, finanças e planilhas
