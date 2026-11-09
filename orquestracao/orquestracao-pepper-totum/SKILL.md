@@ -1,6 +1,6 @@
 ---
 name: "orquestracao-pepper-totum"
-description: "Roteia pedidos Totum entre Pepper, subagentes, skills, especialistas e Rael."
+description: "[ORQUESTRADORA] Roteia pedidos Totum entre Pepper, subagentes, skills, especialistas e Rael."
 ---
 
 # Orquestração Pepper Totum

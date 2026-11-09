@@ -12,8 +12,8 @@
         {
             "name": "totum-skills",
             "source": "./",
-            "description": "Núcleo Totum: identidade, orquestração, superchat (com hook que mede mensagens e tokens reais), dev com portão duplo, verificação, decisão, documentos.",
-            "version": "1.3.1",
+            "description": "Núcleo Totum: identidade, orquestração (categoria orquestracao, inclui totum-atendimento), superchat (com hook que mede mensagens e tokens reais), dev com portão duplo, verificação, decisão, documentos.",
+            "version": "1.4.0",
             "author": {
                 "name": "Grupo Totum",
                 "email": "totumpersonalizados@gmail.com"
@@ -21,6 +21,7 @@
             "strict": false,
             "skills": [
                 "./totum",
+                "./orquestracao",
                 "./decisao",
                 "./documentos"
             ],
