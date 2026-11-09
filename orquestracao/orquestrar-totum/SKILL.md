@@ -1,7 +1,7 @@
 ---
 name: orquestrar-totum
 description: >
-  Kernel de orquestração do Totum OS. Ativa-se quando o usuário usa explicitamente
+  [ORQUESTRADORA] Kernel de orquestração do Totum OS. Ativa-se quando o usuário usa explicitamente
   "orquestrar-totum", "orquestra-totum", "@totum", "totum init", "totum start" ou "boot totum".
   Não disparar por menção isolada de "orquestrar" ou "organizar" sem outro sinal de complexidade
   junto. TAMBÉM dispara automaticamente quando o prompt tiver 150+ palavras, OU contiver 2+

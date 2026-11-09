@@ -1,6 +1,6 @@
 ---
 name: totum-buildops-orchestrator
-description: "Orchestrates BuildOps: POPs, ADRs, SLAs, Gates, agents."
+description: "[ORQUESTRADORA] Orchestrates BuildOps: POPs, ADRs, SLAs, Gates, agents."
 version: 1.0.0
 author: Hermes Agent (Bulma)
 license: MIT
@@ -242,8 +242,8 @@ Hermes (totum-buildops-orchestrator):
 
 - totum-house/skills/totum/ - POP-014 A-E, principios, decisoes, glossario
 - totum-house/skills/totum/hermione - Pesquisa profunda
-- totum-house/skills/totum/orquestrar-totum - Kernel de sessao
-- totum-house/skills/totum/orquestracao-pepper-totum - Roteamento agentes
+- totum-house/skills/orquestracao/orquestrar-totum - Kernel de sessao
+- totum-house/skills/orquestracao/orquestracao-pepper-totum - Roteamento agentes
 - totum-house/skills/totum/totum-blueprint - Visual reference -> builder prompt
 - totum-house/skills/totum/totum-design-system - Dark-first, tokens, Geomanist
 - totum-house/skills/totum/totum-lp-copy - Copy humanizada BR

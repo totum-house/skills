@@ -1,6 +1,7 @@
 ---
 name: auto-loop
-description: Executor de loops autônomos do Totum OS (loop engineering). Use SEMPRE que o usuário quiser montar, rodar ou versionar um loop autônomo — "auto-loop", "montar um loop", "loop autônomo", "automatizar tarefa recorrente", "loop engineering", "self-guided", "o agente se dispara sozinho", ou quando pedir para transformar uma rotina recorrente e verificável em execução automática. NÃO usar para pedido único, tarefa que exige julgamento humano a cada passo, ou quando não há critério objetivo de sucesso — nesses casos use orquestrar-totum ou execução manual. Esta skill é dona só do CICLO DE VIDA do loop; a descoberta de skills é delegada à orquestrar-totum.
+description: >-
+  [ORQUESTRADORA] Executor de loops autônomos do Totum OS (loop engineering). Use SEMPRE que o usuário quiser montar, rodar ou versionar um loop autônomo — "auto-loop", "montar um loop", "loop autônomo", "automatizar tarefa recorrente", "loop engineering", "self-guided", "o agente se dispara sozinho", ou quando pedir para transformar uma rotina recorrente e verificável em execução automática. NÃO usar para pedido único, tarefa que exige julgamento humano a cada passo, ou quando não há critério objetivo de sucesso — nesses casos use orquestrar-totum ou execução manual. Esta skill é dona só do CICLO DE VIDA do loop; a descoberta de skills é delegada à orquestrar-totum.
 ---
 
 # auto-loop — Executor de Loops Autônomos

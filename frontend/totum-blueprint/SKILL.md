@@ -1,7 +1,7 @@
 ---
 name: totum-blueprint
 description: >
-  Coordenador de projeto visual da Totum. Conduz o usuário passo a passo, do material bruto
+  [ORQUESTRADORA] Coordenador de projeto visual da Totum. Conduz o usuário passo a passo, do material bruto
   até o prompt pronto para o builder, transformando referência visual em especificação
   estruturada e auditável: tokens DTCG, árvore de componentes, direção de arte, plano
   responsivo, cut list de recorte para Photoshop, prompts por bloco e gate de validação.
