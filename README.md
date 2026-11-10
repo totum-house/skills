@@ -92,6 +92,7 @@ Central única de skills do ecossistema Totum — compartilhada entre Claude Cod
 | [marketing/\*](marketing/) | `marketing` | 50 skills de marketing e copywriting (coreyhaines31) — copy, SEO, ads, email, lead magnets, pricing, CRO e mais | Ver lista completa em `marketing/` — workspace da Tigrinha |
 | [social-media/\*](social-media/) | `social-media` | 17 skills de social media (charlie947) — post-writer, reels-scripting, voice-builder, hook-generator e mais | Ver lista completa em `social-media/` — workspace da Tigrinha |
 | [totum-auditoria-instagram](conteudo/totum-auditoria-instagram/SKILL.md) | `conteudo` | Auditoria de perfil existente, tabela reaproveitar/adaptar/arquivar e plano com 3 fixados | Cliente já tem Instagram e precisa de diagnóstico do grid antes das artes |
+| [protocolos](protocolos/README.md) | `protocolos` | Padrões operacionais da casa. Ads v1.2 aprovado; pastas de cliente em rascunho pendente de aprovação; design system como modelo de referência; conteúdo reservado | Consultar antes de anúncio, pasta de cliente ou montagem de design system |
 
 ## Orquestradoras
 
@@ -126,6 +127,7 @@ brand/          Identidade visual canônica da Totum — tokens, glassmorphism, 
 video/          Vídeo com IA: plano de edição, vídeo longo, mini-novela
 marketing/      50 skills de marketing e copywriting (fonte: coreyhaines31/marketingskills) — uso primário: Tigrinha
 social-media/   17 skills de social media content (fonte: charlie947/social-media-skills) — uso primário: Tigrinha
+protocolos/     Padrões operacionais da casa (ads, pastas de cliente, design system, conteúdo). Documentos, não skills instaláveis
 ```
 
 ## Como usar
@@ -266,3 +268,8 @@ Mantido pelo time Totum BuildOps. Dúvidas: [grupototum.com](https://grupototum.
 - Entrou `scripts/link-agents.sh` para ligar OpenCode, Hermes e Codex ao repo por link simbólico.
 - Cópias antigas no Hermes (`totum-revisao-totum`, `totum-karpathy-guidelines`, `totum-prompt-master`, `totum-hermione`, `totum-faxina-geral`, `totum-uiux-auditor` e demais `totum-<skill>`) foram para a quarentena: eram resumos de 7/08 das versões do repo.
 - O Claude Code do Mac passou a usar o marketplace `totum-house` apontando para o clone local, no lugar do plugin antigo `totum-skills@totum` v0.1.0.
+
+## 2026-11-10
+
+- Entrou `protocolos/` com o índice e quatro protocolos: Ads 1.2 (aprovado), pastas de cliente 0.1 (rascunho pendente de aprovação), design system (modelo de referência) e conteúdo (reservado).
+- `manual-da-marca` e `totum-kit-producao` passam a apontar a entrega no Drive para `1- Design System`.

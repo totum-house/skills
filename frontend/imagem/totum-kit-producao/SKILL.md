@@ -45,7 +45,7 @@ Esta skill **fecha** o kit de produção no padrão vivo.
   - `logo/` (SVG/PNG oficiais; LEIA-ME se houver variantes)
   - `referencias/` (aprovados vs candidatos, com LEIA-ME)
   - `personagens/` (se houver)
-- Drive: pasta `Kit de producao` dentro da lógica do cliente (em geral sob 1- Logo / Entrega de marca, ou na raiz se o Rael indicar). Arquivos com prefixo de data `AAAA-MM-DD-`.
+- Drive: pasta `Kit de producao` dentro de `1- Design System` (ver `protocolos/pastas-de-cliente.md`). Arquivos com prefixo de data `AAAA-MM-DD-`.
 
 ## Checklist de fechamento
 
@@ -89,7 +89,7 @@ Códigos de cliente só entram depois do OK do Rael; até lá ficam como sugest�
 - LEIA-ME em cada pasta dizendo origem e status.
 
 ### 5. Espelho no Drive
-Subir `brand.md`, `receitas.md` e guias (referência/logo) na pasta `Kit de producao` do cliente, só adicionando, com prefixo de data. Devolver os links.
+Subir `brand.md`, `receitas.md` e guias (referência/logo) na pasta `1- Design System/Kit de producao`, só adicionando, com prefixo de data. Devolver o caminho da pasta.
 
 ### 6. Conferência final
 Mostrar ao Rael:
