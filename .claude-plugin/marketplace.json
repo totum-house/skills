@@ -43,7 +43,7 @@
             "name": "totum-frontend",
             "source": "./",
             "description": "Frontend e design Totum: análise de front, blueprint, design system, estilos de UI, imagem para código, prévia de hero, kit de produção e go-live.",
-            "version": "1.2.1",
+            "version": "1.2.2",
             "author": {
                 "name": "Grupo Totum",
                 "email": "totumpersonalizados@gmail.com"
