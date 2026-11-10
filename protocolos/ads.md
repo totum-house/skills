@@ -44,9 +44,14 @@ O card filho herda da peça mãe o cliente, a copy e a receita. O eixo que mudou
 
 ## Onde gerar
 
-A geração é no ChatGPT Imagens, na sessão já aberta no navegador do agente. Há um chat de Ads por cliente.
+A geração é no ChatGPT Imagens, na sessão já aberta no navegador do agente. Cada cliente tem um chat por tipo de peça.
 
-1. **Um chat por cliente**, com o nome `<Cliente> Ads -<N>`. Exemplo: `<Cliente> Ads -1`. Se a conta tiver Projetos, crie o projeto `<Cliente> Ads` e coloque o design system nas instruções do projeto, para o chat novo já nascer com a marca.
+1. **Um chat por tipo de peça.** O nome segue `<Cliente> <Tipo> -<N>`, em que N é o número do chat. Use o nome do cliente exatamente como está no banco Clientes. Cada chat cobre um tipo só. Os tipos são:
+   - `Ads`, anúncio pago. Exemplo: `<Cliente> Ads -1`.
+   - `Posts`, post orgânico. Exemplo: `Cliente Exemplo Posts -1`.
+   - `Carrossel`, carrossel. Exemplo: `Cliente Exemplo Carrossel -1`.
+   - `KV <Campanha>`, key visual de uma campanha. Exemplo: `Cliente Exemplo KV Black Friday -1`.
+   Se a conta tiver Projetos, crie o projeto `<Cliente>`, coloque o design system nas instruções do projeto e mantenha os chats de cada tipo dentro dele.
 2. **Abertura do chat.** A primeira mensagem leva o design system completo: `kit-chatgpt.md` e `brand.md`, com paleta em HEX, fontes, regras de logo, tom de voz e proibições. Anexe o PNG oficial do logo só como referência de área, com a instrução de nunca o redesenhar. Peça uma confirmação das regras em uma linha antes do primeiro prompt de peça.
 3. **Mensagens seguintes.** Cada mensagem leva só o prompt montado com a receita de visual codes e as referências do pedido. O design system não volta a cada peça.
 4. **Quando abrir o chat `-<N+1>`.** Abra o próximo quando acontecer o primeiro destes casos: o chat erra cor, fonte, texto ou acentuação duas vezes seguidas; o chat ignora uma regra do design system; o chat passa de cerca de 20 peças geradas. O chat novo recomeça pela abertura do passo 2 e inclui um resumo curto das receitas aprovadas até ali. O chat antigo permanece como histórico.
