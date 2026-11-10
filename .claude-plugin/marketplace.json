@@ -13,7 +13,7 @@
             "name": "totum-skills",
             "source": "./",
             "description": "Núcleo Totum: identidade, orquestração (categoria orquestracao, inclui totum-atendimento), superchat (com hook que mede mensagens e tokens reais), dev com portão duplo, verificação, decisão, documentos.",
-            "version": "1.4.1",
+            "version": "1.4.2",
             "author": {
                 "name": "Grupo Totum",
                 "email": "totumpersonalizados@gmail.com"
@@ -43,7 +43,7 @@
             "name": "totum-frontend",
             "source": "./",
             "description": "Frontend e design Totum: análise de front, blueprint, design system, estilos de UI, imagem para código, prévia de hero, kit de produção e go-live.",
-            "version": "1.2.0",
+            "version": "1.2.1",
             "author": {
                 "name": "Grupo Totum",
                 "email": "totumpersonalizados@gmail.com"
