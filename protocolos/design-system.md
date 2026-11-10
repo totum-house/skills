@@ -256,7 +256,7 @@ Acione `totum-kit-producao` para fechar o kit. Espelhe o resultado nesta pasta, 
 
 **brand.md** cabe numa leitura só: identidade; paleta com HEX e hierarquia (RGB, CMYK e Pantone se a entrega tiver); tipografia; logo e usos; linguagem visual; tom de voz e proibidos de copy; códigos visuais do cliente (só entram na biblioteca com aprovação); seção Nunca; A decidir; hierarquia de fontes do material; aprovador; histórico. Separe o que é confirmado, o que é proposta da equipe e o que está a confirmar. Antes de sobrescrever um `brand.md` vigente, guarde cópia em `_legado/` ou backup datado.
 
-**receitas.md:** 2 a 4 receitas-base (feed 4:5, carrossel, story 9:16, anúncio) no formato de `totum-visual-codes`, teto de 7 códigos, sempre com `/brand_lock` e `/logo_safezone` quando a peça leva logo. Cada uma traz RECEITA, POR QUE, cores e logo, e o que evitar. Diário curto de peças, se houver histórico. O protocolo de Ads pede também a seção "Chats ChatGPT".
+**receitas.md:** 2 a 4 receitas-base (feed 4:5, carrossel, story 9:16, anúncio) no formato de `totum-visual-codes`, teto de 7 códigos, sempre com `/brand_lock` e `/logo_safezone` quando a peça leva logo. Cada uma traz RECEITA, POR QUE, cores e logo, e o que evitar. Diário curto de peças, se houver histórico. O protocolo de peças estáticas pede também a seção "Chats ChatGPT".
 
 **referencias:** `aprovados/` é o que já vale para produzir; `candidatos/` aguarda aprovação. O LEIA-ME data, origem e status. As duas pastas não se misturam. Referência de terceiro vale por composição, luz e clima, nunca por paleta, logo ou texto.
 

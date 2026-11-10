@@ -92,7 +92,7 @@ Central única de skills do ecossistema Totum — compartilhada entre Claude Cod
 | [marketing/\*](marketing/) | `marketing` | 50 skills de marketing e copywriting (coreyhaines31) — copy, SEO, ads, email, lead magnets, pricing, CRO e mais | Ver lista completa em `marketing/` — workspace da Tigrinha |
 | [social-media/\*](social-media/) | `social-media` | 17 skills de social media (charlie947) — post-writer, reels-scripting, voice-builder, hook-generator e mais | Ver lista completa em `social-media/` — workspace da Tigrinha |
 | [totum-auditoria-instagram](conteudo/totum-auditoria-instagram/SKILL.md) | `conteudo` | Auditoria de perfil existente, tabela reaproveitar/adaptar/arquivar e plano com 3 fixados | Cliente já tem Instagram e precisa de diagnóstico do grid antes das artes |
-| [protocolos](protocolos/README.md) | `protocolos` | Padrões operacionais da casa. Ads v1.2 aprovado; pastas de cliente em rascunho pendente de aprovação; design system como modelo de referência; conteúdo reservado | Consultar antes de anúncio, pasta de cliente ou montagem de design system |
+| [protocolos](protocolos/README.md) | `protocolos` | Padrões operacionais da casa. Peças estáticas v1.3 aprovado (Ads é atalho); pastas de cliente em rascunho pendente de aprovação; design system como modelo de referência; conteúdo reservado | Consultar antes de peça estática, pasta de cliente ou montagem de design system |
 
 ## Orquestradoras
 
@@ -272,4 +272,5 @@ Mantido pelo time Totum BuildOps. Dúvidas: [grupototum.com](https://grupototum.
 ## 2026-11-10
 
 - Entrou `protocolos/` com o índice e quatro protocolos: Ads 1.2 (aprovado), pastas de cliente 0.1 (rascunho pendente de aprovação), design system (modelo de referência) e conteúdo (reservado).
+- O protocolo de Ads passou a se chamar Peças estáticas v1.3. `protocolos/ads.md` aponta para `protocolos/pecas-estaticas.md`.
 - `manual-da-marca` e `totum-kit-producao` passam a apontar a entrega no Drive para `1- Design System`.

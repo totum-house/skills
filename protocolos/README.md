@@ -6,7 +6,8 @@ O índice de skills continua no [README da raiz](../README.md).
 
 | Protocolo | Versão | Status | Descrição |
 |---|---|---|---|
-| [Ads](ads.md) | 1.2 | aprovado | Fluxo de anúncio, do briefing à aprovação peça por peça, com um chat de geração por cliente. |
+| [Peças estáticas](pecas-estaticas.md) | 1.3 | aprovado | Fluxo único para Ads, Posts, Carrossel e KV, com chat por tipo de peça. |
+| [Ads](ads.md) | alias de 1.3 | aprovado | Atalho para Peças estáticas. O protocolo deixou de ser só de anúncio. |
 | [Pastas de cliente](pastas-de-cliente.md) | 0.1 | rascunho pendente de aprovação | Árvore padrão da pasta de clientes ativos, temporários e inativos. |
 | [Design system](design-system.md) | referência | modelo de referência | Como preencher `1- Design System` de um cliente. |
 | [Conteúdo](conteudo.md) | a definir | reservado (em revisão) | Lugar reservado. O fluxo de conteúdo será definido depois. |
