@@ -57,7 +57,7 @@ entrega-marca/
 └── fonte/                 scripts de build e QA (não sobem no Drive)
 ```
 
-No Drive do cliente, sobe numa pasta datada do tipo `Entrega de marca AAAA-MM-DD`, dentro da pasta que o Rael indicar (em geral sob `1-Logo` ou equivalente). Scripts de `fonte/` ficam de fora.
+No Drive do cliente, a entrega sobe em `1- Design System`, na árvore de `protocolos/pastas-de-cliente.md` e `protocolos/design-system.md`. Scripts de `fonte/` ficam de fora.
 
 ## Fluxo (ordem cronológica)
 
@@ -147,7 +147,7 @@ Preencha `08-pendencias.md` com:
 - decisões do Rael (versões restritas, Pantone, tamanhos mínimos);
 - peças antigas que ainda usam PNG/fonte errados e ficam para depois.
 
-Mostre o pacote completo. Depois do OK, suba só os arquivos de entrega (sem `fonte/`) na pasta datada do Drive. Confira a contagem local × Drive. Avise em uma linha o que ficou pronto e o que ficou pendente.
+Mostre o pacote completo. Depois do OK, suba só os arquivos de entrega (sem `fonte/`) nas pastas correspondentes de `1- Design System`. Confira a contagem local × Drive. Avise em uma linha o que ficou pronto e o que ficou pendente.
 
 ## Checklist rápido de aceite
 
