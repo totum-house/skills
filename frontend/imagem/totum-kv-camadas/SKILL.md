@@ -52,15 +52,15 @@ Não use para: peça rápida achatada (`totum-design-peca`), entrega de identida
 Siga `totum-imagem-para-psd`, passos 4 a 6, a partir da base limpa (não há texto para remover):
 - recorte `pessoa` com rembg;
 - formas (balões, placa da headline, pílula do CTA) desenhadas no script com a cor do kit;
-- texto vivo via `photocraft-cli` `type.create`, com runs para a palavra em destaque;
+- texto vivo e visível, no PostScript com peso, como manda a regra de `totum-imagem-para-psd` (`styleRuns`, texto de caixa, gravação no `ag-psd` com `invalidateTextLayers: true`);
 - grupos `balao-N`, `headline`, `cta`.
 
 Camadas padrão: `fundo`, `grafismo`, `pessoa`, `detalhes`, `balao-N` (forma + texto), `headline`, `subtitulo`/`apoio-*`, `cta`, `logo`.
 
 Para carrossel e post em lote, use um template por tipo (`post`, `carrossel`, `slide`, `reels`, `quadro`) no mesmo script, como o gerador CredPara: margem, área segura e posição do logo fixas por template.
 
-### 4. QA PhotoCraft
-1. `photocraft-cli info` em cada PSD: camadas nomeadas, texto como camada de tipo.
+### 4. QA
+1. `readPsd` (`ag-psd`) e `photocraft-cli info` em cada PSD: camadas nomeadas, texto como camada de tipo visível, fonte PostScript com peso.
 2. PNG convertido do próprio PSD e `contato.png` por pasta.
 3. Checagens: texto dentro da área segura (grid 3:4 corta cerca de 34 px de cada lado do 4:5), grafismo sem encostar em texto nem na área de proteção do logo, lima ou cor de destaque só sobre o fundo que o kit permite, teste de miniatura (100 px) para ver se o título lê no grid.
 4. Tabela SIM/NÃO no README da pasta.
@@ -73,8 +73,8 @@ Para carrossel e post em lote, use um template por tipo (`post`, `carrossel`, `s
 ## Critério de pronto
 
 - [ ] Base sem texto e sem logo, com pessoa real (ou composição pura quando a marca exigir)
-- [ ] Um PSD por peça ou slide, abrindo no PhotoCraft, camadas com nome de conteúdo
-- [ ] Todo texto vivo na fonte do kit; logo do arquivo oficial
+- [ ] Um PSD por peça ou slide, abrindo no Photoshop e no PhotoCraft, camadas com nome de conteúdo
+- [ ] Todo texto em camada de tipo visível, no PostScript do kit; logo do arquivo oficial
 - [ ] PNG gerado do PSD, folha de contato, QA SIM/NÃO
 - [ ] Copy igual à congelada; copy não aprovada marcada como `(copy sugerida)`
 - [ ] Nada publicado nem enviado ao cliente sem OK do Rael
