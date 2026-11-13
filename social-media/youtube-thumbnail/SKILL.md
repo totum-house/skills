@@ -1,10 +1,12 @@
 ---
 name: youtube-thumbnail
 description: >
-  Generate a branded YouTube thumbnail from a video title. Uses a reference photo of the creator, high-CTR thumbnail principles, and brand colours to produce a ready-to-generate image prompt for Gemini. Use this skill whenever the user says "thumbnail", "youtube thumbnail", "build me a thumbnail", or wants a video cover image before writing the script. The thumbnail-first workflow mirrors the graphic-first approach for LinkedIn: sells the video before anyone hears a word of the script.
+  Generate a branded YouTube thumbnail from a video title. Uses a reference photo of the creator and a short prompt for ChatGPT Images with thinking, with the hook copied literally. Use this skill whenever the user says "thumbnail", "youtube thumbnail", "build me a thumbnail", or wants a video cover image before writing the script. The thumbnail-first workflow mirrors the graphic-first approach for LinkedIn: sells the video before anyone hears a word of the script.
 ---
 
 # YouTube Thumbnail
+
+v1.1, 12/11/2026. Changelog: a capa com texto monta no ChatGPT Images with thinking. A foto do criador entra como anexo, não como peça montada no Nano Banana.
 
 ## CRITICAL: Auto-start on load
 
@@ -80,41 +82,28 @@ Then ask:
 
 > Here's the brief. Say "generate" to output the image prompt or tell me what to change.
 
-## Step 4. Output the Gemini prompt
+## Step 4. Output the prompt
 
-Once approved, output the image generation prompt in a code block:
+Posição de rosto, hex e placement do briefing não entram no prompt. A referência cobre. A frase entra literal.
 
-```
-Using the attached reference photo of me, generate a YouTube thumbnail at 1280 x 720 pixels (16:9).
+Motor: ChatGPT, Images with thinking (GPT-6, ChatGPT Images 2.6). A capa tem texto, então não use Grok nem Nano Banana para montá-la. A foto do criador é anexo. GPT-6 Astra (no chat, GPT-6 Pro) só depois de duas falhas. Uma mensagem Pro custa cerca de 5x (50 contra 10 créditos no Business) e a geração drena a cota de 3 a 5 vezes mais rápido. Logo oficial, se houver, é o arquivo anexado. Se distorcer, aplique no PSD. Sem chamada, escreva `sem CTA`.
 
-Composition:
-- Place me [left / right / centre] filling [30-50]% of the frame
-- My expression: [tone details — e.g., shocked with wide eyes and open mouth]
-- My gaze: [direction — e.g., looking directly at camera / looking off-frame toward the text]
-
-Text:
-- Display "[hook phrase]" in large bold sans-serif typography
-- Text colour: [hex]
-- Text outline: [colour, thickness for readability]
-- Text placement: [specific area]
-
-Colour palette:
-- Primary: [hex]
-- Accent: [hex]
-- Background: [hex] — [describe treatment: flat, gradient, blurred scene, etc.]
-
-Supporting element: [specific description of the supporting visual]
-
-Constraints:
-- Face must be clear and sharp
-- Text must be readable at 320px wide (YouTube mobile size)
-- No watermarks, no YouTube UI elements, no bottom-right corner text
-- High contrast between face, text, and background
+```text
+Objetivo: <o que a capa precisa fazer a pessoa sentir ou fazer>
+Design system da <Marca>: <link do design system da marca>
+Referência anexada. Faça de acordo com a referência.
+<opcional: uma linha da expressão ou da ideia de foto>
+Texto dos slides: <S1: "[hook phrase]"> sem CTA
+Visual Codes:
+/<emoção>: uma linha
+/literal_copy: o texto aparece exatamente como foi escrito, com acentos e pontuação.
+/brand_lock: só as cores e a tipografia da marca.
+<"/logo_safezone" só se o logo NÃO estiver anexado; se estiver, a linha "Use o logo e os grafismos anexados.">
+Negativos: texto inventado ou ilegível, CTA inventado, logo gerado pela IA, interface do YouTube, marca d'água
+<ajuste manual: manter o rosto da foto anexada>
 ```
 
-Tell the user:
-
-> Paste this into a new Gemini chat, attach your reference photo, enable Create Image, and select Nano Banana. Generate at 1280x720.
+Diga para colar no ChatGPT, Images with thinking, com a foto e a referência na mesma mensagem. A capa volta ao chat para aprovação antes do PSD ou de fechar o arquivo. O bloco Visual Codes continua obrigatório, com 3 a 4 códigos, sem código de layout.
 
 ## Step 5. Offer the next move
 

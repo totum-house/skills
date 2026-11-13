@@ -8,6 +8,8 @@ description: >-
 ---
 # Vídeo longo por cenas (Flow + Pavo + montagem)
 
+v1.1, 12/11/2026. Changelog: Nano Banana continua na foto sem texto (model sheet e cena). Peça com texto, CTA ou logo não se monta aqui.
+
 O vídeo longo não sai pronto de uma ferramenta. É uma linha de montagem: roteiro em microcenas, uma imagem consistente por cena, um clipe curto animado por imagem e montagem em sequência. A duração final = número de cenas x duração do clipe (4s no Pavo). Referências: `/workspace/totum-studio/engine/referencias-rael/pavo-video-longo/` (analise.md, prompts.md, transcricao.txt) e `/workspace/totum-studio/referencias/tiktok-edicao-video/RESUMO.md` (técnicas da coleção "Edição Vídeo", origem das regras marcadas abaixo).
 
 ## 0. Antes de começar
@@ -40,6 +42,9 @@ Gere (você mesmo ou com um prompt mestre no estilo do prompt 154) as seguintes 
 9. Passe pelo Juiz Interno e pela aprovação humana antes de gastar créditos.
 
 ## 2. Imagens no Google Flow
+
+Foto de personagem ou cena, sem texto: Nano Banana (ou Grok Imagens). Não monte aqui post, capa com frase, CTA ou logo. Essa peça vai para `totum-design-peca`, no ChatGPT Images with thinking, com o arquivo oficial do logo anexado. Se o motor distorcer o logo, aplique no PSD.
+
 1. Crie um projeto novo. Gere as folhas de referência com o **agente desligado**, no formato do projeto, com o modelo Nano Banana e 1 saída:
    - **Model sheet do personagem em 3 painéis** sobre fundo cinza neutro: close do rosto, corpo inteiro de frente e corpo inteiro de costas. Nada de muitas poses nem fundo branco. Recorte também o close sozinho como `refs/<personagem>_rosto.png`.
    - **Folha do cenário** com 2 ou 3 ângulos do mesmo lugar (aberto, contraplano e detalhe), com a mesma luz.

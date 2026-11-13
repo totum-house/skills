@@ -2,6 +2,7 @@
 
 **Versão:** referência
 **Status:** modelo de referência
+**Nota 12/11/2026:** receitas em 3 a 4 códigos. O `kit-chatgpt.md` guarda link, negativos e a regra do logo. O prompt de cada peça é o molde curto de `totum-design-peca`, sem mapa de layout.
 
 Descreve como preencher a pasta `1- Design System` de um cliente. A árvore do cliente, inclusive o que fica fora do template, está em [pastas-de-cliente.md](pastas-de-cliente.md). A reorganização em massa e a raiz seguem aquele protocolo, que ainda é rascunho pendente de aprovação.
 
@@ -256,7 +257,7 @@ Acione `totum-kit-producao` para fechar o kit. Espelhe o resultado nesta pasta, 
 
 **brand.md** cabe numa leitura só: identidade; paleta com HEX e hierarquia (RGB, CMYK e Pantone se a entrega tiver); tipografia; logo e usos; linguagem visual; tom de voz e proibidos de copy; códigos visuais do cliente (só entram na biblioteca com aprovação); seção Nunca; A decidir; hierarquia de fontes do material; aprovador; histórico. Separe o que é confirmado, o que é proposta da equipe e o que está a confirmar. Antes de sobrescrever um `brand.md` vigente, guarde cópia em `_legado/` ou backup datado.
 
-**receitas.md:** 2 a 4 receitas-base (feed 4:5, carrossel, story 9:16, anúncio) no formato de `totum-visual-codes`, teto de 7 códigos, sempre com `/brand_lock` e `/logo_safezone` quando a peça leva logo. Cada uma traz RECEITA, POR QUE, cores e logo, e o que evitar. Diário curto de peças, se houver histórico. O protocolo de peças estáticas pede também a seção "Chats ChatGPT".
+**receitas.md:** 2 a 4 receitas-base (feed 4:5, carrossel, story 9:16, anúncio) no formato enxuto de `totum-visual-codes`: emoção, `/literal_copy`, `/brand_lock` e `/logo_safezone` só sem o arquivo do logo. Sem código de layout. Cada uma traz RECEITA, POR QUE e o que evitar. Diário curto de peças, se houver histórico. O protocolo de peças estáticas pede também a seção "Chats ChatGPT".
 
 **referencias:** `aprovados/` é o que já vale para produzir; `candidatos/` aguarda aprovação. O LEIA-ME data, origem e status. As duas pastas não se misturam. Referência de terceiro vale por composição, luz e clima, nunca por paleta, logo ou texto.
 
@@ -267,11 +268,11 @@ Acione `totum-kit-producao` para fechar o kit. Espelhe o resultado nesta pasta, 
 3. Cores: só as oficiais, HEX exato, regras de contraste.
 4. Tipografia: famílias, pesos, papéis.
 5. Grafismo, se houver, com limite de uso.
-6. Logotipo: nunca desenhar, imitar ou digitar o logo. Sem anexo, reserve área lisa. Com anexo, não altere cor, proporção nem espaçamento.
-7. Fotografia: o que pode e o que evitar. Sem inventar pessoa, loja ou ambiente que não existam.
-8. Composição: foco, hierarquia, posição do logo.
-9. Formatos: feed 4:5 (1080×1350), 1:1 se precisar, story 9:16 (zona segura), anúncio.
-10. Como trabalhar: antes de gerar, conceito, copy, legenda, composição com HEX e logo. Só gerar depois do ok, salvo pedido explícito de gerar direto. Nunca inventar dado de contato.
+6. Logotipo: nunca desenhar, imitar ou digitar o logo. Anexe o arquivo oficial. Sem anexo, `/logo_safezone`. Se o motor distorcer, aplique o arquivo no PSD.
+7. Fotografia: o que pode e o que evitar. Sem inventar pessoa, loja ou ambiente que não existam. Foto sem texto fica no Grok Imagens ou no Nano Banana.
+8. A peça monta no ChatGPT, Images with thinking. O prompt de cada peça não dita layout: a referência cobre. Cor e tipo ficam em `/brand_lock`.
+9. Formatos: feed 4:5 (1080×1350), 1:1 se precisar, story 9:16 (zona segura), anúncio. O formato não vira aula de layout no prompt.
+10. Como trabalhar: copy literal fechada antes de gerar. Sem CTA, escreva `sem CTA`. Lista fechada, itens exatos. Cada peça volta ao chat para aprovação antes do PSD ou dos slides finais. Nunca inventar dado de contato.
 11. Checklist de entrega.
 
 ## 6. Checklist de qualidade

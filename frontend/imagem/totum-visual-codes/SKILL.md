@@ -8,7 +8,7 @@ description: >-
 ---
 # Totum Visual Codes
 
-v0.3, 23/10/2026. Biblioteca completa (40 códigos, conflitos, negativos universais, códigos de cliente): `visual-codes.md` (nesta pasta). Leia a seção do código antes de expandir.
+v0.4, 12/11/2026. Changelog: a receita colada no prompt fica em 3 a 4 códigos; os estruturais saem porque a referência cobre layout. Biblioteca completa (40 códigos, conflitos, negativos universais, códigos de cliente): `visual-codes.md` (nesta pasta). Leia a seção do código antes de expandir.
 
 ## Fonte das regras do cliente
 
@@ -24,25 +24,21 @@ Não pergunte o que já está no livro de regras.
 
 1. Carregue o livro de regras do cliente e as receitas prontas. Se o pedido cabe numa receita pronta, use ela.
 2. Entrada mínima: cliente, tipo de peça, objetivo, mensagem, formato, ativos (logo, pessoa, produto, foto do ambiente real).
-3. Monte a receita:
-   - 1 formato
-   - 1 a 2 composição
-   - 1 a 2 direção de arte (código de cliente conta aqui)
-   - 1 emoção (obrigatória)
-   - 0 ou 1 fotografia, 0 ou 1 narrativa
-   - `/brand_lock` sempre, `/logo_safezone` quando há logo
-   - teto de 7, ideal 6
-   - `/type_hierarchy` e `/literal_copy` só entram no prompt quando o texto é gerado junto na imagem. No fluxo padrão (cena sem texto) eles valem na composição.
-4. Confira conflitos: `/centered_impact` x `/asymmetric_flow`, `/studio_controlled` x `/real_environment`, e os práticos de `visual-codes.md`.
-5. Pessoa real exige `/identity_lock`. Local real anexado exige `/real_environment`. Sem foto do ambiente, não use `/real_environment` e não invente local.
-6. Em pedido individual, mostre antes de gerar:
+3. Monte a receita que entra no prompt colado. São 3 a 4 códigos, e o bloco continua obrigatório (regra de 12/11/2026):
+   - 1 emoção, com uma linha
+   - `/literal_copy`
+   - `/brand_lock`
+   - `/logo_safezone` só se o logo NÃO estiver anexado. Com o arquivo anexado, a linha é `Use o logo e os grafismos anexados.`
+   - Sem `/carousel`, `/visual_continuity`, `/type_hierarchy` nem código de formato, composição ou layout. A referência já cobre.
+4. Códigos de fotografia e de cliente não entram no prompt. Pessoa real e local real vão como anexo, citados no ajuste manual se precisar. Sem foto do ambiente, não invente local.
+5. Em pedido individual, mostre antes de gerar:
 
 ```text
 RECEITA
-/meta_ad /hero_subject /clean_commercial /confidence /brand_lock /logo_safezone
+/confidence /literal_copy /brand_lock
+Use o logo e os grafismos anexados.
 
 POR QUE
-/hero_subject: o produto é o argumento, precisa dominar.
 /confidence: o público precisa de segurança.
 
 PENDÊNCIAS
@@ -50,7 +46,7 @@ foto da pessoa (ou seguir sem pessoa)
 ```
 
    Em lote (vários pedidos de uma vez), não pare para confirmar: registre a receita e o porquê no próprio pedido e siga.
-7. Passe a receita para a skill totum-design-peca.
+6. Passe a receita para a skill totum-design-peca.
 
 ## Correção
 
@@ -64,7 +60,7 @@ Receita aprovada três vezes vira receita pronta do cliente.
 
 ## Regras duras
 
-- Marca vence referência. Referência fornece só o aspecto declarado (luz, materialidade, composição), nunca paleta, fonte ou logo de outra marca.
+- A referência manda no layout. Não proíba elemento que está nela. `/brand_lock` trava só cor e tipografia da marca. Paleta, fonte e logo de outra marca não entram.
 - Códigos de cliente não vão para outro cliente.
 - Negativos universais entram em toda peça.
 - Item marcado "a decidir" no livro de regras: use a escolha provisória e avise no pedido.

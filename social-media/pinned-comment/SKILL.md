@@ -5,6 +5,8 @@ description: Write LinkedIn pinned comments AND image generation prompts in Char
 
 # LinkedIn Pinned Comment + Image Prompt Skill
 
+v1.1, 12/11/2026. Changelog: gag com texto ou logo monta no ChatGPT Images with thinking, no prompt curto. Foto sem texto fica no Grok ou no Nano Banana.
+
 ## Why This Skill Exists
 
 The post delivers value. The pinned comment builds personality, trust, and rewatch value. It is where Charlie drops the polished creator mask and talks like a real person.
@@ -42,9 +44,26 @@ Three rules for the image:
 2. **Played completely straight.** No winking. No thumbs up. No exaggerated faces. The humour comes from treating the absurd as normal.
 3. **Charlie is the lower-status figure.** Always. Claude wins. The logo wins. The mum wins. Charlie loses with quiet dignity.
 
-Use the standard format:
+Foto sem texto legível: Grok Imagens ou Nano Banana, com a pessoa da referência anexada. A piada cabe numa linha de ideia de foto. Não dite enquadramento.
 
-> "Using the person in the attached reference image, create a photorealistic image of [scene]. [One clear visual gag described in detail]. [Charlie's posture and expression, played straight]. [Lighting and framing notes]."
+Gag com texto, certificado ou logo: ChatGPT, Images with thinking (GPT-6, ChatGPT Images 2.6). GPT-6 Astra (no chat, GPT-6 Pro) só depois de duas falhas. Uma mensagem Pro custa cerca de 5x (50 contra 10 créditos no Business) e a geração drena a cota de 3 a 5 vezes mais rápido. O logo, se for de marca, é o arquivo anexado, nunca desenhado. Sem CTA, escreva `sem CTA`. A imagem volta ao chat antes de fechar.
+
+```text
+Objetivo: <o que a imagem precisa fazer a pessoa sentir>
+Design system da <Marca>: <link, ou a referência anexada se não houver design system>
+Referência anexada. Faça de acordo com a referência.
+<uma linha: a piada visual>
+Texto dos slides: <S1: texto literal que aparece na imagem; sem texto, escreva "sem CTA">
+Visual Codes:
+/<emoção>: uma linha
+/literal_copy: o texto aparece exatamente como foi escrito, com acentos e pontuação.
+/brand_lock: só as cores e a tipografia da marca.
+<"/logo_safezone" só se o logo NÃO estiver anexado; se estiver, a linha "Use o logo e os grafismos anexados.">
+Negativos: texto inventado ou ilegível, CTA inventado, logo gerado pela IA
+<ajuste manual: manter a pessoa da foto>
+```
+
+O bloco Visual Codes continua obrigatório, com 3 a 4 códigos, sem código de layout.
 
 ### Step 3. Caption the image with the 4-line comment
 
