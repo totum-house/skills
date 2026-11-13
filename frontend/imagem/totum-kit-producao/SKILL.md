@@ -12,7 +12,7 @@ description: >-
 
 # Kit de Produção (padrão Totum)
 
-v1.0, 06/11/2026. Camada que alimenta `totum-visual-codes` e `totum-design-peca`.
+v1.1, 12/11/2026. Changelog: receitas do kit passam a 3 ou 4 códigos, no molde curto de `totum-design-peca`. Camada que alimenta `totum-visual-codes` e `totum-design-peca`.
 Calibrado no fechamento CredPara + Totum em 05/11/2026, a pedido do Rael:
 entrega de marca no modelo CredPara **e** kit de produção no nível Cenova.
 
@@ -71,7 +71,7 @@ Deve caber numa leitura só e cobrir:
 Antes de sobrescrever um `brand.md` existente: salvar backup `brand.md.bak-AAAA-MM-DD-motivo`.
 
 ### 3. receitas.md
-2 a 4 receitas-base no formato de códigos, sempre com `/brand_lock` e, se a peça leva logo, `/logo_safezone`. Teto de 7 códigos por receita.
+2 a 4 receitas-base no formato enxuto de `totum-visual-codes`: 3 a 4 códigos, sempre com `/literal_copy` e `/brand_lock`. `/logo_safezone` só quando o logo não vai anexado; com o arquivo, a linha é `Use o logo e os grafismos anexados.` Sem `/carousel`, `/visual_continuity`, `/type_hierarchy` nem código de layout. A peça se monta no ChatGPT (Images with thinking), no molde de `totum-design-peca`.
 
 Formatos típicos:
 - Post feed 4:5 (e variante 1:1 se precisar)
@@ -79,8 +79,8 @@ Formatos típicos:
 - Story 9:16
 - Meta ad 4:5 (ou o formato de anúncio do cliente)
 
-Cada receita traz: bloco RECEITA, POR QUE (um porquê por código), cores/logo, e o que evitar.
-Códigos de cliente só entram depois do OK do Rael; até lá ficam como sugestão em `brand.md`.
+Cada receita traz: bloco RECEITA, POR QUE da emoção, e o que evitar. `/literal_copy` e `/brand_lock` têm texto fixo.
+Códigos de cliente ficam em `brand.md` até o OK do Rael, e mesmo aprovados não entram no prompt colado.
 
 ### 4. Logo e referências
 - Logo oficial no brand-kit (não gerar, não redesenhar).

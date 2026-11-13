@@ -1,5 +1,7 @@
 # Image & Video Asset Generation
 
+Nota 12/11/2026: peça Totum com texto, logo ou CTA não se gera aqui. Use `totum-design-peca` (ChatGPT Images with thinking, prompt curto, logo oficial anexado). Grok e Nano Banana só para foto sem texto.
+
 Read this when a design needs a new image or video asset. Decide what visual role the asset serves before choosing a generator. CLI flags and model capabilities change; discover the current surface with `list-models` and `<command> --help` rather than carrying a static parameter manual here.
 
 ## Decide whether to generate

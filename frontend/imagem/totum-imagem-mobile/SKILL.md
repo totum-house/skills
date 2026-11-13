@@ -7,6 +7,30 @@ description: Skill da Totum de geracao de imagens para conceitos de telas de app
 > Nome original do repositorio: `imagegen-frontend-mobile` (fonte: github.com/Leonxlnx/taste-skill).
 > Instrucoes tecnicas abaixo mantidas em ingles de proposito — sao diretivas de engenharia para o agente de codigo (nomes de libs, classes CSS, GSAP etc.) e traduzir quebraria a precisao.
 
+v1.1, 12/11/2026. Changelog: cada tela com texto monta no ChatGPT Images with thinking; a direção de arte longa não entra no prompt colado.
+
+## Motor e prompt (12/11/2026)
+
+Cada tela (layout e texto em pt-BR) sai no ChatGPT, Images with thinking (GPT-6, ChatGPT Images 2.6). GPT-6 Astra (no chat, GPT-6 Pro) só em tela difícil ou depois de duas falhas. Uma mensagem Pro custa cerca de 5x (50 contra 10 créditos no Business) e a geração drena a cota de 3 a 5 vezes mais rápido. Grok Imagens e Nano Banana só para foto sem texto. Ideogram 4.0 e Recraft V4 são teste lado a lado, não o padrão. O logo oficial nunca é gerado: anexe o arquivo e, se distorcer, aplique no PSD.
+
+Anexe referência e/ou KV, o logo oficial e 1 ou 2 grafismos. A direção de arte desta skill fica com você. O prompt colado é o molde abaixo: não dite layout e não proíba elemento que está na referência. Sem CTA, escreva `sem CTA`. Cada tela volta ao chat para aprovação antes do PSD ou de fechar as imagens.
+
+```text
+Objetivo: <o que a tela precisa fazer a pessoa sentir ou fazer, e a oferta se houver>
+Design system da <Marca>: <link do design system da marca>
+Referência anexada. Faça de acordo com a referência.
+<opcional: uma linha do que gostamos na referência, ou uma ideia de foto>
+Texto dos slides: <S1: texto literal desta tela>
+Visual Codes:
+/<emoção>: uma linha
+/literal_copy: o texto aparece exatamente como foi escrito, com acentos e pontuação.
+/brand_lock: só as cores e a tipografia da marca.
+<"/logo_safezone" só se o logo NÃO estiver anexado; se estiver, a linha "Use o logo e os grafismos anexados.">
+Negativos: <negativos da marca, texto inventado ou ilegível, CTA inventado, logo gerado pela IA>
+<ajustes manuais>
+```
+
+O bloco Visual Codes continua obrigatório, com 3 a 4 códigos. Sem códigos de layout.
 
 # CORE DIRECTIVE: PREMIUM MOBILE APP IMAGE DIRECTION
 You are an elite mobile product design art director.

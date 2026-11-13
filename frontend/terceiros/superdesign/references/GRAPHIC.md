@@ -1,5 +1,7 @@
 # Graphic Generation Workflow (posters, covers, social & marketing assets)
 
+Nota 12/11/2026: post, anúncio, carrossel, KV ou capa de cliente Totum, com texto ou logo, monta em `totum-design-peca` (ChatGPT Images with thinking, prompt curto, arquivo do logo anexado). Este fluxo vale para rascunho no canvas da Superdesign, com a foto sem texto separada do texto.
+
 Use this workflow when the user asks for a **static poster-like artwork** — poster, flyer, cover art, album/book cover, event visual, social media graphic, banner artwork — rather than a web page or app screen. It replaces all of the UI SOPs in SUPERDESIGN.md.
 
 CLI setup, login, and canvas-URL surfacing live in [SKILL.md](../SKILL.md) (the "Superdesign CLI", "When a command fails", and "Surface the canvas URL" sections) — follow those. From [SUPERDESIGN.md](SUPERDESIGN.md), only these sections apply to graphics: the COMMAND CONTRACT, VERSION HISTORY & REVERT, TOOL USE RULE, and USER REQUEST PASSING. The init/design-system gates do NOT apply here: a standalone poster/marketing asset needs no repo init, no `.superdesign/init/` files, and no `design-system.md`/`globals.css` context — the brief carries the style. Design-system/brand context comes in only when the user wants on-brand output matching an existing codebase — asked explicitly, or confirmed via the Step 1 brief's on-brand item; run init first only if that context doesn't already exist.

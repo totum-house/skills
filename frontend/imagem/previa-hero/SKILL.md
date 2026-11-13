@@ -1,11 +1,13 @@
 ---
 name: "previa-hero"
-description: "Gera prévias visuais de Hero Section para landing pages em duas direções de arte (Clássica/Comercial e Editorial Premium), com DUAS opções completas de copy por direção construídas a partir de moldes de headline aprovados, paleta e linguagem de forma derivadas do logo do cliente, mockup de laptop e iPhone premium dentro da moldura institucional anexada, e card de diagnóstico em dois campos. Entrega o prompt final pronto para ChatGPT ou Gemini que produz duas imagens separadas. Use SEMPRE que o usuário digitar \"/Previa_Hero\", \"previa hero\", \"prévia da hero\", ou pedir prévia de landing page, mockup de hero para lead, proposta visual de site para cliente, duas opções de hero, prompt para gerar hero em IA de imagem, ou peça de prospecção com layout de site. Também acione quando o usuário enviar logo, foto de profissional ou moldura de um cliente pedindo uma prévia de site."
+description: "Gera prévias visuais de Hero Section para landing pages em duas direções de arte (Clássica/Comercial e Editorial Premium), com DUAS opções completas de copy por direção construídas a partir de moldes de headline aprovados, paleta e linguagem de forma derivadas do logo do cliente, mockup de laptop e iPhone premium dentro da moldura institucional anexada, e card de diagnóstico em dois campos. Entrega o prompt curto para o ChatGPT, Images with thinking (GPT-6, ChatGPT Images 2.6), que produz as imagens. Use SEMPRE que o usuário digitar \"/Previa_Hero\", \"previa hero\", \"prévia da hero\", ou pedir prévia de landing page, mockup de hero para lead, proposta visual de site para cliente, duas opções de hero, prompt para gerar hero em IA de imagem, ou peça de prospecção com layout de site. Também acione quando o usuário enviar logo, foto de profissional ou moldura de um cliente pedindo uma prévia de site."
 ---
 
 # Prévia Hero
 
-Modo Diretor de Criação: coleta, pesquisa, interpreta, propõe duas direções de arte e entrega o **prompt final** que o ChatGPT ou o Gemini vai usar para gerar as imagens.
+v1.1, 12/11/2026. Changelog: as imagens montam no ChatGPT Images with thinking, no prompt curto. As duas direções de copy permanecem.
+
+Modo Diretor de Criação: coleta, pesquisa, interpreta, propõe duas direções de arte e entrega o **prompt final** que o ChatGPT, em Images with thinking, vai usar para gerar as imagens.
 
 Você não escreve um prompt genérico. Você escreve um prompt personalizado para aquele cliente específico, baseado em material real analisado.
 
@@ -303,52 +305,28 @@ Nunca invente uma melhoria que não está visível na imagem. Argumento que não
 
 ## Fase 7: Prompt final
 
-Blocos nomeados, nesta ordem:
+Um prompt por imagem, no molde abaixo. As duas direções ficam no briefing aprovado; não vire esse briefing em mapa de layout. Toda copy que aparece na imagem entra literal. Nunca descreva a copy, sempre transcreva. Sem CTA, escreva `sem CTA`.
 
-1. **Papel e regra de saída:** duas imagens separadas, 4:3 horizontal, alta resolução, uma por vez, só a primeira dobra.
-2. **Anexos e como usar cada um:** um slot numerado por anexo, com instrução própria.
-3. **Cliente:** dados reais verificados, com a proibição de inventar.
-4. **Layout institucional:** moldura anexada, ou a reconstrução descrita.
-5. **Imagem 1:** layout da tela, fotografia, conteúdo literal, card de diagnóstico, paleta.
-6. **Imagem 2:** o mesmo, com conceito realmente distinto.
-7. **Regras absolutas:** lista numerada e curta.
+Motor: ChatGPT, Images with thinking (GPT-6, ChatGPT Images 2.6). GPT-6 Astra (no chat, GPT-6 Pro) só em peça difícil ou depois de duas falhas. Uma mensagem Pro custa cerca de 5x (50 contra 10 créditos no Business) e a geração drena a cota de 3 a 5 vezes mais rápido. Grok Imagens e Nano Banana só para foto sem texto (o retrato, se precisar, antes de montar a tela). Ideogram 4.0 e Recraft V4 são teste lado a lado, não o padrão.
 
-Toda copy que aparece na imagem entra **entre aspas, literal**. Nunca descreva a copy, sempre transcreva.
+Anexe a moldura ou a referência, o logo oficial e 1 ou 2 grafismos. O logo oficial nunca é gerado. Se distorcer, aplique no PSD. Não dite canto, raio nem posição. Cor e tipo ficam em `/brand_lock` e no link do design system. Cada imagem volta ao chat para aprovação antes do PSD ou de fechar as prévias.
 
-### Como escrever o slot do logo
-
-```
-[ANEXO N] LOGO DO CLIENTE.
-Este arquivo é a FONTE DA PALETA E DA LINGUAGEM DE FORMA de toda a tela.
-Antes de desenhar qualquer coisa, extraia dele: cor primária, cor secundária, neutro,
-temperatura, saturação, raio dos cantos, peso do traço e a classe tipográfica do wordmark.
-Aplique: cor primária na estrutura, cor de acento SOMENTE no CTA, neutro no texto.
-Os cantos de botões, cards e crops espelham o raio de canto do logo.
-A fonte da página é da MESMA CLASSE do wordmark, mas NUNCA a mesma fonte.
-Use o logo em si apenas no topo, canto superior esquerdo, preservando cor, forma e proporção.
-Se a cor da marca não tiver contraste suficiente para texto, use ela em elemento gráfico
-e mantenha o texto em neutro. Legibilidade vence fidelidade de marca.
+```text
+Objetivo: <o que a prévia precisa fazer a pessoa sentir ou fazer, e a oferta se houver>
+Design system da <Marca>: <link do design system da marca>
+Referência anexada. Faça de acordo com a referência.
+<opcional: uma linha do que gostamos na referência, ou a direção desta opção>
+Texto dos slides: <S1: headline, apoio e CTA literais>
+Visual Codes:
+/<emoção>: uma linha
+/literal_copy: o texto aparece exatamente como foi escrito, com acentos e pontuação.
+/brand_lock: só as cores e a tipografia da marca.
+Use o logo e os grafismos anexados.
+Negativos: <negativos da marca, texto inventado ou ilegível, CTA inventado, logo gerado pela IA>
+<ajustes manuais>
 ```
 
-### Como escrever o bloco de paleta
-
-**Nunca trave a paleta como valor absoluto.** A paleta escrita é fallback, não ordem:
-
-```
-PALETA: derive do [ANEXO N, LOGO]. Cor primária do logo na estrutura, cor de acento
-isolada no CTA, neutro no texto.
-Somente se o logo NÃO for anexado, use como fallback: <paleta inferida>.
-```
-
-Escrever a paleta inferida sem essa ressalva anula a instrução de extração, porque o modelo obedece a ordem mais concreta e ignora a mais abstrata. Erro mais comum e mais caro.
-
-O mesmo vale para tipografia e raio de canto: derivação primeiro, fallback depois.
-
-### Adaptação por plataforma
-
-- **ChatGPT ou GPT Image:** prompt inteiro de uma vez, anexos na mesma mensagem. Se juntar as duas opções, peça a imagem 2 sozinha.
-- **Gemini ou Nano Banana:** duas chamadas, cada uma com Anexos, Cliente, Layout, a Imagem daquela opção e Regras.
-- **Nas duas:** card borrado, peça "mantenha exatamente esta composição e apenas redesenhe o texto da faixa de anotação com nitidez total". Paleta genérica, peça "refaça usando estritamente as cores do logo anexado, sem introduzir cor nova".
+O bloco Visual Codes continua obrigatório, com 3 a 4 códigos. Sem código de layout. Se o logo não estiver anexado, troque a linha do logo por `/logo_safezone`. Card borrado: anexe de novo e peça só a correção do texto, sem redesenhar o resto.
 
 ---
 
@@ -360,7 +338,7 @@ Separe **dado confirmado**, **inferência estratégica** e **decisão criativa**
 
 ## Revisão antes de entregar
 
-Insumos pedidos. Ausências avisadas em uma linha. Existência de site verificada e classificação do lead conferida. Telefone, endereço e serviços cruzados com fontes públicas. Paleta e forma extraídas do logo, origem declarada. Fonte da mesma classe do wordmark mas não a mesma. Raio de canto espelhando o logo. Acento isolado no CTA. Contraste preservado. Bloco de paleta escrito como derivação com fallback. Briefing confirmado. Quatro blocos de copy entregues, dois por direção. Moldes diferentes entre A e B e entre as direções. Toda headline entre 5 e 9 palavras, afirmativa, sem negação dupla e sem oração condicional. PSR completo no bloco, não espremido na headline. Resultado observável. CTA único. Mockup com laptop e iPhone premium, aparência de foto de produto. Moldura preservada intacta. Foto da Opção 1 com profissional olhando para a câmera e sorriso leve. Foto da Opção 2 com direção criativa diferente da usada na peça anterior. Card de diagnóstico com dois campos em linguagem de dono. Opção 1 clara. Opção 2 realmente autoral. Duas imagens separadas. Sem travessão.
+Insumos pedidos. Ausências avisadas em uma linha. Existência de site verificada e classificação do lead conferida. Telefone, endereço e serviços cruzados com fontes públicas. Prompt no molde curto, com copy literal, Visual Codes enxutos e logo anexado. Sem mapa de layout. Briefing confirmado. Quatro blocos de copy entregues, dois por direção. Moldes diferentes entre A e B e entre as direções. Toda headline entre 5 e 9 palavras, afirmativa, sem negação dupla e sem oração condicional. PSR completo no bloco, não espremido na headline. Resultado observável. CTA único. Mockup com laptop e iPhone premium, aparência de foto de produto. Moldura preservada intacta. Foto da Opção 1 com profissional olhando para a câmera e sorriso leve. Foto da Opção 2 com direção criativa diferente da usada na peça anterior. Card de diagnóstico com dois campos em linguagem de dono. Opção 1 clara. Opção 2 realmente autoral. Duas imagens separadas. Sem travessão.
 
 Se algo falhar, refine antes de mandar.
 
@@ -375,7 +353,7 @@ Se algo falhar, refine antes de mandar.
 | Extração de paleta | `social-key-visual` | Extração de design system, não geração de peças. |
 | Site existente | `design-system-extrator` | Cruze com o logo. O logo vence em conflito. |
 | Pesquisa do lead | `hermione` | Briefing magro com links públicos. |
-| Prompt final | `prompt-master` | Adaptação ChatGPT vs Gemini. |
+| Prompt final | `prompt-master` | Molde curto para o ChatGPT Images with thinking. |
 | Crítica da prévia | `uiux-auditor` | Só depois que a imagem existir. |
 
 Nenhuma skill irmã sobrescreve as regras desta.

@@ -5,6 +5,8 @@ description: Audita, corrige, redesenha, moderniza ou repensa logos no fluxo Tot
 
 # Logo Studio Totum
 
+v1.1, 12/11/2026. Changelog: o logo oficial é o arquivo aprovado, nunca um redraw de motor de imagem. Mockup com texto monta no ChatGPT Images with thinking.
+
 ## Entrada e interpretação
 
 Inicie perguntando: “O que você quer fazer com seu logo: auditar, corrigir, redesenhar, modernizar ou repensar? Pode responder com suas palavras. Envie o logo e diga o que precisa ser preservado.”
@@ -40,9 +42,13 @@ Cada módulo recebe logo identificado, estado de aprovação, objetivo e formato
 
 ## Finalização e mockup
 
-Após aprovação, leia [references/entrega.md](references/entrega.md). Exporte somente formatos realmente produzidos e verificados. Use geração ou edição de imagem por ferramentas disponíveis, seguindo a skill correspondente quando aplicável. Não presuma Adobe, Figma, plugins pagos, ferramenta de imagem ou editor vetorial instalado.
+Após aprovação, leia [references/entrega.md](references/entrega.md). Exporte somente formatos realmente produzidos e verificados. Não presuma Adobe, Figma, plugins pagos, ferramenta de imagem ou editor vetorial instalado.
 
-Termine o fluxo completo com pelo menos um mockup pertinente ao uso da marca. Use a aplicação principal do briefing; na ausência dela, escolha uma peça simples coerente com o segmento e explique a escolha. Aplique o ativo aprovado com fidelidade. Se a ferramenta alterar letras ou símbolo, corrija por composição controlada em ferramenta disponível. Não chame uma aproximação de aplicação fiel. Inspecione o resultado real antes da entrega.
+O logo oficial nunca é gerado pela IA. O arquivo aprovado é a fonte. Proposta anterior à aprovação não é logo oficial e não entra em peça.
+
+Mockup com texto, logo ou grafismo monta no ChatGPT, Images with thinking (GPT-6, ChatGPT Images 2.6), no molde de `totum-design-peca`: objetivo, link do design system, referência, copy literal, Visual Codes (emoção, `/literal_copy`, `/brand_lock` e a linha `Use o logo e os grafismos anexados.`). GPT-6 Astra (no chat, GPT-6 Pro) só em peça difícil ou depois de duas falhas. Uma mensagem Pro custa cerca de 5x (50 contra 10 créditos no Business) e a geração drena a cota de 3 a 5 vezes mais rápido. Grok Imagens e Nano Banana só para foto sem texto (personagem, cena). Ideogram 4.0 e Recraft V4 são teste lado a lado, não o padrão. Anexe o logo aprovado, uma referência e 1 ou 2 grafismos. Não dite o layout. Sem CTA, escreva `sem CTA`. Se o motor distorcer o logo, aplique o arquivo no PSD. O bloco Visual Codes continua obrigatório, com 3 a 4 códigos, sem código de layout. Cada mockup volta ao chat para aprovação antes do PSD ou da arte final.
+
+Termine o fluxo completo com pelo menos um mockup pertinente ao uso da marca. Use a aplicação principal do briefing; na ausência dela, escolha uma peça simples coerente com o segmento e explique a escolha. Aplique o ativo aprovado com fidelidade. Se a ferramenta alterar letras ou símbolo, corrija no PSD com o arquivo oficial. Não chame uma aproximação de aplicação fiel. Inspecione o resultado real antes da entrega.
 
 Se faltar ferramenta ou geração falhar, entregue o material disponível e descreva a pendência. Um prompt de mockup não é um mockup produzido. Não marque o fluxo como concluído sem o mockup solicitado.
 

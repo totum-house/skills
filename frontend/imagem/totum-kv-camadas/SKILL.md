@@ -5,7 +5,7 @@ description: Use quando precisar produzir KV, post ou carrossel de cliente no m�
 
 # KV em camadas (método Cenova)
 
-v1.0, 05/11/2026. Base: KVs Cenova v1 a v4 (29/10 a 03/11/2026), posts Cenova 01 a 04 e o reuso no Instagram CredPara pelo Lab Design (30/10/2026, 64 PSDs). O miolo técnico do PSD está na skill `totum-imagem-para-psd`; aqui fica o fluxo da peça.
+v1.1, 12/11/2026. Changelog: a peça (layout, texto em pt-BR, logo e grafismos) monta no ChatGPT Images with thinking; Grok e Nano Banana ficam na foto sem texto. Base: v1.0, 05/11/2026, KVs Cenova v1 a v4 (29/10 a 03/11/2026), posts Cenova 01 a 04 e o reuso no Instagram CredPara pelo Lab Design (30/10/2026, 64 PSDs). O miolo técnico do PSD está na skill `totum-imagem-para-psd`; aqui fica o fluxo da peça.
 
 ## Modos
 
@@ -26,9 +26,9 @@ Não use para: peça rápida achatada (`totum-design-peca`), entrega de identida
 
 ## Regras fixas
 
-1. Marca vence referência. Hex, fonte e logo saem do brand kit, nunca da referência.
-2. Texto e logo nunca são gerados pela IA. A base sai sem texto; o texto entra como camada de tipo (DS-006).
-3. Pessoas reais. A cena é gerada a partir de foto real de banco (Pexels e similares, crédito do fotógrafo conferido na página) anexada ao ChatGPT Imagens; o surreal fica só no cenário.
+1. A referência manda no layout. Hex e fonte saem do brand kit (`/brand_lock`). Não proíba elemento que está na referência.
+2. O logo oficial nunca é gerado pela IA. Anexe o arquivo. Se o motor distorcer, aplique no PSD. O texto da peça entra literal no ChatGPT.
+3. Foto sem texto (personagem, cena) sai no Grok Imagens ou no Nano Banana, a partir de foto real de banco (Pexels e similares, crédito do fotógrafo conferido na página). Esses motores não montam a peça: no teste inventaram CTA, completaram conteúdo errado e ignoraram o logo. O surreal da cena fica só nessa foto.
 4. Se a marca proíbe pessoa gerada por IA (caso CredPara no Instagram), o modo vira **composição pura**: fundo, grafismo, mockup de tela e tipografia, sem pessoa, até haver foto real autorizada.
 5. Público e diversidade seguem o kit (ex.: Cenova 14 a 80 anos, KVs com várias idades).
 6. Separador automático de camadas por IA (Qwen-Image-Layered) foi testado e descartado: resolução baixa. Não entra na entrega.
@@ -39,17 +39,18 @@ Não use para: peça rápida achatada (`totum-design-peca`), entrega de identida
 ### 1. Inventário de referências
 1. Leia o brand kit (`brand.md`, `receitas.md`) e a copy aprovada. Congele a copy: copie o arquivo para `fonte/` com data e hash; se o original mudar depois, registre.
 2. Junte refs: KV anterior aprovado, peças de referência do cliente, fotos de banco escolhidas (`stock/`), logo oficial (`assets/`).
-3. Escreva por peça: modo, formato, cena, onde fica o espaço livre para texto, camadas previstas.
+3. Escreva por peça: modo, formato, copy literal e camadas previstas para o PSD. Não descreva o layout no prompt.
 
-### 2. Base sem texto
-1. Um prompt por peça (`prompt-<peca>.md`), em inglês, anexando a foto real e, se houver, o KV aprovado como base de layout.
-2. O prompt pede: mesma linguagem do KV aprovado, pessoas reais com textura de pele, mãos naturais, espaço vazio onde vão headline e balões, e "no text, no logos, no speech bubbles".
-3. Referência de enquadramento entra com "use the attached image only as a framing and mood reference, do not copy its colors, text or logo".
-4. Salve em `base/<peca>-base.png` no tamanho final. Reprove base com texto, logo, dedos extras ou pessoa com cara de banco de imagem.
-5. Modo composição pura: pule a geração; o fundo e os grafismos são desenhados no script com os hex do kit.
+### 2. Foto sem texto e montagem da peça
+1. Foto de personagem ou cena, se a peça precisar: Grok Imagens ou Nano Banana, sem texto e sem logo. Salve em `base/<peca>-foto.png`. Reprove dedo extra ou pessoa com cara de banco de imagem.
+2. A peça sai no ChatGPT, Images with thinking (GPT-6, ChatGPT Images 2.6), no molde de `totum-design-peca`. GPT-6 Astra (no chat, GPT-6 Pro) só em peça difícil ou depois de duas falhas. Uma mensagem Pro custa cerca de 5x (50 contra 10 créditos no Business) e a geração drena a cota de 3 a 5 vezes mais rápido. Ideogram 4.0 e Recraft V4 são teste lado a lado, não o padrão.
+3. Anexe em toda geração: referência boa e/ou KV, logo oficial e 1 ou 2 grafismos. Não dite o layout. Sem CTA, escreva `sem CTA`. Lista fechada: os itens exatos.
+4. Salve o prompt em `prompt-<peca>.md` e a peça em `<peca>.png`.
+5. Modo composição pura: pule a foto; o fundo e os grafismos são desenhados no script com os hex do kit, e o texto continua literal.
+6. Mande cada peça ao chat para aprovação antes do PSD ou dos slides finais.
 
 ### 3. Montagem do PSD
-Siga `totum-imagem-para-psd`, passos 4 a 6, a partir da base limpa (não há texto para remover):
+Só depois da aprovação no chat. Siga `totum-imagem-para-psd`, passos 4 a 6, a partir da peça aprovada. Se o logo distorceu, aplique o arquivo oficial:
 - recorte `pessoa` com rembg;
 - formas (balões, placa da headline, pílula do CTA) desenhadas no script com a cor do kit;
 - texto vivo e visível, no PostScript com peso, como manda a regra de `totum-imagem-para-psd` (`styleRuns`, texto de caixa, gravação no `ag-psd` com `invalidateTextLayers: true`);
@@ -72,7 +73,7 @@ Para carrossel e post em lote, use um template por tipo (`post`, `carrossel`, `s
 
 ## Critério de pronto
 
-- [ ] Base sem texto e sem logo, com pessoa real (ou composição pura quando a marca exigir)
+- [ ] Peça montada no ChatGPT com copy literal; foto sem texto só quando houver personagem ou cena (ou composição pura quando a marca exigir)
 - [ ] Um PSD por peça ou slide, abrindo no Photoshop e no PhotoCraft, camadas com nome de conteúdo
 - [ ] Todo texto em camada de tipo visível, no PostScript do kit; logo do arquivo oficial
 - [ ] PNG gerado do PSD, folha de contato, QA SIM/NÃO
@@ -81,7 +82,7 @@ Para carrossel e post em lote, use um template por tipo (`post`, `carrossel`, `s
 
 ## O que não fazer
 
-- Não gerar texto, balão com texto ou logo dentro da imagem.
+- Não gerar o logo na IA, nem montar a peça no Grok ou no Nano Banana.
 - Não entregar só PNG.
 - Não criar pasta nova no Drive quando já existe a do cliente.
 - Não creditar terceiros no conceito sem o Rael decidir.

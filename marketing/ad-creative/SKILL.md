@@ -2,10 +2,12 @@
 name: ad-creative
 description: "When the user wants to generate, iterate, or scale ad creative — headlines, descriptions, primary text, or full ad variations — for any paid advertising platform. Also use when the user mentions 'ad copy variations,' 'ad creative,' 'generate headlines,' 'RSA headlines,' 'bulk ad copy,' 'ad iterations,' 'creative testing,' 'write me some ads,' 'Facebook ad copy,' 'Google ad headlines,' 'LinkedIn ad text,' 'static ads,' 'ad templates,' 'iMessage ad,' 'chat reveal ad,' 'ChatGPT ad,' 'Apple Notes ad,' 'AirDrop ad,' 'creative strategy,' 'creative roadmap,' 'creative retro,' 'hook writing,' 'creative review page,' 'present ad creative for approval,' 'motion video ad,' 'faceless video ad,' 'UGC ad,' 'greenscreen ad,' 'TikTok/Reels ad format,' 'which ad format to make,' 'Meta ad format tier list,' or 'creative format taxonomy.' Use this whenever someone needs to produce ad copy at scale or iterate on existing ads. For campaign strategy and targeting, see ads. For landing page copy, see copywriting."
 metadata:
-  version: 2.8.2
+  version: 2.9.0
 ---
 
 # Ad Creative
+
+v2.9.0, 12/11/2026. Changelog: anúncio estático com texto monta no ChatGPT Images with thinking, no molde curto. O restante desta skill (copy, vídeo, formatos) permanece.
 
 You are an expert performance creative strategist. Your goal is to generate high-performing ad creative at scale — headlines, descriptions, and primary text that drive clicks and conversions — and iterate based on real performance data.
 
@@ -161,9 +163,11 @@ For detailed specs and format variations, see [references/platform-specs.md](ref
 
 **For creator/UGC short-form video** — a tiered format library (reaction+demo hard cuts, "no yapping" split-screen tutorials, greenscreen reactions, plus Yapper, amateur investigation, David & Goliath, authority, VSL, green-screen commentary, conversation, duet/reaction, ASMR, and street-interview formats, each with a scale-vs-support tier and mechanics) and founder / organic-vlog structures (hero's journey, math, shiny-object, niche-guide, the three-capture shooting system, and the 0.5–1s cut formula) for TikTok/Reels/Shorts growth and paid — see [references/short-form-video-specs.md](references/short-form-video-specs.md). It also carries the **vertical video production spec** that applies to *all* 9:16 video this skill makes: the cross-platform safe-zone band (720×1200 text-safe area — the most-missed constraint), the classic TikTok caption recipe (white fill + black stroke, no pill), static-caption auto-sizing, and the organic-vs-baked-music decision that affects reach. Load it before producing any vertical video.
 
+**Imagem estática do anúncio (12/11/2026).** Monte a peça (layout, texto em pt-BR, logo e grafismos) no ChatGPT, Images with thinking (GPT-6, ChatGPT Images 2.6). GPT-6 Astra (no chat, GPT-6 Pro) só em peça difícil ou depois de duas falhas. Uma mensagem Pro custa cerca de 5x (50 contra 10 créditos no Business) e a geração drena a cota de 3 a 5 vezes mais rápido. Grok Imagens e Nano Banana só para foto sem texto: no teste inventaram CTA, completaram conteúdo errado e ignoraram o logo. Ideogram 4.0 e Recraft V4 são teste lado a lado, não o padrão. O logo oficial nunca é gerado pela IA. Anexe o arquivo. Se distorcer, aplique no PSD. Anexe referência e/ou KV, o logo e 1 ou 2 grafismos. Não dite o layout. Sem CTA, escreva `sem CTA`. Lista fechada: os itens exatos. Cada peça vai ao chat para aprovação antes do PSD ou dos slides finais. Prompt no molde de `totum-design-peca`: objetivo, link do design system, referência, copy literal, Visual Codes (emoção, `/literal_copy`, `/brand_lock`, e `/logo_safezone` só sem o logo anexado), negativos. O bloco Visual Codes continua obrigatório, com 3 a 4 códigos, sem códigos de layout.
+
 For image and video generation tools, see [references/generative-tools.md](references/generative-tools.md) for the complete guide covering:
 
-- **Image generation** — Nano Banana Pro (Gemini), Flux, Ideogram for static ad images
+- **Image generation** — ChatGPT Images with thinking para a peça com texto; Grok ou Nano Banana só para foto sem texto
 - **Video generation** — Veo, Kling, Runway, Sora, Seedance, Higgsfield for video ads
 - **Voice & audio** — ElevenLabs, OpenAI TTS, Cartesia for voiceovers, cloning, multilingual
 - **Code-based video** — Remotion for templated, data-driven video at scale
