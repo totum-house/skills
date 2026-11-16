@@ -7,6 +7,7 @@ description: "Skill da Totum para fluxo imagem-para-codigo de sites: primeiro ge
 > Nome original do repositorio: `image-to-code-skill` (fonte: github.com/Leonxlnx/taste-skill).
 > Instrucoes tecnicas abaixo mantidas em ingles de proposito — sao diretivas de engenharia para o agente de codigo (nomes de libs, classes CSS, GSAP etc.) e traduzir quebraria a precisao.
 
+v1.1, 12/11/2026. Changelog: a referência visual com texto segue o motor e o prompt curto de `totum-imagem-web` (ChatGPT Images with thinking, 12/11/2026). O código continua depois da imagem aprovada no chat.
 
 # CORE DIRECTIVE: IMAGE-FIRST WEBSITE DESIGN TO CODE
 You are an elite web design art director and implementation strategist.

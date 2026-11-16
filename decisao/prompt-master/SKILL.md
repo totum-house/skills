@@ -1,6 +1,6 @@
 ---
 name: prompt-master
-description: "Gera prompts otimizados para ferramentas de IA. Ativa-se somente quando o usuário solicita explicitamente a criação, correção, aprimoramento ou adaptação de um prompt para uma ferramenta de IA específica (LLM, Cursor, Midjourney, IA de imagem, IA de vídeo, agentes de codificação etc.). Não é ativado para conversas em geral, tarefas de codificação, redação de documentos ou outros trabalhos que não envolvam a criação de prompts."
+description: "Gera prompts otimizados para ferramentas de IA. Ativa-se somente quando o usuário solicita explicitamente a criação, correção, aprimoramento ou adaptação de um prompt para uma ferramenta de IA específica (LLM, Cursor, IA de imagem, IA de vídeo, agentes de codificação etc.). Peça com texto, logo ou CTA sai no molde curto para o ChatGPT Images with thinking. Não é ativado para conversas em geral, tarefas de codificação, redação de documentos ou outros trabalhos que não envolvam a criação de prompts."
 ---
 
 Identity, Hard Rules, Output Lock
@@ -247,13 +247,32 @@ Identify the tool and route accordingly. Read full templates from [references/te
 
 ---
 
-**Image AI — Generation** (Midjourney, DALL-E 3, Stable Diffusion, SeeDream)
-First detect: generation from scratch or editing an existing image?
+**Image AI — peça com texto (padrão Totum, v1.1, 12/11/2026)**
 
-- **Midjourney**: Comma-separated descriptors, not prose. Subject first, then style, mood, lighting, composition. Parameters at end: `--ar 16:9 --v 6 --style raw`. Negative prompts via `--no [unwanted elements]`
-- **DALL-E 3**: Prose description works. Add "do not include text in the image unless specified." Describe foreground, midground, background separately for complex compositions.
-- **Stable Diffusion**: `(word:weight)` syntax. CFG 7-12. Negative prompt is MANDATORY. Steps 20-30 for drafts, 40-50 for finals.
-- **SeeDream**: Strong at artistic and stylized generation. Specify art style explicitly (anime, cinematic, painterly) before scene content. Mood and atmosphere descriptors work well. Negative prompt recommended.
+Changelog: peça com texto, logo ou CTA usa o molde curto no ChatGPT Images with thinking. Midjourney, Stable Diffusion e SeeDream só se a pessoa pedir aquele motor para foto sem texto.
+
+Monte a peça (layout, texto em pt-BR, logo e grafismos) no ChatGPT, Images with thinking (GPT-6, ChatGPT Images 2.6), no lote inteiro. GPT-6 Astra (no chat, GPT-6 Pro) só em peça difícil ou depois de duas falhas. Uma mensagem Pro custa cerca de 5x (50 contra 10 créditos no Business) e a geração drena a cota de 3 a 5 vezes mais rápido. Grok Imagens e Nano Banana só para foto sem texto (personagem, cena): no teste inventaram CTA, completaram conteúdo errado e ignoraram o logo. Ideogram 4.0 e Recraft V4 são teste lado a lado, não o padrão. O logo oficial nunca é gerado pela IA. Anexe o arquivo. Se distorcer, aplique no PSD.
+
+Anexe referência boa e/ou KV, o logo oficial e 1 ou 2 grafismos. Não dite layout e não proíba elemento que está na referência. Sem CTA, escreva `sem CTA`. Lista fechada: os itens exatos. A peça volta ao chat para aprovação antes do PSD ou dos slides finais.
+
+```text
+Objetivo: <o que a peça precisa fazer a pessoa sentir ou fazer, e a oferta se houver>
+Design system da <Marca>: <link do design system da marca>
+Referência anexada. Faça de acordo com a referência.
+<opcional: uma linha do que gostamos na referência, ou uma ideia de foto>
+Texto dos slides: <S1 (capa): ...> <S2: ...> ... (copy literal, cada slide)
+Visual Codes:
+/<emoção>: uma linha
+/literal_copy: o texto aparece exatamente como foi escrito, com acentos e pontuação.
+/brand_lock: só as cores e a tipografia da marca.
+<"/logo_safezone" só se o logo NÃO estiver anexado; se estiver, a linha "Use o logo e os grafismos anexados.">
+Negativos: <negativos da marca, texto inventado ou ilegível, CTA inventado, logo gerado pela IA>
+<ajustes manuais, por exemplo personagens>
+```
+
+O bloco Visual Codes continua obrigatório, com 3 a 4 códigos. Sem `/carousel`, `/visual_continuity`, `/type_hierarchy` nem código de layout.
+
+Foto sem texto, e só se a pessoa nomear o motor: Midjourney em descritores separados por vírgula e parâmetros no fim; Stable Diffusion com negativo obrigatório; SeeDream com o estilo antes da cena. Não use esses motores para montar a peça.
 
 ---
 

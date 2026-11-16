@@ -5,6 +5,8 @@ description: "Design or redesign frontend UI, presentations, and graphics on the
 
 Superdesign helps you find design inspiration and generate or iterate design drafts on an infinite canvas, with multiple leading models available for different design tasks and side-by-side exploration. When a design needs a new visual asset, it can also provide image and video generation.
 
+v1.1, 12/11/2026. Peça de cliente Totum com texto, logo ou CTA (post, anúncio, carrossel, KV, capa) não se monta neste fluxo. O padrão é `totum-design-peca`: ChatGPT, Images with thinking (GPT-6, ChatGPT Images 2.6), prompt curto, logo oficial anexado. Grok Imagens e Nano Banana só para foto sem texto. Este fluxo continua para rascunho de UI no canvas e para foto ou cena sem texto.
+
 ---
 
 # Core scenarios (what this skill handles)

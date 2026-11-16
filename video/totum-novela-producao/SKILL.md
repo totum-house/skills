@@ -5,7 +5,7 @@ description: Use quando um capítulo de mini-novela (ou vídeo narrativo longo) 
 
 # Pacote de produção de capítulo (Roteiro para Vídeo)
 
-v1.0, 05/11/2026. Base: capítulo 1 de "Mérito Próprio" (Cenova), montado pelo Lab Roteiro em 27/10/2026: 3:00, 21 cenas de até 12 s, 53 takes (52 gerados de até 4 s e 1 montado na edição). O pacote é a etapa 1 da skill `pavo-video-longo` e entra depois do `planejar-edicao` quando houver edição complexa.
+v1.1, 12/11/2026. Changelog: prompt de imagem desta skill continua sendo foto de cena sem texto (Nano Banana ou Grok). Peça com texto, CTA ou logo vai para `totum-design-peca`. Base: v1.0, 05/11/2026, capítulo 1 de "Mérito Próprio" (Cenova), montado pelo Lab Roteiro em 27/10/2026: 3:00, 21 cenas de até 12 s, 53 takes (52 gerados de até 4 s e 1 montado na edição). O pacote é a etapa 1 da skill `pavo-video-longo` e entra depois do `planejar-edicao` quando houver edição complexa.
 
 Esta skill não gera imagem, não gasta crédito e não edita. Ela entrega o pacote que o Lab Vídeo executa.
 
@@ -56,7 +56,7 @@ O documento aprovado manda. Falas, texto na tela e som entram copiados sem alter
 3. Bloco STYLE e bloco Avoid iguais em todos os takes, vindos de `estetica-fixa.md`.
 4. Prompt de movimento curto: uma ação pequena, câmera quase parada, e sempre "No new objects appearing, no face or hand deformation, keep identity and outfit unchanged."
 5. Nenhum prompt cita ator, atriz ou pessoa famosa. Nomes de casting ficam só numa seção "Referência interna" no fim de `fichas-mestre.md`.
-6. Nada de texto gerado pela IA: texto na tela, balão de mensagem, stories, cartela e logo entram na edição. Para o logo, gere a superfície lisa e aplique o arquivo oficial.
+6. Nada de texto gerado nesta foto: texto na tela, balão, stories, cartela e logo não entram no Nano Banana nem no Grok. Cartela ou peça com texto monta em `totum-design-peca`, no ChatGPT Images with thinking, com o logo oficial anexado. Se distorcer, aplique o arquivo no PSD.
 7. Continuidade escrita no take: figurino, objetos (anel, bolo, tipoia), horário, chuva. A ficha diz em que cenas cada objeto aparece ou some.
 8. Cor da marca reservada: se o placement usa uma cor da marca, nenhuma outra roupa ou objeto pode ter tom parecido.
 

@@ -6,6 +6,8 @@ description: >
 
 # Graphic Designer
 
+v1.1, 12/11/2026. Changelog: o Path B monta a peça no ChatGPT Images with thinking, no prompt curto. O Path A (HTML) permanece.
+
 ## CRITICAL: Auto-start on load
 
 When this skill triggers, go straight to Step 1. Do not summarise. Do not explain options. Start immediately.
@@ -26,8 +28,8 @@ Wait for the post, then call AskUserQuestion:
     "multiSelect": false,
     "options": [
       {"label": "HTML/CSS graphic", "description": "Clean structured layout. Framework, comparison, steps, data. Fully editable, screenshot to export."},
-      {"label": "Whiteboard infographic", "description": "Hand-drawn marker style on a whiteboard or notebook page. Recaps the post visually. Generated in Gemini."},
-      {"label": "Branded infographic", "description": "Professional infographic using your brand colours. Recaps the post visually. Generated in Gemini."},
+      {"label": "Whiteboard infographic", "description": "Recaps the post. Assembled in ChatGPT Images with thinking, from an attached reference. No layout dictation."},
+      {"label": "Branded infographic", "description": "Recaps the post in the brand. Assembled in ChatGPT Images with thinking, logo file attached."},
       {"label": "You decide", "description": "Analyse the post and pick the best format automatically"}
     ]
   }
@@ -61,75 +63,26 @@ Save the HTML file. Tell the user:
 
 ## Path B: Image generation prompt
 
-The graphic must recap the post content visually. It is not an abstract illustration or stock photo. It summarises the key information from the post in a visual format the reader can scan.
+The graphic recaps the post. Extract the literal lines first: headline, the exact key points (do not let the engine add items), and the CTA or `sem CTA`.
 
-First, extract the content for the infographic from the post:
-- The main headline or hook (shortened to 5 to 10 words)
-- 3 to 6 key points, steps, or takeaways (one short line each)
-- Any numbers, stats, or data worth highlighting
-- A footer line (author name and CTA if appropriate)
+Motor: ChatGPT, Images with thinking (GPT-6, ChatGPT Images 2.6). GPT-6 Astra (no chat, GPT-6 Pro) só em peça difícil ou depois de duas falhas. Uma mensagem Pro custa cerca de 5x (50 contra 10 créditos no Business) e a geração drena a cota de 3 a 5 vezes mais rápido. Grok e Nano Banana não montam esta peça. Ideogram 4.0 e Recraft V4 são teste lado a lado. Anexe uma referência do estilo pedido, o logo oficial e 1 ou 2 grafismos. O logo oficial nunca é gerado. Se distorcer, aplique no PSD. Não dite layout.
 
-Then build the prompt based on the chosen style.
-
-### Style 1: Whiteboard infographic
-
-Use this prompt template. Fill in the content sections from the post.
-
-```
-Generate a single image of a physical, hand-drawn infographic on a large whiteboard or notebook page.
-
-Crucial Style Instructions (Read First):
-Medium: The image must look like a photograph of a real whiteboard or large paper notepad.
-Texture: All elements must look created by hand using colored marker pens (black, blue, red, green) and highlighters (yellow/orange). Lines should be slightly imperfect, wobbly, and have the texture of ink on a surface.
-No Digital Fonts: All text, headings, and bullet points must appear handwritten or hand-printed in marker pen.
-
-Layout: Structure the 1080x1350 image as follows:
-
-TITLE (large, bold marker, top of page):
-[Insert headline from the post]
-
-CONTENT (hand-drawn sections with marker pen):
-[Insert 3 to 6 key points, each as a short hand-written line with a bullet, number, or small icon drawn next to it]
-
-[If there are stats or numbers, draw them large with a circle or box around them]
-
-Use multi-colored markers for emphasis. Keep text large and legible. Make everything look hand-drawn with slight imperfections. Make it look like a photograph of an actual notebook page.
-
-Always include the handwritten text "[Author name from about-me.md] | Repost" at the bottom of the image, in the same hand-drawn marker style.
+```text
+Objetivo: <o que a peça precisa fazer a pessoa sentir ou fazer, e a oferta se houver>
+Design system da <Marca>: <link do design system da marca>
+Referência anexada. Faça de acordo com a referência.
+<opcional: uma linha do que gostamos na referência>
+Texto dos slides: <S1: headline e itens literais; sem CTA, escreva "sem CTA">
+Visual Codes:
+/<emoção>: uma linha
+/literal_copy: o texto aparece exatamente como foi escrito, com acentos e pontuação.
+/brand_lock: só as cores e a tipografia da marca.
+<"/logo_safezone" só se o logo NÃO estiver anexado; se estiver, a linha "Use o logo e os grafismos anexados.">
+Negativos: <negativos da marca, texto inventado ou ilegível, CTA inventado, logo gerado pela IA>
+<ajustes manuais>
 ```
 
-### Style 2: Branded infographic
-
-Ask the user for brand colours if not already known. If about-me.md exists, check there first.
-
-```
-Generate a professional infographic image at 1080x1350 pixels.
-
-Style: Clean, modern, editorial. Flat design with sharp edges and strong typography. No 3D effects, no gradients, no stock photos.
-
-Colour palette:
-- Background: [primary brand colour or dark neutral]
-- Text: [white or high-contrast colour]
-- Accent: [secondary brand colour]
-
-Layout:
-HEADLINE (top, large bold text):
-[Insert headline from the post]
-
-BODY (structured sections, each with an icon or number):
-[Insert 3 to 6 key points as short lines, each with a visual marker: numbered circle, checkmark, or simple icon]
-
-[If there are stats, display them as large feature numbers with a label underneath]
-
-FOOTER:
-[Author name from about-me.md] | [CTA or tagline if appropriate]
-
-Keep text large and scannable. Maximum 40 words on the entire image. No decorative borders. No watermarks. No logos unless the user provides one.
-```
-
-Output the complete prompt in a code block. Tell the user:
-
-> Paste this into Gemini or your image generator. The prompt is ready to go.
+Output the prompt in a code block. Tell the user to paste it into ChatGPT, Images with thinking, with the attachments. The piece comes back to the chat for approval before the PSD or the final image.
 
 ## After either path
 
@@ -141,9 +94,8 @@ Say:
 
 - Always read the post before designing. The graphic must recap the post content, not illustrate an abstract concept.
 - Structured graphics (Path A) must be a single HTML file with inline CSS.
-- Image prompts (Path B) must be fully self-contained. The user pastes it cold into Gemini and gets the graphic.
+- Image prompts (Path B) seguem o molde curto. O bloco Visual Codes continua obrigatório, com 3 a 4 códigos, sem código de layout. A pessoa cola no ChatGPT, Images with thinking, com a referência anexada.
 - Extract and distil the post content into the graphic. No copying the full post text.
-- Whiteboard style: always hand-drawn marker look, imperfect lines, coloured pens, notebook/whiteboard texture.
-- Branded style: always clean, flat, modern, using the user's brand colours.
+- Estilo (quadro branco ou marca) não vira mapa de layout. Anexe a referência e deixe uma linha sobre o que gostamos nela.
 - Never use em dashes in any output.
 - British English throughout.

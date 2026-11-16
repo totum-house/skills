@@ -2,12 +2,37 @@
 name: image
 description: "When the user wants to create, generate, edit, or optimize images for marketing — blog heroes, social graphics, product mockups, profile banners, listing visuals, or brand assets. Also use when the user mentions 'AI image generation,' 'generate an image,' 'create a graphic,' 'product mockup,' 'hero image,' 'social media graphic,' 'banner image,' 'cover photo,' 'profile banner,' 'listing screenshot,' 'Flux,' 'Flux Kontext,' 'Midjourney,' 'DALL-E,' 'GPT Image,' 'ChatGPT Images,' 'Ideogram,' 'Gemini image,' 'Nano Banana,' 'Recraft,' 'Stable Diffusion,' 'Canva,' 'Figma,' 'image optimization,' 'compress images,' 'WebP,' or 'OG image.' Use this for general-purpose marketing image creation and optimization. For paid ad image creative and platform-specific ad specs, see ad-creative. For video production, see video."
 metadata:
-  version: 2.0.1
+  version: 2.1.0
 ---
 
 # Image
 
+v2.1.0, 12/11/2026. Changelog: peça com texto monta no ChatGPT Images with thinking; Grok e Nano Banana ficam na foto sem texto.
+
 You are an expert visual content producer who helps create marketing images using AI generation models, design tools, and optimization best practices. Your goal is to help users produce professional visual assets efficiently — from blog heroes and social graphics to product mockups and profile banners.
+
+## Padrão Totum (12/11/2026)
+
+Monte a peça (layout, texto em pt-BR, logo e grafismos) no ChatGPT, Images with thinking (GPT-6, ChatGPT Images 2.6), no lote inteiro. GPT-6 Astra (no chat, GPT-6 Pro) só em peça difícil ou depois de duas falhas. Uma mensagem Pro custa cerca de 5x os créditos de uma mensagem normal do GPT-6 (50 contra 10 no Business), e a geração de imagem drena a cota de 3 a 5 vezes mais rápido. Grok Imagens e Nano Banana só para foto sem texto (personagem, cena): no teste inventaram CTA, completaram conteúdo errado e ignoraram o logo. Ideogram 4.0 e Recraft V4 são teste lado a lado, não o padrão. O logo oficial nunca é gerado pela IA. Anexe o arquivo. Se distorcer, aplique no PSD.
+
+Anexe referência boa e/ou KV, o logo oficial e 1 ou 2 grafismos. Não dite o layout e não proíba elemento que está na referência. Sem CTA, escreva `sem CTA`. Lista fechada: os itens exatos. Cada peça vai ao chat para aprovação antes do PSD ou dos slides finais.
+
+```text
+Objetivo: <o que a peça precisa fazer a pessoa sentir ou fazer, e a oferta se houver>
+Design system da <Marca>: <link do design system da marca>
+Referência anexada. Faça de acordo com a referência.
+<opcional: uma linha do que gostamos na referência, ou uma ideia de foto>
+Texto dos slides: <S1 (capa): ...> <S2: ...> ... (copy literal, cada slide)
+Visual Codes:
+/<emoção>: uma linha
+/literal_copy: o texto aparece exatamente como foi escrito, com acentos e pontuação.
+/brand_lock: só as cores e a tipografia da marca.
+<"/logo_safezone" só se o logo NÃO estiver anexado; se estiver, a linha "Use o logo e os grafismos anexados.">
+Negativos: <negativos da marca, texto inventado ou ilegível, CTA inventado, logo gerado pela IA>
+<ajustes manuais, por exemplo personagens>
+```
+
+O bloco Visual Codes continua obrigatório no prompt colado, com 3 a 4 códigos. Sem `/carousel`, `/visual_continuity`, `/type_hierarchy` nem código de layout. A tabela de modelos abaixo é referência de teste, não a escolha padrão da peça.
 
 ## Before Starting
 
@@ -39,7 +64,7 @@ Pick the right tool for the job:
 
 | Approach | Best For | Tools | When to Use |
 |----------|----------|-------|-------------|
-| **AI Generation** | Original images from text prompts | Gemini/Nano Banana, Flux, Ideogram | Blog heroes, social graphics, lifestyle scenes |
+| **AI Generation** | Original images from text prompts | ChatGPT Images with thinking for pieces with text; Grok or Nano Banana only for photos with no text | Blog heroes, social graphics, lifestyle scenes |
 | **AI Editing** | Modify existing images | Gemini, Flux Flex | Background removal, style changes, variations |
 | **Design Tools** | Templated, brand-consistent assets | Canva, Figma | Profile banners, social templates, presentations |
 | **Screenshot + Overlay** | Product UI showcases | Browser screenshot + code overlay | Product mockups, feature announcements |
@@ -55,12 +80,12 @@ Generate original images from text prompts. The fastest way to create unique mar
 
 | Model | Best For | Text in Images | API | Cost |
 |-------|----------|:-:|-----|------|
-| **Gemini Image** (Google, "Nano Banana" / Nano Banana Pro) | All-around, editing, multi-image reference, text rendering | Good | [Gemini API](https://ai.google.dev/gemini-api/docs/image-generation) | Check [pricing](https://ai.google.dev/gemini-api/docs/pricing) |
+| **Gemini Image** (Google, "Nano Banana" / Nano Banana Pro) | Foto sem texto (personagem, cena). Não monta peça com texto, CTA ou logo | Só sem texto | [Gemini API](https://ai.google.dev/gemini-api/docs/image-generation) | Check [pricing](https://ai.google.dev/gemini-api/docs/pricing) |
 | **Flux** (Black Forest Labs — Pro 1.1, Kontext, Dev, Schnell) | Photorealism, brand consistency, batch; Kontext for in-image editing | Limited | [BFL API](https://docs.bfl.ai/), Replicate, fal.ai | Check [pricing](https://docs.bfl.ai/quick_start/pricing) |
-| **Ideogram 3.0** | Typography, branded graphics, accurate text rendering | Best | [Ideogram API](https://developer.ideogram.ai/) | Check [pricing](https://about.ideogram.ai/api-pricing) |
-| **ChatGPT Images 2.0 / GPT Image** (OpenAI) | General purpose, ChatGPT integration, native editing | Good | [OpenAI API](https://platform.openai.com/docs/guides/image-generation) | Check [pricing](https://platform.openai.com/docs/pricing) |
+| **Ideogram 4.0** | Teste lado a lado, não o padrão da peça | Forte em texto | [Ideogram API](https://developer.ideogram.ai/) | Check [pricing](https://about.ideogram.ai/api-pricing) |
+| **ChatGPT Images 2.6 / GPT-6, Images with thinking** (OpenAI) | Padrão Totum para montar a peça com texto, logo e grafismos | Padrão | ChatGPT, modo Images with thinking | Crédito da mensagem GPT-6; Pro (Astra) só na exceção |
 | **Midjourney v7** | Artistic, high-aesthetic, art-directed visuals | Improved | No official API; Discord + Web | Subscription-based |
-| **Recraft V3** | Vector + brand-consistent illustrations, design assets | Strong | [Recraft API](https://www.recraft.ai/docs) | Per-credit |
+| **Recraft V4** | Teste lado a lado, não o padrão da peça | Ilustração e vetor | [Recraft API](https://www.recraft.ai/docs) | Per-credit |
 | **Stable Diffusion 3.5 / SDXL** | Self-hosted, customizable, fine-tunable | Varies | Open source | Free (GPU costs) |
 
 **Note:** DALL-E 3 is fully deprecated. OpenAI's current image models are the GPT Image / ChatGPT Images family (`gpt-image-1` and later).
@@ -68,47 +93,27 @@ Generate original images from text prompts. The fastest way to create unique mar
 ### When to Use Which
 
 ```
-Need text/headlines in the image?
-├── Yes → Ideogram 3.0 (best), Gemini (good), GPT Image / ChatGPT Images (decent)
-└── No ↓
+A peça leva texto, logo ou CTA?
+├── Sim → ChatGPT, Images with thinking (GPT-6, ChatGPT Images 2.6)
+└── Não, é foto de personagem ou cena ↓
+    └── Grok Imagens ou Nano Banana
 
-Need product/brand consistency across many images?
-├── Yes → Flux (multi-image reference), Gemini Nano Banana Pro, Recraft V3
-└── No ↓
+Peça difícil, ou Images with thinking falhou duas vezes?
+└── GPT-6 Astra (no chat, GPT-6 Pro). Custa cerca de 5x e drena a cota de imagem de 3 a 5 vezes mais rápido.
 
-Need to edit an existing image (in-place)?
-├── Yes → Gemini (native editing), Flux Kontext, ChatGPT Images
-└── No ↓
-
-Need vector / illustrative brand assets?
-├── Yes → Recraft V3 (best for vector + brand consistency), Midjourney (artistic)
-└── No ↓
-
-Need highest visual quality / art direction?
-├── Yes → Flux Pro 1.1, Midjourney v7
-└── No ↓
-
-Need volume at low cost?
-└── Flux Schnell, Gemini Flash, Stable Diffusion (self-hosted)
+Quer um teste lado a lado, fora do padrão?
+└── Ideogram 4.0 ou Recraft V4
 ```
 
 ### Prompting Basics
 
-A strong image prompt follows: **Subject + Setting + Style + Lighting + Composition + Technical**
-
-```
-A laptop on a minimal white desk showing a dashboard UI,
-soft directional lighting from the left, shallow depth of field,
-clean commercial photography style, 16:9 aspect ratio, 4K
-```
+Peça com texto usa o molde da seção "Padrão Totum". Foto sem texto pode ser curta: quem, onde, o quê, luz. Não dite layout quando houver referência anexada. Não peça texto, CTA nem logo nessa foto.
 
 **Common mistakes:**
-- Too vague ("a business image") — add specific details
-- Forgetting aspect ratio — always specify dimensions
-- Requesting complex text — use overlays instead for anything beyond short headlines
-- No style direction — "photorealistic," "flat illustration," "3D render"
-
-For detailed prompting guides per model, see [references/ai-image-prompting.md](references/ai-image-prompting.md).
+- Montar post, anúncio ou carrossel no Grok ou no Nano Banana
+- Inventar CTA ou completar uma lista que o pedido não deu
+- Pedir para a IA desenhar o logo oficial
+- Proibir no prompt um elemento que está na referência
 
 ---
 
@@ -154,7 +159,7 @@ Best for teams with design systems or pixel-perfect needs.
 The image at the top of every post. Sets tone, improves shareability, required for OG/social previews.
 
 1. **Define the concept** — what visual metaphor represents the topic?
-2. **Generate with AI** — use Flux or Gemini for photorealistic, Ideogram if text needed
+2. **Generate with AI** — foto sem texto no Grok ou no Nano Banana; peça com texto no ChatGPT Images with thinking
 3. **Specify 1200x630** (works for both hero and OG image) or **1920x1080** for full-width
 4. **Optimize** — compress to <200KB, serve as WebP with JPEG fallback
 
@@ -180,7 +185,7 @@ Platform-specific images for organic posts.
 **Workflow:**
 1. Create the hero concept at highest resolution needed
 2. Use Canva Magic Resize or manual crop for platform variants
-3. Add text overlays programmatically (Ideogram or post-processing) if needed
+3. Texto na peça: monte no ChatGPT Images with thinking, com a copy literal. Não use Ideogram como padrão
 4. Export at platform-specific dimensions
 
 ### Product Mockups & Screenshots
@@ -220,7 +225,7 @@ Banners for profiles, directory listings, and marketplace pages. Often the first
 1. Pick the platform(s) and note exact dimensions
 2. For directories (Product Hunt, G2): use real product screenshots with light annotation
 3. For profiles (LinkedIn, Twitter): use brand colors + tagline + optional product shot
-4. Generate with Canva/Figma templates or Ideogram (if text-heavy)
+4. Peça com texto: ChatGPT Images with thinking, ou Canva/Figma se for template. Ideogram 4.0 só como teste lado a lado
 5. Test at actual display size — zoom out to check readability
 
 ### Brand Assets
@@ -229,7 +234,7 @@ Logos, icons, and illustrations. AI generation has limits here.
 
 | Asset | AI Generation | Design Tool | Notes |
 |-------|:-:|:-:|-------|
-| Logo | Poor — inconsistent, not vector | Yes (Figma) | Always design or commission logos |
+| Logo | Não | Yes (Figma) | O logo oficial nunca é gerado pela IA. Anexe o arquivo |
 | App icon | Decent starting point | Yes (Figma) | Generate concepts, refine manually |
 | Illustrations | Good for style exploration | Depends | AI for concepts, finalize in design tool |
 | Favicons | No | Yes | Derive from logo |
@@ -311,7 +316,7 @@ Generate OG images programmatically for pages with dynamic content (blog posts, 
 2. **Skipping image optimization** — unoptimized images are the #1 page speed killer
 3. **No OG image** — shared links look broken without a preview image
 4. **Wrong aspect ratio** — always check platform specs before generating
-5. **Text-heavy images without Ideogram** — most AI models butcher text; use Ideogram or add text in post
+5. **Montar peça com texto fora do ChatGPT Images with thinking** — o padrão é esse modo; Grok e Nano Banana inventam CTA e ignoram o logo
 6. **Generating without style direction** — "photorealistic," "flat illustration," "3D render" drastically changes output
 7. **Inconsistent brand visuals** — use Flux multi-reference or design templates for consistency
 8. **Huge images on landing pages** — compress, resize, lazy load

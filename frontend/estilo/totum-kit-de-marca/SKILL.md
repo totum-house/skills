@@ -10,6 +10,31 @@ description: "Skill da Totum de geracao de imagens para kits de marca premium: g
 
 # BRANDKIT IMAGE GENERATION SKILL
 
+v1.1, 12/11/2026. Changelog: board e aplicações com texto montam no ChatGPT Images with thinking; o logo oficial é o arquivo anexado, nunca um redraw da IA.
+
+## Motor e prompt (12/11/2026)
+
+Monte o board ou a aplicação (layout, texto em pt-BR, logo e grafismos) no ChatGPT, Images with thinking (GPT-6, ChatGPT Images 2.6). GPT-6 Astra (no chat, GPT-6 Pro) só em peça difícil ou depois de duas falhas: uma mensagem Pro custa cerca de 5x (50 contra 10 créditos no Business) e a geração drena a cota de 3 a 5 vezes mais rápido. Grok Imagens e Nano Banana só para foto sem texto (personagem, cena). Ideogram 4.0 e Recraft V4 são teste lado a lado, não o padrão. O logo oficial nunca é gerado pela IA: anexe o arquivo e, se distorcer, aplique no PSD. Conceito de marca ainda sem arquivo aprovado é proposta para o chat, não logo oficial, e não entra em peça.
+
+Anexe referência e/ou KV, o logo oficial e 1 ou 2 grafismos. Não dite o layout e não proíba elemento que está na referência. Sem CTA, escreva `sem CTA`. Cada imagem volta ao chat para aprovação antes do PSD ou dos slides finais.
+
+```text
+Objetivo: <o que a peça precisa fazer a pessoa sentir ou fazer, e a oferta se houver>
+Design system da <Marca>: <link do design system da marca>
+Referência anexada. Faça de acordo com a referência.
+<opcional: uma linha do que gostamos na referência, ou uma ideia de foto>
+Texto dos slides: <S1 (capa): ...> <S2: ...> ... (copy literal, cada slide)
+Visual Codes:
+/<emoção>: uma linha
+/literal_copy: o texto aparece exatamente como foi escrito, com acentos e pontuação.
+/brand_lock: só as cores e a tipografia da marca.
+<"/logo_safezone" só se o logo NÃO estiver anexado; se estiver, a linha "Use o logo e os grafismos anexados.">
+Negativos: <negativos da marca, texto inventado ou ilegível, CTA inventado, logo gerado pela IA>
+<ajustes manuais, por exemplo personagens>
+```
+
+O bloco Visual Codes continua obrigatório, com 3 a 4 códigos. Sem códigos de layout. A direção de estilo abaixo fica com você; não vire parágrafo de layout no prompt colado.
+
 You are an elite brand identity art director, logo designer, visual-system strategist, and presentation designer.
 
 Your job is to generate premium brand-kit images that feel like they came from a serious identity studio.
@@ -136,6 +161,8 @@ Do not pick symbols randomly.
 ---
 
 # LOGO GENERATION STANDARD
+
+The official logo is the attached file. Do not ask the engine to redraw it. A concept before that file exists is a proposal for chat approval, not the official logo.
 
 The logo must be professional.
 
@@ -727,58 +754,13 @@ Extract:
 - accent color logic
 - brand-system behavior
 
-Do not copy:
-- exact logo
-- exact brand name
-- exact composition
-- exact slogan
-- unique visual asset
-
-Use references as quality training, not as templates.
+Do not copy another brand's logo, name, slogan, or unique asset. The attached reference leads the piece: follow it, and do not forbid an element that is in it. Do not dictate a new layout in the pasted prompt.
 
 ---
 
 # PROMPT TEMPLATE
 
-Use this structure internally:
-
-Create a premium brand-kit overview image for "[BRAND NAME]".
-
-Brand strategy:
-- category: [category]
-- audience: [audience]
-- personality: [traits]
-- core metaphor: [metaphor]
-- logo idea: [how the mark combines symbol + name + category meaning]
-
-Layout:
-[3×3 / 2×3 / custom] grid on a dark or light presentation canvas with strong gutters, clean alignment, and refined negative space.
-
-Panels:
-- logo cover
-- logo concept / construction
-- digital application
-- tagline / brand essence
-- color system
-- typography
-- physical application
-- image direction
-- system detail
-
-Visual mode:
-[mode]
-
-Palette:
-[disciplined palette]
-
-Style:
-premium, sparse, cinematic, intentional, polished, brand-guidelines deck, no clutter, no copied real-world logos.
-
-Typography:
-readable, minimal, high hierarchy, no tiny fake text.
-
-Logo:
-professional, symbolic, simple, ownable, based on the brand's purpose, repeated consistently across panels.
+O prompt colado é o molde da seção "Motor e prompt". Não descreva grid, painéis nem posição do logo. A referência anexada cobre o layout. Copy literal. Logo oficial anexado, ou `/logo_safezone` se o arquivo ainda não existe.
 
 ---
 

@@ -1,26 +1,21 @@
 # Totum Visual Codes: biblioteca consolidada
 
-Versão do Lab: 0.2.0 (rascunho, 23/10/2026). Base: `visual-codes.json` v0.1.0 do Totum Studio, idêntico ao MD exportado pelo ChatGPT em 23/10/2026. Os 40 códigos abaixo têm texto literal da fonte; o que muda nesta versão é a regra de receita, os negativos universais e a camada de códigos de cliente.
+Versão do Lab: 0.3.0 (12/11/2026). Changelog: a receita colada no prompt fica em 3 a 4 códigos; os estruturais saem porque a referência cobre layout. Base: `visual-codes.json` v0.1.0 do Totum Studio, idêntico ao MD exportado pelo ChatGPT em 23/10/2026. Os 40 códigos abaixo têm texto literal da fonte.
 
 ## 1. Regra de receita (versão Lab)
 
-Teto: **7 códigos por receita**, o ideal é 6. Passou de 7, corte o código que menos muda o resultado.
+No prompt colado entram **3 a 4 códigos**. O bloco Visual Codes continua obrigatório (regra de 12/11/2026).
 
-| Grupo | Quantidade | Observação |
+| O que entra | Quantidade | Observação |
 |:--|:--|:--|
-| Formato | exatamente 1 | |
-| Composição | 1, no máximo 2 | a segunda só quando cumpre função diferente (ex.: `/hero_subject` + `/negative_space`) |
-| Direção de arte | 1, no máximo 2 | duas só se não brigarem (ex.: `/tech_human` + `/clean_commercial`) |
-| Emoção | exatamente 1 | |
-| Fotografia | 0 ou 1 | só quando há pessoa, produto ou ambiente real |
-| Narrativa | 0 ou 1 | só quando a peça argumenta |
-| Marca | `/brand_lock` sempre + `/logo_safezone` quando há logo | |
+| Emoção | exatamente 1 | uma linha no prompt |
+| Copy | `/literal_copy` | texto exato, com acentos e pontuação |
+| Marca | `/brand_lock` | só as cores e a tipografia da marca |
+| Logo | `/logo_safezone` só se o logo NÃO estiver anexado | com o arquivo anexado, a linha é `Use o logo e os grafismos anexados.` |
 
-Como cabe no teto: no fluxo padrão do Lab a imagem-base é **cena sem texto e sem logo** (ver `totum-design-peca`). Por isso `/type_hierarchy` e `/literal_copy` não entram no prompt de imagem: eles valem na etapa de composição, quando texto e logo são aplicados por cima. Só contam no teto quando a peça for gerada com texto direto no motor.
+Ficam de fora do prompt, porque a referência já cobre: `/carousel`, `/visual_continuity`, `/type_hierarchy` e os códigos de formato, composição e layout. Fotografia, narrativa e código de cliente também não entram no texto colado. Pessoa, produto e local vão como anexo.
 
-Grupos obrigatórios em toda receita: Formato, Composição, Direção de arte, Emoção e Marca.
-
-Diferença para o catálogo original: o original pede 6 a 10 códigos, emoção opcional e 1 a 4 de marca. O Lab baixa o teto para 7, torna a emoção obrigatória e tira os códigos de texto do prompt de imagem.
+Diferença para o catálogo original: o original pede 6 a 10 códigos. A v0.2.0 do Lab usava teto 7 e cena sem texto. Esta versão cola a peça inteira no ChatGPT e deixa a receita enxuta.
 
 ### Saída obrigatória antes de gerar
 
@@ -39,6 +34,8 @@ Nunca gerar sem mostrar a receita. Na correção, trocar **um código por vez**.
 
 ### Conflitos
 
+Estes conflitos valem para ler a peça. Não entram no prompt colado.
+
 - `/centered_impact` x `/asymmetric_flow`: escolha a composição principal.
 - `/studio_controlled` x `/real_environment`: estúdio ou local real, nunca os dois.
 - Conflitos práticos (não declarados no JSON, observados): `/bold_brutalist` x `/premium_showcase`; `/urgency` x `/premium_showcase`; `/negative_space` x `/data_focus` quando o dado é longo.
@@ -47,11 +44,10 @@ Nunca gerar sem mostrar a receita. Na correção, trocar **um código por vez**.
 ### Receitas-base
 
 ```text
-Anúncio de serviço local:  /meta_ad /hero_subject /clean_commercial /confidence /brand_lock /logo_safezone
-Post educativo:            /organic_post /negative_space /editorial_refined /curiosity /visual_metaphor /brand_lock
-Carrossel:                 /carousel /visual_continuity /clean_commercial /curiosity /problem_solution /brand_lock
-Capa de reels:             /reel_cover /centered_impact /bold_brutalist /curiosity /brand_lock /logo_safezone
-Key visual:                /key_visual /hero_subject /cinematic /aspiration /visual_metaphor /brand_lock /logo_safezone
+Anúncio, logo anexado:  /confidence /literal_copy /brand_lock
+Post, logo anexado:     /curiosity /literal_copy /brand_lock
+Carrossel, logo anexado: /curiosity /literal_copy /brand_lock
+Sem o arquivo do logo:  /confidence /literal_copy /brand_lock /logo_safezone
 ```
 
 ## 2. Negativos universais (bloco EVITAR padrão)
@@ -66,7 +62,7 @@ multiple competing focal points, explanatory typography, stock-photo smile,
 collage look, cropped text, wrong Portuguese accents, emoji, generated logo
 ```
 
-Em português, para o prompt quando o motor responde melhor em pt-BR: pele plástica, suavização excessiva, texto ilegível ou inventado, dedo extra, mão deformada, rosto diferente da referência, marca d'água, assinatura, luz amadora, cores saturadas demais, composição poluída, centralização sem motivo, dois focos competindo, sorriso de banco de imagem, cara de colagem, texto cortado, erro de acentuação, emoji, logo gerado pela IA.
+Em português, no bloco Negativos do prompt: pele plástica, suavização excessiva, texto inventado ou ilegível, CTA inventado, dedo extra, mão deformada, rosto diferente da referência, marca d'água, assinatura, luz amadora, cores saturadas demais, composição poluída, sorriso de banco de imagem, cara de colagem, texto cortado, erro de acentuação, emoji, logo gerado pela IA. Some os negativos da marca. Não proíba elemento que está na referência.
 
 Ciclo de aprendizado: toda peça reprovada vira anti-referência no `receitas.md` do cliente, com o motivo em uma linha. O motivo entra no EVITAR da próxima peça daquele cliente.
 
@@ -78,6 +74,8 @@ Códigos observados em peças reais que **não** entram na biblioteca geral. Viv
 - Totum: `/kv_objeto_central`, `/cursiva_destaque`, `/marcacao_manual` (sistema v1.1).
 
 ## 4. Os 40 códigos
+
+O catálogo permanece para ler uma peça e nomear o que se vê. A coluna "expansão" não é mais texto para colar no motor. No prompt entram só a emoção, `/literal_copy`, `/brand_lock` e, sem o logo anexado, `/logo_safezone`.
 
 
 ### Formato (8)
@@ -155,9 +153,9 @@ Códigos observados em peças reais que **não** entram na biblioteca geral. Viv
 | `/type_hierarchy` | Hierarquia tipográfica | Garantir ordem clara de leitura. | Definir H1, apoio e CTA com salto perceptível de tamanho, peso e cor, usando no máximo três níveis. | peça com texto, mobile, conversão |  |
 | `/literal_copy` | Copy literal | Preservar texto aprovado sem alterações. | Reproduzir exatamente a copy fornecida, com acentuação e pontuação. Se o motor não garantir fidelidade, reservar a zona para composição posterior. | copy aprovada, oferta, compliance |  |
 
-## 5. Ordem de montagem do prompt (do compilador original)
+## 5. Ordem de montagem do prompt
 
-1. Papel e tipo de peça. 2. Objetivo, público e ação. 3. Marca confirmada. 4. Ideia visual dominante. 5. Composição. 6. Pessoa, produto ou ambiente. 7. Emoção e narrativa. 8. Copy e hierarquia (só se o texto for gerado junto). 9. Formato e zonas seguras. 10. Restrições.
+O molde curto e o motor estão em `totum-design-peca`. Ordem do texto colado: objetivo, link do design system, referência, copy literal, Visual Codes (3 a 4), negativos, ajuste manual. Sem direção de layout.
 
 ## 6. Proveniência
 

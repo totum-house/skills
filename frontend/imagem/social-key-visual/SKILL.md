@@ -6,6 +6,8 @@ description: >
 
 # Social Key Visual Skill
 
+v1.1, 12/11/2026. Changelog: a peça monta no ChatGPT Images with thinking, com o prompt curto; o Modo Análise permanece.
+
 Esta skill opera em dois modos encadeados:
 
 1. **MODO ANÁLISE** — Extrai o design system a partir de 4 imagens de referência
@@ -112,49 +114,28 @@ Após apresentar, perguntar:
 
 ### Processo de criação
 
-**PASSO 1 — Construção do layout mental**
-Antes de codificar, estruturar internamente:
-- O que ocupa o espaço dominante? (foto, cor sólida, gradiente, padrão, forma geométrica)
-- Onde entra o texto? Tamanho, hierarquia, peso
-- Qual o elemento de destaque / point of interest?
-- Como a marca/logo aparece (se pedido)?
-- Qual detalhe fará essa peça ser lembrada?
+A peça (layout, texto em pt-BR, logo e grafismos) monta no ChatGPT, Images with thinking (GPT-6, ChatGPT Images 2.6), no lote inteiro. GPT-6 Astra (no chat, GPT-6 Pro) só em peça difícil ou depois de duas falhas: uma mensagem Pro custa cerca de 5x (50 contra 10 créditos no Business) e a geração drena a cota de 3 a 5 vezes mais rápido. Grok Imagens e Nano Banana só para foto sem texto. Ideogram 4.0 e Recraft V4 são teste lado a lado, não o padrão. O logo oficial nunca é gerado: anexe o arquivo e, se distorcer, aplique no PSD.
 
-**PASSO 2 — Codificação Python com Pillow**
+Anexe em toda geração as referências do Modo 1 (ou o KV), o logo oficial e 1 ou 2 grafismos. Não dite o layout e não proíba elemento que está na referência. Sem CTA, escreva `sem CTA`. Lista fechada: os itens exatos. Cada peça volta ao chat para aprovação antes do PSD ou dos slides finais.
 
-Usar exclusivamente a biblioteca `Pillow` (PIL) para geração. Seguir as regras:
+Formatos, se o pedido não disser outro: feed 1080×1080, stories 1080×1920, retrato 1080×1350. O tamanho não vira aula de layout.
 
-```python
-from PIL import Image, ImageDraw, ImageFont
-import os
-
-# Fontes disponíveis em /mnt/skills/examples/canvas-design/canvas-fonts/
-FONTS_PATH = "/mnt/skills/examples/canvas-design/canvas-fonts/"
-
-# Dimensões padrão
-FORMATS = {
-    "feed":     (1080, 1080),
-    "stories":  (1080, 1920),
-    "retrato":  (1080, 1350),
-}
+```text
+Objetivo: <o que a peça precisa fazer a pessoa sentir ou fazer, e a oferta se houver>
+Design system da <Marca>: <link do design system da marca>
+Referência anexada. Faça de acordo com a referência.
+<opcional: uma linha do que gostamos na referência, ou uma ideia de foto>
+Texto dos slides: <S1 (capa): ...> <S2: ...> ... (copy literal, cada slide)
+Visual Codes:
+/<emoção>: uma linha
+/literal_copy: o texto aparece exatamente como foi escrito, com acentos e pontuação.
+/brand_lock: só as cores e a tipografia da marca.
+<"/logo_safezone" só se o logo NÃO estiver anexado; se estiver, a linha "Use o logo e os grafismos anexados.">
+Negativos: <negativos da marca, texto inventado ou ilegível, CTA inventado, logo gerado pela IA>
+<ajustes manuais, por exemplo personagens>
 ```
 
-**Regras inegociáveis de execução:**
-- Nenhum elemento ultrapassa as bordas do canvas
-- Margem de segurança mínima: 64px em todos os lados
-- Hierarquia visual clara: nunca dois elementos com mesmo peso
-- Usar APENAS as fontes disponíveis em `canvas-fonts/` — ver lista abaixo
-- Texto sempre legível sobre o background (contraste mínimo 4.5:1)
-- Usar cores exatas do design system extraído, sem improvisação
-- Evitar renderização de texto com antialiasing ruim — testar fill com cores sólidas primeiro
-
-**PASSO 3 — Polimento**
-
-Após gerar o arquivo base:
-- Revisar se a hierarquia visual está respeitada
-- Verificar se há sobreposições indesejadas
-- Checar se o texto cabe com folga dentro do canvas
-- Se necessário, refinar espaçamentos, pesos, tamanhos
+O bloco Visual Codes continua obrigatório, com 3 a 4 códigos. Sem `/carousel`, `/visual_continuity`, `/type_hierarchy` nem código de layout.
 
 ---
 
@@ -191,7 +172,9 @@ Após gerar o arquivo base:
 
 ---
 
-### Template Python base
+A lista de fontes acima não monta a peça. No PSD, a fonte é a da marca.
+
+### Template Python base (não é o caminho de montagem)
 
 ```python
 from PIL import Image, ImageDraw, ImageFont
@@ -238,10 +221,9 @@ def create_key_visual(
 
 ### Output esperado
 
-- Arquivo(s) `.png` salvos em `/mnt/user-data/outputs/`
+- PNG da peça, no chat, antes de PSD ou de fechar os slides
 - Nome de arquivo: `[marca-ou-tema]_[formato]_[variacao].png`
-- Apresentar com `present_files` ao final
-- Breve nota sobre as escolhas de layout feitas e por quê
+- Nota curta do que a referência puxou, sem reescrever o layout
 
 ---
 
@@ -266,7 +248,7 @@ MODO 1: Analisar imagens → extrair design system → apresentar ao usuário
     ↓
 USUÁRIO confirma ou ajusta sistema
     ↓
-MODO 2: Gerar key visuals com Python/Pillow → salvar PNG → present_files
+MODO 2: prompt curto → ChatGPT Images with thinking → aprovação no chat → PSD só se o logo distorcer ou se pedirem camadas
     ↓
 Perguntar se quer variações, outro formato ou ajustes
 ```

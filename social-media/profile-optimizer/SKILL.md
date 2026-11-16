@@ -6,6 +6,8 @@ description: >
 
 # Profile Optimizer
 
+v1.1, 12/11/2026. Changelog: banner e tiles, que levam texto, montam no ChatGPT Images with thinking, no prompt curto. Foto de perfil sem texto não monta peça.
+
 ## CRITICAL: Auto-start on load
 
 When this skill triggers, go straight to Step 1. Do not summarise. Do not explain what you will produce. Start input gathering immediately.
@@ -204,51 +206,28 @@ No subtitles. No internal LinkedIn posts. No "DM me" items.
 
 ## Step 6. Visual Design Brief
 
-Output 4 separate image generation prompts, each in its own code block. Each prompt must be fully self-contained and work when pasted into Gemini as a standalone request.
+Banner e os dois tiles levam texto: um prompt cada, no molde abaixo, no ChatGPT Images with thinking (GPT-6, ChatGPT Images 2.6). GPT-6 Astra (no chat, GPT-6 Pro) só depois de duas falhas. Uma mensagem Pro custa cerca de 5x (50 contra 10 créditos no Business) e a geração drena a cota de 3 a 5 vezes mais rápido. Não use Grok nem Nano Banana para montar essas peças. Não dite posição do texto. Anexe referência, logo oficial e 1 ou 2 grafismos. O logo oficial nunca é gerado. Se distorcer, aplique no PSD. Sem CTA, escreva `sem CTA`. Copy literal, inclusive a prova social, sem o motor completar frase.
 
-State the brand colours at the top:
-- Primary hex: [user-provided or suggested]
-- Secondary hex: [user-provided or suggested]
-- One line on why these fit the positioning
+A foto de perfil, se não tiver texto, sai no Grok Imagens ou no Nano Banana a partir do headshot anexado. Não descreva porcentagem de enquadramento.
 
-### Asset 1: LinkedIn Banner (1584 x 396 pixels)
+```text
+Objetivo: <o que a peça precisa fazer a pessoa sentir ou fazer, e a oferta se houver>
+Design system da <Marca>: <link do design system da marca>
+Referência anexada. Faça de acordo com a referência.
+<opcional: uma linha do que gostamos na referência>
+Texto dos slides: <S1: headline, apoio e CTA literais>
+Visual Codes:
+/<emoção>: uma linha
+/literal_copy: o texto aparece exatamente como foi escrito, com acentos e pontuação.
+/brand_lock: só as cores e a tipografia da marca.
+<"/logo_safezone" só se o logo NÃO estiver anexado; se estiver, a linha "Use o logo e os grafismos anexados.">
+Negativos: texto inventado ou ilegível, CTA inventado, logo gerado pela IA
+<ajustes manuais>
+```
 
-The prompt must:
-- State "Using the attached photo of me..."
-- Create banner at exact dimensions
-- Place the chosen headline text centre-right
-- Place a 5 to 8 word tagline below the headline
-- Include a CTA button element (3 to 4 words)
-- Include social proof text
-- Use brand colours
-- Specify background style
+O bloco Visual Codes continua obrigatório, com 3 a 4 códigos, sem código de layout. Cada peça volta ao chat para aprovação antes do PSD ou de fechar os arquivos.
 
-### Asset 2: Profile Picture (400 x 400 pixels)
-
-The prompt must:
-- State "Using the attached headshot photo as the base..."
-- Apply brand colour background (solid or gradient)
-- Centre face at 60 to 70% of frame
-- Work when cropped to a circle
-- Add brand colour border if appropriate
-
-### Asset 3: Featured Section Tile 1 (552 x 368 pixels)
-
-- Title text from Featured Item 1 as focal point
-- Brand colours matching the banner
-- Simple clickable visual cue (arrow icon)
-- Clean, minimal, no subtitle or body text
-- No photo needed
-
-### Asset 4: Featured Section Tile 2 (552 x 368 pixels)
-
-- Title text from Featured Item 2 as focal point
-- Visually distinct from Tile 1 (swap primary/secondary colour usage)
-- No photo needed
-
-After all 4 prompts, say:
-
-> Copy each prompt into a new Gemini chat one at a time. For the banner and profile picture, attach your headshot alongside the prompt. The featured tiles do not need a photo.
+Diga para colar no ChatGPT, Images with thinking, com a foto e a referência na mesma mensagem. Os tiles sem foto usam a referência visual da marca.
 
 ## Rules
 
@@ -257,7 +236,7 @@ After all 4 prompts, say:
 - Write full sentences. Do not force line breaks mid-sentence. LinkedIn handles wrapping.
 - No job titles in headlines.
 - No block paragraphs anywhere.
-- Each image prompt must be fully self-contained.
+- Each image prompt with text follows the short mold. Do not dictate placement. The Visual Codes block stays, with 3 to 4 codes and no layout code.
 - Never use em dashes.
 - British English throughout.
 - Do NOT offer to write a launch post or engagement strategy after the design brief. End at the design brief.

@@ -1,10 +1,12 @@
 ---
 name: quote-post
 description: >
-  Two-step workflow for creating quote posts on LinkedIn. Claude generates viral motivational quotes to accompany a caption, then produces a Gemini prompt that recreates a reference image with the chosen quote baked in. Use this skill whenever the user says "quote post", "quote graphic", "motivational post", "build me a quote", or wants a low-effort high-engagement LinkedIn graphic. Optimised for LinkedIn's employee and early-career audience, which skews toward motivational content.
+  Two-step workflow for creating quote posts on LinkedIn. Writes the quote, then a short prompt for ChatGPT Images with thinking that follows the attached reference and sets the quote literally. Use this skill whenever the user says "quote post", "quote graphic", "motivational post", "build me a quote", or wants a low-effort high-engagement LinkedIn graphic. Optimised for LinkedIn's employee and early-career audience, which skews toward motivational content.
 ---
 
 # Quote Post
+
+v1.1, 12/11/2026. Changelog: a arte da frase monta no ChatGPT Images with thinking, no prompt curto, com a referência anexada.
 
 ## CRITICAL: Auto-start on load
 
@@ -72,28 +74,25 @@ If the user describes a style instead of uploading an image, recommend:
 - **Bold poster** (heavy sans-serif, solid colour block background, high contrast)
 - **Polaroid or film photo** with text overlay
 
-## Step 4. Output the Gemini prompt
+## Step 4. Output the prompt
 
-Output the following prompt in a code block, with the quote filled in:
+A frase entra literal. Motor: ChatGPT, Images with thinking (GPT-6, ChatGPT Images 2.6). GPT-6 Astra (no chat, GPT-6 Pro) só depois de duas falhas. Uma mensagem Pro custa cerca de 5x (50 contra 10 créditos no Business) e a geração drena a cota de 3 a 5 vezes mais rápido. Não use Grok nem Nano Banana: esta peça tem texto. Anexe a referência. Sem logo oficial, use `/logo_safezone` e escreva `sem CTA` se não houver chamada.
 
+```text
+Objetivo: <o que a frase precisa fazer a pessoa sentir ou fazer>
+Design system da <Marca>: <link do design system da marca>
+Referência anexada. Faça de acordo com a referência.
+<opcional: uma linha do que gostamos na referência>
+Texto dos slides: <S1: "[CHOSEN QUOTE]"> sem CTA
+Visual Codes:
+/<emoção>: uma linha
+/literal_copy: o texto aparece exatamente como foi escrito, com acentos e pontuação.
+/brand_lock: só as cores e a tipografia da marca.
+/logo_safezone
+Negativos: texto inventado ou ilegível, CTA inventado, logo gerado pela IA, nome ou @ inventado
 ```
-Recreate the attached reference image with the following quote:
 
-"[CHOSEN QUOTE]"
-
-Critical constraints:
-- Output at exactly 1080 x 1350 pixels (4:5 vertical)
-- Match the style, typography, and colour palette of the reference image
-- Keep the quote as the focal point — centred and legible
-- Attribute nothing (no names, no handles, no logos)
-- Maintain the visual tone of the original but with the new text
-
-The quote must be perfectly spelled and punctuated exactly as written above.
-```
-
-Tell the user:
-
-> Paste this into a new Gemini chat with the reference image attached. Create Image mode, Nano Banana model, 1080x1350 output.
+Diga para colar no ChatGPT, Images with thinking, com a referência na mesma mensagem. A peça volta ao chat para aprovação antes do PSD ou de fechar a arte. O bloco Visual Codes continua obrigatório, com 3 a 4 códigos, sem código de layout.
 
 ## Step 5. Honest expectation-setting
 

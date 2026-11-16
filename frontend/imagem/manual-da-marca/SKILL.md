@@ -9,7 +9,7 @@ description: >-
 ---
 # Manual da Marca
 
-v1.0, 05/11/2026. Padrão Totum de entrega de identidade visual para o cliente, calibrado na entrega da CredPara (29/10/2026) e no estudo da entrega da Cenova. Objetivo: organizar, documentar e apresentar a marca de forma usável, sem inventar o que o material não diz.
+v1.1, 12/11/2026. Changelog: mockup com texto e o kit ChatGPT seguem o motor e o prompt curto de `totum-design-peca`. O logo oficial continua sendo o arquivo, nunca um redraw. Padrão Totum de entrega de identidade visual para o cliente, calibrado na entrega da CredPara (29/10/2026) e no estudo da entrega da Cenova. Objetivo: organizar, documentar e apresentar a marca de forma usável, sem inventar o que o material não diz.
 
 ## Quando usar
 
@@ -123,8 +123,8 @@ Não copie o volume de 64 páginas da Cenova. O logo aparece depois de justifica
 
 ### 7. Mockups
 
-1. Gere cenas limpas (produto ou ambiente sem logo e sem texto da marca), ou use fotos reais autorizadas.
-2. Aplique o logo vetorial por cima. O logo nunca é gerado pela IA.
+1. Foto sem texto (produto ou ambiente) sai no Grok Imagens ou no Nano Banana, ou use foto real autorizada. Mockup com texto da marca monta no ChatGPT, Images with thinking, no molde de `totum-design-peca`.
+2. O logo oficial nunca é gerado pela IA. Anexe o arquivo. Se o motor distorcer, aplique o vetor no PSD. Cada mockup volta ao chat para aprovação antes do PSD.
 3. Em tecido escuro, use a versão mono clara (bordado). Em porcelana e superfícies brilhantes, integre o logo ao material (sem cara de adesivo solto).
 4. Entregue 4 a 8 mockups. Escolha 4 a 6 para a apresentação; o resto fica de reserva.
 5. Se a cena for ilustração de algo que ainda não existe (loja futura, projeção), a legenda deixa isso explícito.
@@ -136,7 +136,7 @@ Manual de uso para imprimir ou mandar ao cliente: capa, versões, proteção e m
 ### 9. Design system HTML + kit ChatGPT
 
 - HTML interativo com seções: identidade, logo, cores (clique copia HEX), tipografia, regras, tom de voz, tokens (CSS/JSON se fizer sentido), exemplos.
-- `kit-chatgpt.md`: prompt mestre e restrições para gerar cena sem logo/texto; o logo entra depois, aplicado do pacote.
+- `kit-chatgpt.md`: link do design system, negativos da marca e a regra de anexar o logo oficial. O prompt de cada peça é o molde curto de `totum-design-peca` (Images with thinking). Não escreva nele um mapa de layout.
 - Fontes oficiais com licença na pasta `fonts/`. Se a fonte comercial não estiver licenciada, use substituta OFL explícita e registre a troca.
 
 ### 10. Pendências, aprovação e Drive
@@ -174,4 +174,5 @@ Não invente valores na conversa com o cliente. Se o Rael pedir preço, rode pes
 
 ## Histórico
 
+- v1.1 (12/11/2026): mockup com texto e kit ChatGPT no motor e no prompt curto de 12/11/2026. O logo oficial segue sendo o arquivo.
 - v1.0 (05/11/2026): extraído do processo CredPara (Lab Design) e do estudo da entrega Cenova, para virar o padrão Totum de entrega de marca.

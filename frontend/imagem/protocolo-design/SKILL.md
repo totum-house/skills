@@ -9,7 +9,7 @@ description: >-
 ---
 # Protocolo Design
 
-v0.2, 23/10/2026. Monta o livro de regras de uma marca a partir do material dela e de uma entrevista curta. Depois disso, totum-visual-codes e totum-design-peca passam a funcionar para essa marca.
+v0.3, 12/11/2026. Changelog: receitas de prova em 3 a 4 códigos e KVs no ChatGPT Images with thinking, pelo molde de `totum-design-peca`. Monta o livro de regras de uma marca a partir do material dela e de uma entrevista curta. Depois disso, totum-visual-codes e totum-design-peca passam a funcionar para essa marca.
 
 ## Modos
 
@@ -50,10 +50,10 @@ Conversa, não formulário. Faça no máximo 5 perguntas por rodada, sempre come
 Registre cada resposta assim que ela chegar. Se o Rael parar no meio, o protocolo continua de onde parou.
 
 ### 4. Livro de regras (rascunho)
-Escreva o `brand.md` nesta ordem: identidade (o que a marca é em 2 linhas), paleta com hex e hierarquia, tipografia, logo e usos, linguagem visual, códigos visuais do cliente, nunca, aprovador, histórico. Escreva o `receitas.md` com 2 a 4 receitas-base (anúncio, post, carrossel, story) no formato de totum-visual-codes. Separe o que foi confirmado do que é provisório.
+Escreva o `brand.md` nesta ordem: identidade (o que a marca é em 2 linhas), paleta com hex e hierarquia, tipografia, logo e usos, linguagem visual, códigos visuais do cliente, nunca, aprovador, histórico. Escreva o `receitas.md` com 2 a 4 receitas-base (anúncio, post, carrossel, story) no formato enxuto de totum-visual-codes: emoção, `/literal_copy`, `/brand_lock` e `/logo_safezone` só sem o arquivo do logo. Separe o que foi confirmado do que é provisório.
 
 ### 5. KVs de prova
-Gere de 2 a 3 KVs novos com totum-design-peca, cada um testando uma receita-base, com as referências aprovadas anexadas e o logo oficial aplicado por cima (nunca gerado). Apresente cada um com a receita que usou e o que ele está testando.
+Gere de 2 a 3 KVs novos com totum-design-peca, no ChatGPT Images with thinking e no prompt curto, cada um testando uma receita-base. Anexe referência, logo oficial e 1 ou 2 grafismos. O logo nunca é gerado; se distorcer, aplique no PSD. Cada KV volta ao chat para aprovação antes do PSD. Apresente a receita e o que ele está testando.
 
 ### 6. Correção e calibragem
 O Rael corrige. Converta cada correção em regra: ajuste de código, novo "nunca", troca de referência. KV aprovado vira referência; KV reprovado vira anti-referência com o motivo. Repita até aprovar ao menos um KV por receita-base, ou até o Rael encerrar.
