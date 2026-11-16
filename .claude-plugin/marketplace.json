@@ -13,7 +13,7 @@
             "name": "totum-skills",
             "source": "./",
             "description": "Núcleo Totum: identidade, orquestração (categoria orquestracao, inclui totum-atendimento), superchat (com hook que mede mensagens e tokens reais), dev com portão duplo, verificação, decisão, documentos.",
-            "version": "1.4.2",
+            "version": "1.4.3",
             "author": {
                 "name": "Grupo Totum",
                 "email": "totumpersonalizados@gmail.com"
@@ -43,7 +43,7 @@
             "name": "totum-frontend",
             "source": "./",
             "description": "Frontend e design Totum: análise de front, blueprint, design system, estilos de UI, imagem para código, prévia de hero, kit de produção e go-live.",
-            "version": "1.2.3",
+            "version": "1.2.4",
             "author": {
                 "name": "Grupo Totum",
                 "email": "totumpersonalizados@gmail.com"
@@ -60,7 +60,7 @@
             "name": "totum-design-terceiros",
             "source": "./",
             "description": "Skills de design de terceiros (licença MIT, com fonte): design-taste (24 skills de gosto visual), better-design (precisa do MCP) e superdesign (usa créditos do superdesign.dev). Opcional, instale só onde fizer sentido.",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "author": {
                 "name": "Grupo Totum",
                 "email": "totumpersonalizados@gmail.com"
@@ -116,7 +116,7 @@
             "name": "totum-marketing",
             "source": "./",
             "description": "Marketing e social media: SEO, ads, CRO, copy, e-mail, posts, reels, carrosséis.",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "author": {
                 "name": "Grupo Totum",
                 "email": "totumpersonalizados@gmail.com"
@@ -160,7 +160,7 @@
             "name": "totum-video",
             "source": "./",
             "description": "Vídeo Totum: plano de edição, vídeo longo e mini-novela com IA (microcenas, takes de 4 s, Pavo), pacote de produção de capítulo.",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "author": {
                 "name": "Grupo Totum",
                 "email": "totumpersonalizados@gmail.com"
