@@ -14,10 +14,10 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Setup rclone
-        uses: animus-co/setup-rclone-action@v1
-        with:
-          rclone_version: 'latest'
+      - name: Install rclone natively
+        run: |
+          sudo -v
+          curl https://rclone.org/install.sh | sudo bash
 
       - name: Configure rclone from Base64 Secret
         run: |
