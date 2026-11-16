@@ -1,0 +1,34 @@
+name: Sync to Google Drive
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  sync-to-drive:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup rclone
+        uses: animus-co/setup-rclone-action@v1
+        with:
+          rclone_version: 'latest'
+
+      - name: Configure rclone from Base64 Secret
+        run: |
+          mkdir -p ~/.config/rclone
+          echo "${{ secrets.RCLONE_CONFIG_BASE64 }}" | base64 --decode > ~/.config/rclone/rclone.conf
+
+      - name: Sync Markdown and Skills to Google Drive
+        run: |
+          rclone sync . gdrive: --drive-root-folder-id "${{ secrets.GDRIVE_FOLDER_ID }}" \
+            --exclude ".git/**" \
+            --exclude ".github/**" \
+            --exclude ".DS_Store" \
+            --exclude "README.md" \
+            --verbose
