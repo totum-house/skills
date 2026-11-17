@@ -1,8 +1,11 @@
 ---
 name: totum-sdr-wa-link
-description: Use quando for montar ou rodar um lote de abordagem SDR por WhatsApp usando links wa.me/api.whatsapp.com gerados por planilha, com envio manual um a um (técnica sem custo de API), a partir de uma base de leads do uPixel CRM ou CSV.
+description: >-
+  Use quando for montar ou rodar um lote de abordagem SDR por WhatsApp usando
+  links wa.me/api.whatsapp.com gerados por planilha, com envio manual um a um
+  (técnica sem custo de API), a partir de uma base de leads do uPixel CRM ou
+  CSV.
 ---
-
 # Totum SDR via link wa.me
 
 Técnica de SDR assistido: uma planilha gera um link `wa.me` por contato com nome e mensagem já preenchidos. A pessoa (ou o agente no navegador) clica, o WhatsApp abre com o texto pronto e alguém aperta enviar, um contato por vez. Não passa pela API, então não tem custo por mensagem. Origem: técnica do Naim Araújo (@programando_com_planilhas), validada pelo Rael em out/2026 para uso com a base do uPixel.

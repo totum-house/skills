@@ -6,6 +6,7 @@ Central única de skills do ecossistema Totum — compartilhada entre Claude Cod
 
 | Skill | Categoria | Descrição | Quando usar |
 |-------|-----------|-----------|-------------|
+| [find-skills](pesquisa/find-skills/SKILL.md) | `pesquisa` | **Skill principal da casa.** Acha a skill certa para qualquer tarefa: primeiro nas skills da casa, depois no skills.sh (Vercel, 600 mil+ skills), verifica qualidade e instala adaptada às regras do Totum | Antes de qualquer tarefa nova ou especializada, "tem skill para X?" |
 | [agent-criator](totum/agent-criator/SKILL.md) | `totum` | Checklist completo para criar agentes Totum OS padronizados | Criar novo agente com identidade, memória, tools e validação |
 | [orquestracao-pepper-totum](orquestracao/orquestracao-pepper-totum/SKILL.md) | `orquestracao` | Roteia pedidos Totum entre Pepper, subagentes, especialistas e Rael (CEO operacional) | Roteamento, priorização, delegação contínua durante a execução |
 | [orquestrar-totum](orquestracao/orquestrar-totum/SKILL.md) | `orquestracao` | Kernel de sessão: analisa o prompt de entrada, mapeia skills e propõe plano de execução antes de agir | Início de sessão, prompts longos (150+ palavras) ou com 2+ intenções |
@@ -30,7 +31,6 @@ Central única de skills do ecossistema Totum — compartilhada entre Claude Cod
 | [google-sheets-gog](analytics/google-sheets-gog/SKILL.md) | `analytics` | Cria, lê e atualiza Google Sheets via CLI `gog` com autenticação local | Operações diretas em planilhas Google (append, update, create) |
 | [multi-search-engine](pesquisa/multi-search-engine/SKILL.md) | `pesquisa` | 16 motores de busca (7 CN + 9 Global) com operadores avançados, filtros de tempo e WolframAlpha | Pesquisa web sem API key, busca avançada, consultas de conhecimento |
 | [social-media-research](pesquisa/social-media-research/SKILL.md) | `pesquisa` | Pesquisa perfis, posts e engajamento em Instagram, TikTok, LinkedIn, X e outros via Crawlora API | Pesquisa de concorrentes, social listening, stats de perfis públicos |
-| [find-skills](pesquisa/find-skills/SKILL.md) | `pesquisa` | Descobre e sugere skills instaláveis quando o usuário pergunta "como faço X" | Usuário busca funcionalidade que pode existir como skill |
 | [n8n-workflow-automation](automacao/n8n-workflow-automation/SKILL.md) | `automacao` | Gera JSON de workflow n8n genérico com idempotência, retry, logging e fila de revisão humana | Criar automação auditável que não falhe silenciosamente, sem ligação com o formato Totum |
 | [totum-microdecisoes-para-n8n](automacao/totum-microdecisoes-para-n8n/SKILL.md) | `automacao` | Converte um Mapa de Microdecisões Totum (anúncio, carrossel, conteúdo) em workflow n8n com checkpoints humanos | Transformar o mapa de microdecisões do agente de design Totum em fluxo n8n importável |
 | [kommo-n8n-roteamento](automacao/kommo-n8n-roteamento/SKILL.md) | `automacao` | Conecta Kommo ao n8n, audita a conta em modo leitura, monta o Roteador Central (DRY RUN antes de mutar), corrige Salesbot e ativa com testes e rollback | Roteamento de leads, responsável errado, round-robin, duplicatas no Kommo |
