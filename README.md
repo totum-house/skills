@@ -88,6 +88,7 @@ Central única de skills do ecossistema Totum — compartilhada entre Claude Cod
 | [brand-totum](brand/BRAND_SKILL.md) | `brand` | Identidade visual completa da Totum — tokens, glassmorphism, gradientes, glows, motion, anti-patterns e checklist | Carregar antes de gerar qualquer UI, anúncio ou peça visual; padrão: REFERENCE → BRAND_SKILL → Agent → Output |
 | [totum-red-theme-slides](brand/totum-red-theme-slides/SKILL.md) | `brand` | Aplica o Totum Red Theme a um deck existente sem mudar conteúdo | Restyle visual de apresentação da Totum já escrita |
 | [totum-novela-producao](video/totum-novela-producao/SKILL.md) | `video` | Pacote de produção de capítulo de mini-novela (cenas até 12 s, takes até 4 s, fichas, prompts) para o Lab Vídeo | Capítulo com roteiro aprovado que precisa virar pacote de produção |
+| [protocolo-edicao-video](video/protocolo-edicao-video/SKILL.md) | `video` | Protocolo de ponta a ponta para editar vídeo: briefing, batidas, direção de cena e prompt por modelo antes de editar, com portões de aprovação | Editar ou montar qualquer vídeo (gravado, gerado ou misto) |
 | [planejar-edicao](video/planejar-edicao/SKILL.md) | `video` | Plano de edição antes de gastar crédito (batidas, tipos de insert, storyboard, orçamento) | Antes de editar ou gerar vídeo, com roteiro, bruto ou pedido de edição |
 | [pavo-video-longo](video/pavo-video-longo/SKILL.md) | `video` | Vídeo longo, reel ou mini-novela por microcenas: imagem por cena, clipe de 4 s, montagem | Produzir vídeo longo, reel ou episódio de mini-novela com IA por cenas |
 | [cinematografia-prompt](video/cinematografia-prompt/SKILL.md) | `video` | Direção de cinema para prompt de imagem e vídeo: plano, ângulo, lente, movimento de câmera, luz, color grade e textura (adaptada de fal-ai/cinematography) | Footage, B-roll, cena de comercial, "deixa com cara de cinema" |
@@ -277,3 +278,7 @@ Mantido pelo time Totum BuildOps. Dúvidas: [grupototum.com](https://grupototum.
 - Entrou `protocolos/` com o índice e quatro protocolos: Ads 1.2 (aprovado), pastas de cliente 0.1 (rascunho pendente de aprovação), design system (modelo de referência) e conteúdo (reservado).
 - O protocolo de Ads passou a se chamar Peças estáticas v1.3. `protocolos/ads.md` aponta para `protocolos/pecas-estaticas.md`.
 - `manual-da-marca` e `totum-kit-producao` passam a apontar a entrega no Drive para `1- Design System`.
+
+## 2026-11-17
+
+- Entrou `protocolo-edicao-video` em `video/`, coberto por `./video`: protocolo de ponta a ponta para editar vídeo (briefing, batidas, direção de cena com `cinematografia-prompt`, prompt por modelo com `video-prompting`, três portões de aprovação). Envia a lista do workflow em modo lista ao iniciar e em cada portão. Plugin `totum-video` 1.1.0.

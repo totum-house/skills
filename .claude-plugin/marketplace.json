@@ -160,7 +160,7 @@
             "name": "totum-video",
             "source": "./",
             "description": "Vídeo Totum: plano de edição, vídeo longo e mini-novela com IA (microcenas, takes de 4 s, Pavo), pacote de produção de capítulo.",
-            "version": "1.0.2",
+            "version": "1.1.0",
             "author": {
                 "name": "Grupo Totum",
                 "email": "totumpersonalizados@gmail.com"
