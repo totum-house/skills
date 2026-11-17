@@ -281,4 +281,4 @@ Mantido pelo time Totum BuildOps. Dúvidas: [grupototum.com](https://grupototum.
 
 ## 2026-11-17
 
-- Entrou `protocolo-edicao-video` em `video/`, coberto por `./video`: protocolo de ponta a ponta para editar vídeo (briefing, batidas, direção de cena com `cinematografia-prompt`, prompt por modelo com `video-prompting`, três portões de aprovação). Envia a lista do workflow em modo lista ao iniciar e em cada portão. Plugin `totum-video` 1.1.0.
+- Entrou `protocolo-edicao-video` em `video/`, coberto por `./video`: protocolo de ponta a ponta para editar vídeo (briefing, batidas, direção de cena com `cinematografia-prompt`, prompt por modelo com `video-prompting`, três portões de aprovação). Envia a lista do workflow em modo lista ao iniciar e em cada portão, e exige o design system do cliente antes de planejar. Plugin `totum-video` 1.1.0.

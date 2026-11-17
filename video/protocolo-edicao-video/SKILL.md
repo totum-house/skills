@@ -19,7 +19,7 @@ Assim que o protocolo for acionado, antes de qualquer outra coisa, envie ao Rael
 
 ```text
 Workflow de edição: <nome do vídeo>
-1. [ ] Briefing e materiais
+1. [ ] Briefing, materiais e design system (enviar o design system do cliente)
 2. [ ] Base de tempo e cortes (portão: cortes aprovados)
 3. [ ] Batidas e tipo de inserção
 4. [ ] Direção de cena dos planos gerados (cinematografia-prompt)
@@ -29,7 +29,7 @@ Workflow de edição: <nome do vídeo>
 8. [ ] Amostra de 8 a 15 s (PORTÃO 2)
 9. [ ] Produção e montagem
 10. [ ] Revisão e fechamento (PORTÃO 3)
-Agora: fase 1. Falta de você: <o que precisa do Rael>
+Agora: fase 1. Falta de você: design system do cliente, <demais itens>
 ```
 Marque `[x]` ao concluir cada fase, `[~]` na fase em andamento. Reenvie a lista atualizada em todo portão e quando o plano mudar. Em ferramenta com lista de tarefas própria (ex.: update_plan), espelhe a mesma lista lá.
 
@@ -37,7 +37,7 @@ Marque `[x]` ao concluir cada fase, `[~]` na fase em andamento. Reenvie a lista 
 
 | Fase | O que acontece | Skill | Saída em `plano/` | Portão |
 |:--|:--|:--|:--|:--|
-| 0 | Briefing e materiais | esta | `briefing.md` | |
+| 0 | Briefing, materiais e design system | esta | `briefing.md` | Design system recebido |
 | 1 | Base de tempo e cortes | planejar-edicao (passos 1 e 2) | `palavras.json`, `cortes.md` | Cortes aprovados |
 | 2 | Batidas e tipo de inserção | planejar-edicao (passos 3 a 5) | `mapa-edicao.csv` | |
 | 3 | Direção de cena de cada footage gerado | cinematografia-prompt | `fichas-de-plano.md` | |
@@ -52,9 +52,14 @@ Marque `[x]` ao concluir cada fase, `[~]` na fase em andamento. Reenvie a lista 
 Preencha `plano/briefing.md` com o que já foi dito e pergunte só o que muda o resultado:
 - objetivo, público, plataforma e proporção (9:16, 4:5, 16:9), duração alvo, CTA real;
 - origem do material: vídeo bruto, roteiro, os dois ou só um pedido;
-- cliente, `estilo.json` e manual da marca; referência de estilo, se houver;
+- cliente e **design system (obrigatório, ver abaixo)**; `estilo.json`; referência de estilo, se houver;
 - assets que existem (logo, prints, fotos, footage) e teto de gasto;
 - ferramentas e modelos liberados (ex.: Veo 3, Seedance, Kling, Grok Imagine, Runway, HeyGen).
+
+### Design system obrigatório
+O vídeo não sai do briefing sem o design system do cliente. Peça ao Rael, logo na abertura, que envie: manual da marca ou design system (paleta com hex, fontes e pesos, regras de logo, caixa alta, área segura, tom visual) e, se existir, `estilo.json` e a pasta `1- Design System` do Drive. Procure primeiro o que já existe (`clientes/<cliente>/`, `manual-da-marca`, `totum-design-system`) e confirme com o Rael se está atual.
+- Sem design system: pare na Fase 0, peça o envio e deixe a lista do workflow marcada como "aguardando design system". Nada de Fase 1 em diante. Se o Rael mandar seguir sem, registre a decisão em `briefing.md` e use paleta neutra, sem inventar cor ou fonte de marca.
+- Com design system: copie as regras para `briefing.md` (seção "Marca") e use em tudo: motion (MOT), linha de look das fichas de plano, checagem da marca (Fase 5) e revisão (Fase 9).
 
 Dado, preço, prova, depoimento ou CTA que não existe fica marcado como lacuna. Nunca invente. Pessoa real só com autorização de uso de imagem.
 
@@ -97,7 +102,7 @@ Regras: sem nome de modelo, duração, proporção ou resolução dentro do text
 Siga `planejar-edicao` passos 6 e 7: checagem contra o manual e o `estilo.json`, orçamento por ferramenta com margem de refação, `GUIA-DE-INSERCOES.md`, `plano.json`. Rode o conferidor (`python3 /workspace/totum-studio/ferramentas/planejar-edicao/conferir.py plano/`) até passar.
 
 ### Portão 1 (obrigatório)
-Antes de qualquer geração paga ou edição, entregue ao Rael: mapa de edição, fichas de plano, prompts, orçamento e checagem da marca. Só segue com aprovação explícita. Sem ela, tudo fica em rascunho.
+Antes de qualquer geração paga ou edição, entregue ao Rael: mapa de edição, fichas de plano, prompts, orçamento e checagem da marca, junto com o design system usado (o resumo da seção "Marca" do briefing) para ele confirmar que é o certo. Só segue com aprovação explícita. Sem ela, tudo fica em rascunho.
 
 ## Fases 6 a 8: produção
 - Storyboard e ajuste fino pelo fluxo da `planejar-edicao` (PSD com camadas por id de batida). O que o Rael mudar atualiza `mapa-edicao.csv` e `plano.json` (registre em `plano/ajustes-rael.md`) e o conferidor roda de novo.
