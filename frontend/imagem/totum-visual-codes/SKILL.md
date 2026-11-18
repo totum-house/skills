@@ -3,15 +3,16 @@ name: totum-visual-codes
 description: >-
   Use antes de qualquer peça visual ou design do Totum Lab (anúncio, post,
   carrossel, story, KV, mockup, foto de produto) para entender objetivo e
-  cliente, consultar a Biblioteca Visual (40 códigos de receita da casa mais 225
-  códigos ampliados, como /meta_ads ou /3d_billboard), sugerir os códigos certos
+  cliente, consultar a Biblioteca Visual (40 códigos de receita da casa, 7 de
+  diagramação e 232 códigos ampliados, como /meta_ads, /3d_billboard ou
+  /fora_do_centro), sugerir os códigos certos
   e montar a receita; ou quando alguém escrever códigos com barra ou /auto.
 ---
 # Totum Visual Codes
 
-v0.5, 12/11/2026. Duas bibliotecas, leia as duas antes de sugerir:
-- Receita da casa (40 códigos, conflitos, negativos universais, códigos de cliente): `visual-codes.md` (nesta pasta)
-- Biblioteca ampliada (225 códigos de cena, estilo, formato, mockup e edição, cada um com prompt completo em pt-BR): `biblioteca-ampliada.md` (nesta pasta)
+v0.6, 17/11/2026. Changelog: 7 códigos de diagramação do Lab (TikToks do Rael). Duas bibliotecas, leia as duas antes de sugerir:
+- Receita da casa (40 códigos da fonte, 7 de diagramação, conflitos, negativos universais, códigos de cliente): `visual-codes.md` (nesta pasta)
+- Biblioteca ampliada (232 códigos de cena, estilo, formato, mockup, edição, casa e diagramação, cada um com prompt completo em pt-BR): `biblioteca-ampliada.md` (nesta pasta)
 
 Aceite o código com ou sem underline e em qualquer caixa (/metaads = /meta_ads). Atenção: /meta_ad (bloco de formato da casa) e /meta_ads (anúncio pronto da ampliada) são códigos diferentes.
 
@@ -35,8 +36,8 @@ Não pergunte o que já está no livro de regras.
 3. **Varredura das bibliotecas.** Separe candidatos que servem ao objetivo e combinam com a marca. Códigos de cliente só para o próprio cliente.
 4. **Sugestão.**
    - Prompt curto: escolha a emoção certa para cada slide ou peça (ex.: /confidence, /curiosity, /relief, /urgency, /aspiration) e some /literal_copy e /brand_lock.
-   - Receita completa: 1 formato, 1 a 2 composição, 1 a 2 direção de arte, 1 emoção (obrigatória), 0 ou 1 fotografia, 0 ou 1 narrativa, 0 a 2 da ampliada, `/brand_lock` sempre, `/logo_safezone` com logo, teto de 7.
-5. **Conflitos.** `/centered_impact` x `/asymmetric_flow`, `/studio_controlled` x `/real_environment`, dois de luz, dois de formato. Pessoa real exige `/identity_lock`. Sem foto do ambiente, não use `/real_environment`.
+   - Receita completa: 1 formato, 1 a 2 composição (pode incluir diagramação), 1 a 2 direção de arte, 1 emoção (obrigatória), 0 ou 1 fotografia, 0 ou 1 narrativa, 0 a 2 da ampliada, `/brand_lock` sempre, `/logo_safezone` com logo, teto de 7. No prompt de foto (Nano Banana ou Grok Imagens), a expansão dos códigos de diagramação entra por extenso, sem a barra.
+5. **Conflitos.** `/centered_impact` x `/asymmetric_flow` e `/centered_impact` x `/fora_do_centro`, um só entre `/ousado_contraste`, `/minimal_respiro`, `/poster_60_30_10` e `/editorial_duas_fontes`, `/studio_controlled` x `/real_environment`, dois de luz, dois de formato. Pessoa real exige `/identity_lock`. Sem foto do ambiente, não use `/real_environment`.
 6. **Mostre a receita** ao Rael por peça ou slide, com o porquê de cada código, antes de gerar (em lote, registre no pedido e siga):
 
 ```text

@@ -1,6 +1,6 @@
 # Totum Visual Codes: biblioteca consolidada
 
-Versão do Lab: 0.3.0 (12/11/2026). Changelog: a receita colada no prompt fica em 3 a 4 códigos; os estruturais saem porque a referência cobre layout. Base: `visual-codes.json` v0.1.0 do Totum Studio, idêntico ao MD exportado pelo ChatGPT em 23/10/2026. Os 40 códigos abaixo têm texto literal da fonte.
+Versão do Lab: 0.4.0 (17/11/2026). Changelog: entram 7 códigos de diagramação do Lab, a partir de 3 TikToks pedidos pelo Rael. Os 40 códigos da fonte permanecem com texto literal. Base: 0.3.0 (12/11/2026), receita colada em 3 a 4 códigos, estruturais fora do prompt porque a referência cobre layout.
 
 ## 1. Regra de receita (versão Lab)
 
@@ -13,7 +13,7 @@ No prompt colado entram **3 a 4 códigos**. O bloco Visual Codes continua obriga
 | Marca | `/brand_lock` | só as cores e a tipografia da marca |
 | Logo | `/logo_safezone` só se o logo NÃO estiver anexado | com o arquivo anexado, a linha é `Use o logo e os grafismos anexados.` |
 
-Ficam de fora do prompt, porque a referência já cobre: `/carousel`, `/visual_continuity`, `/type_hierarchy` e os códigos de formato, composição e layout. Fotografia, narrativa e código de cliente também não entram no texto colado. Pessoa, produto e local vão como anexo.
+Ficam de fora do prompt, porque a referência já cobre: `/carousel`, `/visual_continuity`, `/type_hierarchy`, os códigos de formato, composição e layout, e os 7 de diagramação. Fotografia, narrativa e código de cliente também não entram no texto colado. Pessoa, produto e local vão como anexo. Na receita completa e no prompt de foto (Nano Banana ou Grok Imagens), a expansão dos códigos de diagramação entra por extenso, sem a barra.
 
 Diferença para o catálogo original: o original pede 6 a 10 códigos. A v0.2.0 do Lab usava teto 7 e cena sem texto. Esta versão cola a peça inteira no ChatGPT e deixa a receita enxuta.
 
@@ -36,7 +36,8 @@ Nunca gerar sem mostrar a receita. Na correção, trocar **um código por vez**.
 
 Estes conflitos valem para ler a peça. Não entram no prompt colado.
 
-- `/centered_impact` x `/asymmetric_flow`: escolha a composição principal.
+- `/centered_impact` x `/asymmetric_flow` e `/centered_impact` x `/fora_do_centro`: escolha a composição principal. Centro só vale em composição simétrica.
+- `/ousado_contraste` x `/minimal_respiro` x `/poster_60_30_10` x `/editorial_duas_fontes`: um estilo por peça.
 - `/studio_controlled` x `/real_environment`: estúdio ou local real, nunca os dois.
 - Conflitos práticos (não declarados no JSON, observados): `/bold_brutalist` x `/premium_showcase`; `/urgency` x `/premium_showcase`; `/negative_space` x `/data_focus` quando o dado é longo.
 - Ausência de conflito declarado não garante compatibilidade. Avalie o efeito combinado.
@@ -73,7 +74,7 @@ Códigos observados em peças reais que **não** entram na biblioteca geral. Viv
 - uPixel: `/pixel_3d_world`, `/stacked_orange_labels`, `/brush_keyword`, `/image_first_lettering`, `/proof_without_fake_ui`, `/compact_copy_block`.
 - Totum: `/kv_objeto_central`, `/cursiva_destaque`, `/marcacao_manual` (sistema v1.1).
 
-## 4. Os 40 códigos
+## 4. Os 40 códigos da fonte
 
 O catálogo permanece para ler uma peça e nomear o que se vê. A coluna "expansão" não é mais texto para colar no motor. No prompt entram só a emoção, `/literal_copy`, `/brand_lock` e, sem o logo anexado, `/logo_safezone`.
 
@@ -152,6 +153,21 @@ O catálogo permanece para ler uma peça e nomear o que se vê. A coluna "expans
 | `/logo_safezone` | Área segura de logo | Evitar reconstrução incorreta do logo. | Reservar uma área limpa e uniforme para aplicar o logo oficial depois. Não desenhar, digitar ou reinterpretar a marca. | anúncio, post, campanha |  |
 | `/type_hierarchy` | Hierarquia tipográfica | Garantir ordem clara de leitura. | Definir H1, apoio e CTA com salto perceptível de tamanho, peso e cor, usando no máximo três níveis. | peça com texto, mobile, conversão |  |
 | `/literal_copy` | Copy literal | Preservar texto aprovado sem alterações. | Reproduzir exatamente a copy fornecida, com acentuação e pontuação. Se o motor não garantir fidelidade, reservar a zona para composição posterior. | copy aprovada, oferta, compliance |  |
+
+
+### Diagramação (7)
+
+Códigos do Lab (17/11/2026), a partir de três referências de TikTok pedidas pelo Rael para reger posts e anúncios. Detalhe operacional em `totum-design-peca/apoio/diagramacao.md`. No prompt curto de peça com texto, ficam de fora (a referência cobre o layout). Na receita completa e no prompt de foto (Nano Banana ou Grok Imagens), entre a expansão por extenso, sem a barra do código.
+
+| Código | Nome | Intenção | Expansão (texto que entra no prompt) | Melhor para | Conflita |
+|:--|:--|:--|:--|:--|:--|
+| `/fora_do_centro` | Fora do centro | Evitar centralizar no piloto automático e criar percurso visual. | Não centralizar por hábito. Usar a regra dos terços: o ponto mais importante (olho do personagem) num cruzamento, o texto no cruzamento oposto. Deixar espaço livre na direção do olhar ou do movimento e colocar o título nesse espaço. Centro só quando a composição for simétrica (pessoa de frente, título acima ou abaixo). Preferência da casa: foto de ponta a ponta, com o texto numa área calma; bloco chapado 2/3 imagem e 1/3 texto só quando o pedido pedir, ajustado ao tamanho do texto. | post, anúncio, pessoa | `/centered_impact` |
+| `/ousado_contraste` | Ousado | Interromper com contraste e escala. | Duas cores em contraste forte e exagerar a escala de um elemento, em geral o título gigante. | oferta, campanha, interrupção de feed | `/minimal_respiro`, `/poster_60_30_10`, `/editorial_duas_fontes` |
+| `/minimal_respiro` | Minimalista com respiro | Reduzir a peça ao essencial com muito espaço. | Foto com poucos elementos e tratamento mais monocromático, texto bem pequeno e gaps generosos entre os elementos. | premium, mensagem curta, respiro | `/ousado_contraste`, `/poster_60_30_10`, `/editorial_duas_fontes` |
+| `/poster_60_30_10` | Pôster de filme | Atmosfera de pôster com paleta 60-30-10. | Escurecer a cena, luz dramática e cores na proporção 60-30-10: 60 por cento fundo escuro, 30 cor de apoio, 10 acento. A paleta continua sendo a do cliente. | campanha, narrativa, atmosfera | `/ousado_contraste`, `/minimal_respiro`, `/editorial_duas_fontes` |
+| `/editorial_duas_fontes` | Editorial com duas fontes | Cara de revista, foto e texto na mesma história. | A foto conta a mesma história do texto. Título com duas tipografias em contraste (por exemplo script e serifa), conteúdo organizado. No máximo duas fontes. | conteúdo, autoridade, revista | `/ousado_contraste`, `/minimal_respiro`, `/poster_60_30_10` |
+| `/vetor_por_cima_por_baixo` | Vetor por cima e por baixo | Grafismo que atravessa o objeto. | Linha livre, contorno ou desenho vetorial brinca com a foto, passando parte por cima e parte por baixo do objeto; ou um shape com overlay ou multiply sobre parte da foto; ou shape esticado atrás do texto. Se o CTA tiver a mesma cor do shape, ele some: trocar a cor do botão ou do shape. | post, anúncio, grafismo |  |
+| `/circulo_luz_sombra` | Círculo, luz e sombra | Shape atrás do objeto com luz e sombra da mesma cor. | Shape geométrico (círculo) atrás do objeto, com luz da cor do shape num lado do objeto e sombra do objeto projetada sobre o shape. | post, retrato, produto |  |
 
 ## 5. Ordem de montagem do prompt
 

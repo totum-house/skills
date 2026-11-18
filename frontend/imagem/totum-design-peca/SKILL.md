@@ -9,7 +9,7 @@ description: >-
 ---
 # Totum Design Peça
 
-v0.5, 12/11/2026. Changelog: motor e molde de prompt alinhados à direção de Felipe (Grupo Totum). A peça sai no ChatGPT Images with thinking; o prompt colado fica curto e segue a referência. Base: v0.4, 23/10/2026, skill totum-prompt-peca (testes de agosto de 2026), Prompt Compiler e QA Rápido do Visual-Codes-MVP, Design System Totum v1.1, regra DS-006 e o teste uPixel de 23/10/2026. Material de apoio: `apoio/logica-de-design/` (nesta pasta).
+v0.6, 17/11/2026. Changelog: regras de diagramação dos 3 TikToks do Rael em `apoio/diagramacao.md`, lidas ao montar layout e prompt, com checklist antes de entregar. Base: v0.5, 12/11/2026, motor e molde de prompt alinhados à direção de Felipe (Grupo Totum). A peça sai no ChatGPT Images with thinking; o prompt colado fica curto e segue a referência. Material de apoio: `apoio/diagramacao.md` e `apoio/logica-de-design/` (nesta pasta).
 
 Notion (Clientes e Pedidos de peças) e o brand kit em `/workspace/totum-lab/design/clientes/<slug>/brand-kit/` são fontes externas a esta skill. Não estão neste repositório.
 
@@ -38,10 +38,11 @@ Monte a peça (layout, texto em pt-BR, logo e grafismos) no ChatGPT, em Images w
 2. Perguntas, só em pedido individual e só as que faltam: tipo de peça; objetivo e ação (em anúncio de mensagem o botão é nativo); texto pronto (avise se H1 > 8 palavras, CTA > 5); anexos; foto do ambiente real existe? Em lote, não pergunte: decida, registre a suposição no pedido.
 3. Ideia criativa por âncora: 3 ideias (da pessoa, da referência, do negócio), desenháveis e do mundo do cliente. Individual: recomende uma e espere. Lote: escolha a melhor e registre as outras duas.
 4. Receita: de totum-visual-codes. No prompt colado ficam 3 a 4 códigos, sem estruturais.
-5. Anexos de toda geração: uma referência boa e/ou o KV, o logo oficial e 1 ou 2 grafismos da marca.
+5. Diagramação: leia `apoio/diagramacao.md` e aplique ao montar o layout. No prompt colado do ChatGPT a referência já cobre o layout; no prompt de foto do Nano Banana ou do Grok Imagens, as regras de posição e estilo entram por extenso, sem código com barra.
+6. Anexos de toda geração: uma referência boa e/ou o KV, o logo oficial e 1 ou 2 grafismos da marca.
    - Faltou referência para o tema? Pesquise por cliente + tema (setor, data, oferta) no Designi (designi.com.br, conta logada no navegador) e no Pinterest (conta do Gmail da Totum no navegador). Use as prévias como referência; registre o link de cada uma. Designi tem 2 downloads por dia (re-download conta): baixe o PSD só quando precisar das camadas, e antes procure se o arquivo já está no Drive. Nunca curtir, salvar, seguir ou comentar.
-6. Foto de personagem ou cena, sem texto, pode sair antes no Grok Imagens ou no Nano Banana e entrar como anexo. A peça em si sai no ChatGPT, no molde abaixo. Não dite o layout e não proíba elemento que está na referência. Se o logo distorcer, aplique o arquivo oficial no PSD. Se a fonte oficial não estiver instalada nessa hora, pare e avise; não substitua sem registrar.
-7. Mande cada peça ao chat para aprovação antes do PSD ou dos slides finais. QA rápido, entrega e registro em `receitas.md`.
+7. Foto de personagem ou cena, sem texto, pode sair antes no Grok Imagens ou no Nano Banana e entrar como anexo. A peça em si sai no ChatGPT, no molde abaixo. Não dite o layout e não proíba elemento que está na referência. Se o logo distorcer, aplique o arquivo oficial no PSD. Se a fonte oficial não estiver instalada nessa hora, pare e avise; não substitua sem registrar.
+8. Mande cada peça ao chat para aprovação antes do PSD ou dos slides finais. QA rápido, o checklist de `apoio/diagramacao.md`, entrega e registro em `receitas.md`.
 
 ## As 7 regras
 
@@ -85,6 +86,7 @@ Negativos: <lista curta: negativos da marca, texto inventado ou ilegível, CTA i
 5. Pessoa, produto e ambiente respeitam os anexos?
 6. A emoção da receita aparece no resultado?
 7. O logo é o arquivo oficial, sem distorção? Se distorceu, o PSD recebe o arquivo.
+8. O checklist de diagramação em `apoio/diagramacao.md` passou?
 
 Falhou: troque só o que o problema pede (a linha da emoção, a copy ou o anexo) e gere de novo. Duas falhas no Images with thinking: aí sim GPT-6 Astra. Registre resultado, o que mudou, motivo e próxima troca.
 

@@ -1,6 +1,6 @@
 # Códigos de Design Totum
 
-Biblioteca ampliada da casa (Totum Lab, Grupo Totum). Versão 1.0, 05/11/2026. Complementa visual-codes.md: os 40 códigos de receita da casa continuam definidos lá; aqui ficam os 225 códigos de cena, estilo, formato e edição. Lida pela skill totum-visual-codes.
+Biblioteca ampliada da casa (Totum Lab, Grupo Totum). Versão 1.1, 17/11/2026. Changelog: entram 7 códigos de diagramação do Lab. Complementa visual-codes.md: os 40 códigos originais da casa e os 7 de diagramação continuam definidos lá; aqui ficam 232 códigos de cena, estilo, formato, edição, casa e diagramação. Lida pela skill totum-visual-codes.
 
 ## Como ler
 - Cada linha: `/codigo` | o que faz | prompt completo.
@@ -259,6 +259,19 @@ Biblioteca ampliada da casa (Totum Lab, Grupo Totum). Versão 1.0, 05/11/2026. C
 `/kv_objeto_central` | Totum: KV de objeto central | Um objeto memorável e tátil (foto, 3D fosco ou ilustração) domina o quadro, fundo sem ruído, halo ou recorte vermelho reforçando o objeto.
 `/cursiva_destaque` | Totum: palavra cursiva | Reservar ao lado da headline lugar para uma palavra em cursiva manual (Caveat), aplicada na composição, não gerada.
 `/marcacao_manual` | Totum: marcação de caneta | Reservar um destaque para círculo ou sublinhado de caneta aplicado na composição, não gerado.
+
+
+## Diagramação (7)
+
+Códigos do Lab (17/11/2026) para posts e anúncios. No prompt curto ficam de fora. Na receita completa e no prompt de foto (Nano Banana ou Grok Imagens), use o texto da expansão, sem a barra. Detalhe em `totum-design-peca/apoio/diagramacao.md`. `/ousado_contraste`, `/minimal_respiro`, `/poster_60_30_10` e `/editorial_duas_fontes` não se combinam na mesma peça. `/fora_do_centro` conflita com `/centered_impact`.
+
+`/fora_do_centro` | Fora do centro | Não centralizar por hábito. Usar a regra dos terços: o ponto mais importante (olho do personagem) num cruzamento, o texto no cruzamento oposto. Deixar espaço livre na direção do olhar ou do movimento e colocar o título nesse espaço. Centro só quando a composição for simétrica (pessoa de frente, título acima ou abaixo). Preferência da casa: foto de ponta a ponta, com o texto numa área calma; bloco chapado 2/3 imagem e 1/3 texto só quando o pedido pedir, ajustado ao tamanho do texto.
+`/ousado_contraste` | Ousado | Duas cores em contraste forte e exagerar a escala de um elemento, em geral o título gigante.
+`/minimal_respiro` | Minimalista com respiro | Foto com poucos elementos e tratamento mais monocromático, texto bem pequeno e gaps generosos entre os elementos.
+`/poster_60_30_10` | Pôster de filme | Escurecer a cena, luz dramática e cores na proporção 60-30-10: 60 por cento fundo escuro, 30 cor de apoio, 10 acento. A paleta continua sendo a do cliente.
+`/editorial_duas_fontes` | Editorial com duas fontes | A foto conta a mesma história do texto. Título com duas tipografias em contraste (por exemplo script e serifa), conteúdo organizado. No máximo duas fontes.
+`/vetor_por_cima_por_baixo` | Vetor por cima e por baixo | Linha livre, contorno ou desenho vetorial brinca com a foto, passando parte por cima e parte por baixo do objeto; ou um shape com overlay ou multiply sobre parte da foto; ou shape esticado atrás do texto. Se o CTA tiver a mesma cor do shape, ele some: trocar a cor do botão ou do shape.
+`/circulo_luz_sombra` | Círculo, luz e sombra | Shape geométrico (círculo) atrás do objeto, com luz da cor do shape num lado do objeto e sombra do objeto projetada sobre o shape.
 
 ## Negativos universais da casa (somar em toda peça)
 pele plástica, suavização excessiva, texto ilegível ou inventado, dedo extra, mão deformada, rosto diferente da referência, marca d'água, assinatura, luz amadora, cores saturadas demais, composição poluída, centralização sem motivo, dois focos competindo, sorriso de banco de imagem, cara de colagem, texto cortado, erro de acentuação, emoji, logo gerado pela IA.
